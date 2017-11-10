@@ -70,16 +70,71 @@ public class JugadorTest {
 	}
 	
 	
+	@Test
+	public void testUnJugadorCaeEnLaCarcelYPuedePagarLaFianzaSiElTurnoEsDosOTres() {
+		Jugador jugador = new Jugador("Gonzalo");
+		Carcel carcel = new Carcel();
+		jugador.caerEnCasillero(carcel);
+		jugador.esTuTurno(); // En este turno no puede realizar ninguna accion.
+		jugador.esTuTurno();
+		jugador.pagarFianza(carcel);
+		Assert.assertTrue(jugador.desplazar(2));		
+	}
+	
+	@Test
+	public void testUnJugadorNoPuedePagarLaFianzaSiElTurnoEsUno() {
+		Jugador jugador = new Jugador("Ariel");
+		Carcel carcel = new Carcel();
+		jugador.caerEnCasillero(carcel);
+		jugador.esTuTurno();
+		Assert.assertFalse(jugador.pagarFianza(carcel));
+	}
+	
+	@Test
+	public void testUnJugadorPuedePagarLaFianzaSiEsElTercerTurnoQueEstaEnLaCarcel() {
+		Jugador jugador = new Jugador("Ariel");
+		Carcel carcel = new Carcel();
+		jugador.caerEnCasillero(carcel);
+		jugador.esTuTurno();
+		jugador.esTuTurno();
+		jugador.esTuTurno();
+		Assert.assertTrue(jugador.pagarFianza(carcel));
+	}
+	
+	@Test
+	public void testUnJugadorEnLibertadNoPuedePagarLaFianza() {
+		Jugador jugador = new Jugador("Ariel");
+		Carcel carcel = new Carcel();
+		Assert.assertFalse(jugador.pagarFianza(carcel));
+	}
+	
+	@Test
+	public void testUnJugadorEncarceladoNoPuedeDesplazarse() {
+		Jugador jugador = new Jugador("Ariel");
+		jugador.encarcelar();
+		Assert.assertFalse(jugador.desplazar(5));
+	}
+	
+	@Test
+	public void testUnJugadorQueCaeEnLaCarcelQuedaLibreAlCuartoTurno() {
+		Jugador jugador = new Jugador("Ariel");
+		Carcel carcel = new Carcel();
+		jugador.caerEnCasillero(carcel);
+		jugador.esTuTurno();
+		jugador.esTuTurno();
+		jugador.esTuTurno();
+		jugador.esTuTurno();
+		Assert.assertTrue(jugador.desplazar(5));
+	}
+	
+	// Dejo planteado el siguiente Test
 //	@Test
-//	public void testUnJugadorCaeEnLaCarcelYPuedePagarLaFianzaSiElTurnoEsDosOTres() {
-//		Jugador jugador = new Jugador("Gonzalo");
+	//public void testUnJugadorNoPuedePagarLaFianzaPorFaltaDeFondosSiendoElTurnoDosOTres () {
+		//Jugador jugador = new Jugador("Ariel", 40000); // Este constructor es solo para testear casos de saldo insuficiente
 //		Carcel carcel = new Carcel();
 //		jugador.caerEnCasillero(carcel);
-//		jugador.esTuTurno(); // En este turno no puede realizar ninguna accion.
-//		jugador.esTuTurno();
-//		carcel.cobrarFianza(jugador);
-//		Assert.assertTrue(jugador.desplazar(2));
-		
+//		jugador.pagarFianza(carcel);
+//		// Aca habria que hacer que el metodo extraer dinero lance la excepcion SaldoInsuficiente y verificar en este test que se lanza dicha excepcion
 //	}
 
 }

@@ -13,5 +13,21 @@ public class Encarcelado extends EstadoJugador {
 		return false;
 	}
 
+	@Override
+	public void actualizarEstado(Jugador jugador) {
+		turnosEnCarcel++;
+		if(turnosEnCarcel == 4) {
+			jugador.liberar();
+		}
+	}
+
+	@Override
+	public boolean puedePagarFianza() {
+		if(turnosEnCarcel <= 1) {
+			return false;
+		}
+		return true;
+	}
+
 
 }

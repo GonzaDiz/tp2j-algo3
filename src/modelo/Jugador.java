@@ -4,8 +4,7 @@ public class Jugador {
 	private String nombre;
 	private int capital;
 	private EstadoJugador estado;
-	private Casillero casilleroActual;
-
+	
 	public Jugador(String unNombre) {
 		this.nombre = unNombre;
 		this.capital = 100000;
@@ -55,6 +54,20 @@ public class Jugador {
 	// Devuelve true en caso de poder desplazarse, false en caso contrario.
 	public boolean desplazar(int unValorDeDados) {
 		return this.estado.desplazar(this, unValorDeDados);
+	}
+
+	public void esTuTurno() {
+		this.estado.actualizarEstado(this);	
+	}
+
+	public boolean pagarFianza(Carcel carcel) {
+		if(this.estado.puedePagarFianza()) {
+			carcel.cobrarFianza(this);
+			return true;
+		}
+		return false;
+		
+		
 	}
 
 

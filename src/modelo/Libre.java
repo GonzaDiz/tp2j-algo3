@@ -7,4 +7,14 @@ public class Libre extends EstadoJugador {
 		return true;
 	}
 
+	@Override
+	public void actualizarEstado(Jugador jugador) {
+		
+	}
+
+	@Override
+	public boolean puedePagarFianza() {
+		return false;
+	}
+
 }

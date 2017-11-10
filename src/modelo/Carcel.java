@@ -15,5 +15,10 @@ public class Carcel extends Casillero {
 		unJugador.encarcelar();
 	}
 
+	public void cobrarFianza(Jugador jugador) {
+		jugador.extraerDinero(this.precioFianza);
+		jugador.liberar();		
+	}
+
 	
 }
