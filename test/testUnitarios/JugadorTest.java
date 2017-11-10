@@ -75,7 +75,7 @@ public class JugadorTest {
 //		Jugador jugador = new Jugador("Gonzalo");
 //		Carcel carcel = new Carcel();
 //		jugador.caerEnCasillero(carcel);
-//		jugador.esTuTurno(); // En este turno no puede realizar ninguna acción.
+//		jugador.esTuTurno(); // En este turno no puede realizar ninguna accion.
 //		jugador.esTuTurno();
 //		carcel.cobrarFianza(jugador);
 //		Assert.assertTrue(jugador.desplazar(2));
