@@ -51,7 +51,7 @@ public class Jugador {
 	
 	public void extraerDinero(int unMonto) throws CapitalInsuficienteError {
 		if(unMonto > this.capital) {
-			throw new CapitalInsuficienteError("No dispone del capital necesario para realizar esa acción.");
+			throw new CapitalInsuficienteError("No dispone del capital necesario para realizar esa accion.");
 		}
 		this.capital -= unMonto;
 	}
