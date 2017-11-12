@@ -1,8 +1,7 @@
 package testUnitarios;
 
-import org.junit.Test;
-
 import org.junit.Assert;
+import org.junit.Test;
 
 import modelo.casillero.compania.Aysa;
 import modelo.casillero.compania.Subte;
@@ -170,7 +169,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Ariel");
 		AvanceDinamico ad = new AvanceDinamico();
 		Subte subte = new Subte();
-		ad.setCasilleroSiguiente(subte); // Este tipo de mensajes los enviará la clase Tablero cuando se cree (junto con los casilleros)
+		ad.setCasilleroSiguiente(subte); // Este tipo de mensajes los enviara la clase Tablero cuando se cree (junto con los casilleros)
 		jugador.obtuvo(3); 
 		jugador.caerEnCasillero(ad);
 		Assert.assertEquals(subte, jugador.casilleroActual());
