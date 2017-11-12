@@ -1,5 +1,7 @@
 package modelo.jugador;
 
+import modelo.Tablero;
+
 public class Libre extends EstadoJugador {
 
 	@Override
@@ -10,11 +12,13 @@ public class Libre extends EstadoJugador {
 			return true;
 		}
 		
-		for(int i = 0 ; i< unValorDeDados ; i++) {
-			unJugador.avanzarUnCasillero();
-		}
+		//for(int i = 0 ; i< unValorDeDados ; i++) {
+		//	unJugador.avanzarUnCasillero();
+		//}
 		
-		unJugador.caerEnCasillero(unJugador.casilleroActual());
+		Tablero tablero = Tablero.getTablero();
+		unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), unValorDeDados));
+		//unJugador.caerEnCasillero(unJugador.casilleroActual());
 		return true;
 	}
 
@@ -26,6 +30,17 @@ public class Libre extends EstadoJugador {
 	@Override
 	public boolean puedePagarFianza() {
 		return false;
+	}
+
+	@Override
+	public void retroceder(Jugador unJugador, int cantidadDeCasillerosARetroceder) {
+		if (cantidadDeCasillerosARetroceder == 0) {
+		
+		}
+		else {
+			Tablero tablero = Tablero.getTablero();
+			unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), -cantidadDeCasillerosARetroceder));
+		}
 	}
 
 }

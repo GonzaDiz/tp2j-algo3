@@ -2,9 +2,9 @@ package modelo.jugador;
 
 import java.util.ArrayList;
 
+import modelo.Salida;
 import modelo.casillero.Casillero;
 import modelo.casillero.especial.Carcel;
-import modelo.casillero.terrenos.BuenosAiresSur;
 import modelo.casillero.terrenos.Terreno;
 import modelo.excepciones.CapitalInsuficienteError;
 
@@ -17,6 +17,7 @@ public class Jugador {
 	private Casillero casilleroActual;
 	
 	public Jugador(String unNombre) {
+		this.casilleroActual = Salida.getSalida();
 		this.nombre = unNombre;
 		this.capital = 100000;
 		this.estado = new Libre();
@@ -41,8 +42,7 @@ public class Jugador {
 
 	public void caerEnCasillero(Casillero unCasillero) {
 		this.casilleroActual = unCasillero;
-		unCasillero.afectarJugador(this);
-		
+		unCasillero.afectarJugador(this);	
 	}
 
 	public void entregarDinero(int unMonto) {
@@ -77,6 +77,7 @@ public class Jugador {
 	
 	// Devuelve true en caso de poder desplazarse, false en caso contrario.
 	public boolean desplazar(int unValorDeDados) {
+		//this.ultimaTirada = unValorDeDados;
 		return this.estado.desplazar(this, unValorDeDados);
 	}
 
@@ -119,22 +120,36 @@ public class Jugador {
 		return sum+terrenosComprados.size();
 	}
 
-	public void obtuvo(int i) {
-		this.ultimaTirada = i;		
+	public void obtuvo(int unValorDeDados) {
+		this.ultimaTirada = unValorDeDados;		
 	}
 
 	public Casillero casilleroActual() {
 		return casilleroActual;
 	}
 
-	public void avanzarUnCasillero() {
-		this.casilleroActual = this.casilleroActual.siguiente();
-		
-	}
-
 	public void comprar(Terreno unTerreno) throws CapitalInsuficienteError {
 		this.terrenosComprados.add(unTerreno.venderTerrenoA(this));
 		
+	}
+
+	public void retrocederDinamicamente() {
+		if(this.ultimaTirada <=6) {
+			this.retroceder(this.ultimaTirada - 2);
+			return;
+		}
+		
+		if(this.ultimaTirada <=10){
+			this.retroceder(this.capital % this.ultimaTirada);
+			return;
+		}
+		
+		this.retroceder(this.ultimaTirada - 2);
+		
+	}
+
+	private void retroceder(int cantidadDeCasillerosARetroceder) {
+		this.estado.retroceder(this,cantidadDeCasillerosARetroceder);
 	}
 
 

@@ -1,5 +1,7 @@
 package modelo.jugador;
 
+import modelo.Tablero;
+
 public class Encarcelado extends EstadoJugador {
 
 	private int turnosEnCarcel;
@@ -10,6 +12,8 @@ public class Encarcelado extends EstadoJugador {
 	
 	@Override
 	public boolean desplazar(Jugador unJugador, int unValorDeDados) {
+		Tablero tablero = Tablero.getTablero();
+		unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), unValorDeDados));
 		return false;
 	}
 
@@ -27,6 +31,12 @@ public class Encarcelado extends EstadoJugador {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public void retroceder(Jugador jugador, int cantidadDeCasillerosARetroceder) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
