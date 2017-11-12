@@ -1,7 +1,10 @@
-package modelo;
+package modelo.casillero.especial;
 
 import java.util.Stack;
 import java.util.concurrent.ConcurrentHashMap;
+
+import modelo.casillero.Casillero;
+import modelo.jugador.Jugador;
 
 public class Quini6 extends Casillero{
 	

@@ -1,4 +1,8 @@
-package modelo;
+package modelo.casillero.especial;
+
+import modelo.casillero.Casillero;
+import modelo.excepciones.CapitalInsuficienteError;
+import modelo.jugador.Jugador;
 
 public class Carcel extends Casillero {
 
@@ -15,7 +19,7 @@ public class Carcel extends Casillero {
 		unJugador.encarcelar();
 	}
 
-	public void cobrarFianza(Jugador jugador) {
+	public void cobrarFianza(Jugador jugador) throws CapitalInsuficienteError {
 		jugador.extraerDinero(this.precioFianza);
 		jugador.liberar();		
 	}

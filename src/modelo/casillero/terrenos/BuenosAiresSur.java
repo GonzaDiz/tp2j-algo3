@@ -1,10 +1,12 @@
-package modelo;
+package modelo.casillero.terrenos;
 
-public class BuenosAiresSur extends Terreno{
+import modelo.jugador.Jugador;
+
+public class BuenosAiresSur extends TerrenoDoble{
 
 	// Constructor por defecto crea con precio del enunciado.
 	public BuenosAiresSur() {
-		super();
+		
 		precio = 20000;
 		propietario = null;
 	}
@@ -12,14 +14,17 @@ public class BuenosAiresSur extends Terreno{
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		
-		if(unJugador.ofrecerTerrenoEn(this, this.precio)) {
-			propietario = unJugador;
-		}
+		// Aqui estaran contempladas las opciones del terreno hacia el jugador
 		
 	}
 	public Jugador propietario() {
 		return propietario;
+	}
+
+
+	@Override
+	public int construcciones() {
+		return 0;
 	}
 
 
