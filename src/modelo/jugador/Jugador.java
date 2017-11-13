@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import modelo.Salida;
 import modelo.casillero.Casillero;
-import modelo.casillero.especial.Carcel;
 import modelo.casillero.terrenos.Terreno;
 import modelo.excepciones.CapitalInsuficienteError;
 
@@ -49,7 +48,7 @@ public class Jugador {
 		this.capital += unMonto;
 	}
 	
-	public void extraerDinero(int unMonto) throws CapitalInsuficienteError {
+	public void extraerDinero(int unMonto) {
 		if(unMonto > this.capital) {
 			throw new CapitalInsuficienteError("No dispone del capital necesario para realizar esa accion.");
 		}
@@ -76,23 +75,18 @@ public class Jugador {
 	}
 	
 	// Devuelve true en caso de poder desplazarse, false en caso contrario.
-	public boolean desplazar(int unValorDeDados) {
+	public void desplazar(int unValorDeDados) {
 		//this.ultimaTirada = unValorDeDados;
-		return this.estado.desplazar(this, unValorDeDados);
+		this.estado.desplazar(this, unValorDeDados);
 	}
 
 	public void esTuTurno() {
 		this.estado.actualizarEstado(this);	
 	}
 
-	public boolean pagarFianza(Carcel carcel) throws CapitalInsuficienteError {
-		if(this.estado.puedePagarFianza()) {
-			carcel.cobrarFianza(this);
-			return true;
-		}
-		return false;
-		
-		
+	public void pagarFianza()  {
+		this.estado.pagarFianza(this);
+		//carcel.cobrarFianza(this);
 	}
 
 	public void desplazarseDinamicamente() {

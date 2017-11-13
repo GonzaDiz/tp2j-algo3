@@ -30,6 +30,9 @@ public class Quini6 extends Casillero{
 
 	@Override
 	public void afectarJugador(Jugador unJugador) {
+		if (this.noEstaRegistrado(unJugador)) {
+			this.registrarJugador(unJugador);
+		}
 		
 		if(this.puedeCobrar(unJugador)) {
 			this.entregarPremio(unJugador);
@@ -43,8 +46,12 @@ public class Quini6 extends Casillero{
 	private boolean puedeCobrar(Jugador unJugador) {
 		return !(jugadores.get(unJugador)).empty();
 	}
+	
+	private boolean noEstaRegistrado(Jugador unJugador) {
+		return !jugadores.containsKey(unJugador);
+	}
 
-	public void registrarJugador(Jugador unJugador) {
+	private void registrarJugador(Jugador unJugador) {
 		Stack <Integer> premios = new Stack<Integer>();
 		premios.push(30000);
 		premios.push(50000);

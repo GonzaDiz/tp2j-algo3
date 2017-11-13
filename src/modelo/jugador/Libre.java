@@ -1,35 +1,34 @@
 package modelo.jugador;
 
 import modelo.Tablero;
+import modelo.excepciones.NoEstasEncarceladoException;
 
 public class Libre extends EstadoJugador {
 
 	@Override
-	public boolean desplazar(Jugador unJugador, int unValorDeDados) {
+	public void desplazar(Jugador unJugador, int unValorDeDados) {
 		
 		// Si no se tiene que desplazar, el casillero actual no lo debe tener que volver a afectar
 		if(unValorDeDados == 0) {
-			return true;
+			//return true;
 		}
-		
+		else {
+			Tablero tablero = Tablero.getTablero();
+			unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), unValorDeDados));
+			
+		}
 		//for(int i = 0 ; i< unValorDeDados ; i++) {
 		//	unJugador.avanzarUnCasillero();
 		//}
 		
-		Tablero tablero = Tablero.getTablero();
-		unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), unValorDeDados));
+		
 		//unJugador.caerEnCasillero(unJugador.casilleroActual());
-		return true;
+		//return true;
 	}
 
 	@Override
 	public void actualizarEstado(Jugador jugador) {
 		
-	}
-
-	@Override
-	public boolean puedePagarFianza() {
-		return false;
 	}
 
 	@Override
@@ -41,6 +40,11 @@ public class Libre extends EstadoJugador {
 			Tablero tablero = Tablero.getTablero();
 			unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), -cantidadDeCasillerosARetroceder));
 		}
+	}
+
+	@Override
+	public void pagarFianza(Jugador jugador) {
+		throw new NoEstasEncarceladoException();
 	}
 
 }

@@ -3,15 +3,12 @@ package testUnitarios;
 import org.junit.Assert;
 import org.junit.Test;
 
-import modelo.BuenosAiresNorte;
-import modelo.Edesur;
 import modelo.casillero.compania.Aysa;
 import modelo.casillero.compania.Subte;
 import modelo.casillero.compania.Tren;
 import modelo.casillero.especial.AvanceDinamico;
 import modelo.casillero.especial.Carcel;
 import modelo.casillero.especial.ImpuestoDeLujo;
-import modelo.casillero.especial.Policia;
 import modelo.casillero.especial.Quini6;
 import modelo.casillero.especial.RetrocesoDinamico;
 import modelo.casillero.terrenos.BuenosAiresSur;
@@ -21,6 +18,9 @@ import modelo.casillero.terrenos.SaltaSur;
 import modelo.casillero.terrenos.SantaFe;
 import modelo.casillero.terrenos.Tucuman;
 import modelo.excepciones.CapitalInsuficienteError;
+import modelo.excepciones.NoEstasEncarceladoException;
+import modelo.excepciones.NoPuedePagarFianzaException;
+import modelo.excepciones.NoSePuedeDesplazarJugadorEncarceladoException;
 import modelo.jugador.Jugador;
 
 public class JugadorTest {
@@ -41,7 +41,6 @@ public class JugadorTest {
 	public void testUnJugadorCaeEnQuini6PorPrimeraVezYSuCapitalAumentaEn50000() {
 		Jugador jugador = new Jugador("Ariel");
 		Quini6 quini6 = Quini6.getQuini6();
-		quini6.registrarJugador(jugador);
 		jugador.caerEnCasillero(quini6);
 		Assert.assertEquals(jugador.capitalTotal(), 150000);
 	}
@@ -50,7 +49,6 @@ public class JugadorTest {
 	public void testUnJugadorCaeEnQuini6PorSegundaVezYSuCapitalAumentaEn30000() {
 		Jugador jugador = new Jugador("Gonzalo");
 		Quini6 quini6 = Quini6.getQuini6();
-		quini6.registrarJugador(jugador);
 		jugador.caerEnCasillero(quini6);
 		jugador.caerEnCasillero(quini6);
 		Assert.assertEquals(180000, jugador.capitalTotal());
@@ -60,7 +58,6 @@ public class JugadorTest {
 	public void testUnJugadorCaeEnQuini6PorTerceraVezYSuCapitalNoAumenta() {
 		Jugador jugador = new Jugador("Ariel");
 		Quini6 quini6 = Quini6.getQuini6();
-		quini6.registrarJugador(jugador);
 		jugador.caerEnCasillero(quini6);
 		jugador.caerEnCasillero(quini6);
 		jugador.caerEnCasillero(quini6);
@@ -68,7 +65,7 @@ public class JugadorTest {
 	}
 
 	@Test
-	public void testUnJugadorCaeEnUnTerrenoYAlComprarloSeVuelveElPropietario() throws CapitalInsuficienteError {
+	public void testUnJugadorCaeEnUnTerrenoYAlComprarloSeVuelveElPropietario() {
 		Jugador jugador = new Jugador("Gonzalo");
 		BuenosAiresSur bsasSur = BuenosAiresSur.getBuenosAiresSur();
 		jugador.caerEnCasillero(bsasSur);
@@ -76,62 +73,61 @@ public class JugadorTest {
 		Assert.assertEquals(jugador, bsasSur.propietario());
 	}
 
-	@Test 
-	public void testUnJugadorCaeEnLaCarcelYNoPuedeDesplazarse() {
+	@Test (expected = NoSePuedeDesplazarJugadorEncarceladoException.class)
+	public void testUnJugadorCaeEnLaCarcelIntentaDesplazarse2LugaresSaltaNoSePuedeDesplazarJugadorEnCarcelException() {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
-		Assert.assertFalse(jugador.desplazar(2));
+		jugador.desplazar(2);
 	}
 	
 	
 	@Test
-	public void testUnJugadorCaeEnLaCarcelYPuedePagarLaFianzaSiElTurnoEsDosOTres() throws CapitalInsuficienteError {
+	public void testUnJugadorCaeEnLaCarcelYPuedePagarLaFianzaSiElTurnoEsDosOTres()  {
 		Jugador jugador = new Jugador("Gonzalo");
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
 		jugador.esTuTurno(); // En este turno no puede realizar ninguna accion.
 		jugador.esTuTurno();
-		jugador.pagarFianza(carcel);
-		Assert.assertTrue(jugador.desplazar(2));		
+		jugador.pagarFianza();
+		//Assert.assertTrue(jugador.desplazar(2));		
 	}
 	
-	@Test
-	public void testUnJugadorNoPuedePagarLaFianzaSiElTurnoEsUno() throws CapitalInsuficienteError {
+	@Test (expected = NoPuedePagarFianzaException.class)
+	public void testUnJugadorNoPuedePagarLaFianzaSiElTurnoEsUno()  {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
 		jugador.esTuTurno();
-		Assert.assertFalse(jugador.pagarFianza(carcel));
+		jugador.pagarFianza();
 	}
 	
 	@Test
-	public void testUnJugadorPuedePagarLaFianzaSiEsElTercerTurnoQueEstaEnLaCarcel() throws CapitalInsuficienteError {
+	public void testUnJugadorPuedePagarLaFianzaSiEsElTercerTurnoQueEstaEnLaCarcel() {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		jugador.esTuTurno();
-		Assert.assertTrue(jugador.pagarFianza(carcel));
+		jugador.pagarFianza();
 	}
 	
-	@Test
-	public void testUnJugadorEnLibertadNoPuedePagarLaFianza() throws CapitalInsuficienteError {
+	@Test (expected = NoEstasEncarceladoException.class)
+	public void testUnJugadorEnLibertadNoPuedePagarLaFianza() {
 		Jugador jugador = new Jugador("Ariel");
-		Carcel carcel = Carcel.getCarcel();
-		Assert.assertFalse(jugador.pagarFianza(carcel));
+		jugador.pagarFianza();
 	}
 	
-	@Test
-	public void testUnJugadorEncarceladoNoPuedeDesplazarse() {
+	@Test (expected = NoSePuedeDesplazarJugadorEncarceladoException.class)
+	public void testUnJugadorEncarceladoIntentaDesplazarse5CasillerosSaltaNoSePuedeDesplazarJugadorEnCarcelException() {
 		Jugador jugador = new Jugador("Ariel");
 		jugador.encarcelar();
-		Assert.assertFalse(jugador.desplazar(5));
+		jugador.desplazar(5);
 	}
 	
 	@Test
-	public void testUnJugadorQueCaeEnLaCarcelQuedaLibreAlCuartoTurno() {
+	public void testUnJugadorQueCaeEnLaCarcelQuedaLibreAlCuartoTurnoEntoncesPuedeDesplazarse() {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
@@ -139,18 +135,17 @@ public class JugadorTest {
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		jugador.esTuTurno();
-		Assert.assertTrue(jugador.desplazar(5));
+		jugador.desplazar(5);
 	}
 	
 	@Test(expected = CapitalInsuficienteError.class)
-	public void testUnJugadorNoPuedePagarLaFianzaPorFaltaDeFondosSiendoElTurnoDosOTres () throws CapitalInsuficienteError {
+	public void testUnJugadorNoPuedePagarLaFianzaPorFaltaDeFondosSiendoElTurnoDosOTres () {
 		Jugador jugador = new Jugador("Ariel", 40000); // Este constructor es solo para testear casos de saldo insuficiente
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
 		jugador.esTuTurno();
 		jugador.esTuTurno();
-		jugador.pagarFianza(carcel);
-		Assert.assertFalse(jugador.desplazar(5));
+		jugador.pagarFianza();
 	}
 	
 	@Test

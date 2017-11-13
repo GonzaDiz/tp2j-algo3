@@ -1,6 +1,8 @@
 package modelo.jugador;
 
-import modelo.Tablero;
+import modelo.casillero.especial.Carcel;
+import modelo.excepciones.NoPuedePagarFianzaException;
+import modelo.excepciones.NoSePuedeDesplazarJugadorEncarceladoException;
 
 public class Encarcelado extends EstadoJugador {
 
@@ -11,10 +13,11 @@ public class Encarcelado extends EstadoJugador {
 	}
 	
 	@Override
-	public boolean desplazar(Jugador unJugador, int unValorDeDados) {
-		Tablero tablero = Tablero.getTablero();
-		unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), unValorDeDados));
-		return false;
+	public void desplazar(Jugador unJugador, int unValorDeDados) {
+		throw new NoSePuedeDesplazarJugadorEncarceladoException();
+		//Tablero tablero = Tablero.getTablero();
+		//unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), unValorDeDados));
+		//return false;
 	}
 
 	@Override
@@ -25,17 +28,20 @@ public class Encarcelado extends EstadoJugador {
 		}
 	}
 
-	@Override
-	public boolean puedePagarFianza() {
-		if(turnosEnCarcel <= 1) {
-			return false;
-		}
-		return true;
-	}
 
 	@Override
 	public void retroceder(Jugador jugador, int cantidadDeCasillerosARetroceder) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pagarFianza(Jugador jugador) {
+		if(turnosEnCarcel <= 1) {
+			throw new NoPuedePagarFianzaException();
+		}
+		Carcel carcel = Carcel.getCarcel();
+		carcel.cobrarFianza(jugador);
 		
 	}
 
