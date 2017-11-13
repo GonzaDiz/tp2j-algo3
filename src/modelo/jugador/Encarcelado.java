@@ -13,7 +13,7 @@ public class Encarcelado extends EstadoJugador {
 	}
 	
 	@Override
-	public void desplazar(Jugador unJugador, int unValorDeDados) {
+	public void avanzar(Jugador unJugador, int unValorDeDados) {
 		throw new NoSePuedeDesplazarJugadorEncarceladoException();
 		//Tablero tablero = Tablero.getTablero();
 		//unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), unValorDeDados));

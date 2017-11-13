@@ -77,7 +77,7 @@ public class Jugador {
 	// Devuelve true en caso de poder desplazarse, false en caso contrario.
 	public void desplazar(int unValorDeDados) {
 		//this.ultimaTirada = unValorDeDados;
-		this.estado.desplazar(this, unValorDeDados);
+		this.estado.avanzar(this, unValorDeDados);
 	}
 
 	public void esTuTurno() {

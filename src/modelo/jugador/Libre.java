@@ -6,7 +6,7 @@ import modelo.excepciones.NoEstasEncarceladoException;
 public class Libre extends EstadoJugador {
 
 	@Override
-	public void desplazar(Jugador unJugador, int unValorDeDados) {
+	public void avanzar(Jugador unJugador, int unValorDeDados) {
 		
 		// Si no se tiene que desplazar, el casillero actual no lo debe tener que volver a afectar
 		if(unValorDeDados == 0) {

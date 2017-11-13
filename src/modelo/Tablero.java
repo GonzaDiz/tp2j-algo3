@@ -60,6 +60,7 @@ public class Tablero {
 		return TABLERO;
 	}
 
+	// Una posible mejora para evitar estos ifs es implementar una estructura de datos Lista Circular
 	public Casillero getCasillero(Casillero casilleroActual, int unValorDeDados) {
 		int posicionActual = casilleros.indexOf(casilleroActual);
 		

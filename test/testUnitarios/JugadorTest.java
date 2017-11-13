@@ -82,7 +82,7 @@ public class JugadorTest {
 	}
 	
 	
-	@Test
+	@Test //Aca faltaria el testeo de que no se lanza ninguna excepcion cuando se desplaza
 	public void testUnJugadorCaeEnLaCarcelYPuedePagarLaFianzaSiElTurnoEsDosOTres()  {
 		Jugador jugador = new Jugador("Gonzalo");
 		Carcel carcel = Carcel.getCarcel();
@@ -102,7 +102,7 @@ public class JugadorTest {
 		jugador.pagarFianza();
 	}
 	
-	@Test
+	@Test // Mismo que el anterior, faltaria una comprobacion de que no se lanza la excepcion
 	public void testUnJugadorPuedePagarLaFianzaSiEsElTercerTurnoQueEstaEnLaCarcel() {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
@@ -120,13 +120,13 @@ public class JugadorTest {
 	}
 	
 	@Test (expected = NoSePuedeDesplazarJugadorEncarceladoException.class)
-	public void testUnJugadorEncarceladoIntentaDesplazarse5CasillerosSaltaNoSePuedeDesplazarJugadorEnCarcelException() {
+	public void testUnJugadorEncarceladoIntentaDesplazarse5CasillerosYSeLanzaNoSePuedeDesplazarJugadorEnCarcelException() {
 		Jugador jugador = new Jugador("Ariel");
 		jugador.encarcelar();
 		jugador.desplazar(5);
 	}
 	
-	@Test
+	@Test // Aca tambien falta un Assert
 	public void testUnJugadorQueCaeEnLaCarcelQuedaLibreAlCuartoTurnoEntoncesPuedeDesplazarse() {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
