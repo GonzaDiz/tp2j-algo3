@@ -24,7 +24,7 @@ public class AvanceDinamico extends Casillero{
 
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		unJugador.desplazarseDinamicamente();	
+		unJugador.avanzarDinamicamente();	
 	}
 
 }

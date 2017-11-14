@@ -9,6 +9,7 @@ import modelo.casillero.compania.Tren;
 import modelo.casillero.especial.AvanceDinamico;
 import modelo.casillero.especial.Carcel;
 import modelo.casillero.especial.ImpuestoDeLujo;
+import modelo.casillero.especial.Policia;
 import modelo.casillero.especial.Quini6;
 import modelo.casillero.especial.RetrocesoDinamico;
 import modelo.casillero.terrenos.BuenosAiresSur;
@@ -78,7 +79,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
-		jugador.desplazar(2);
+		jugador.avanzar(2);
 	}
 	
 	
@@ -143,7 +144,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Ariel");
 		jugador.encarcelar();
 		try {
-			jugador.desplazar(5);
+			jugador.avanzar(5);
 		}
 		catch(NoSePuedeDesplazarJugadorEncarceladoException e) {
 			Assert.assertTrue(true);
@@ -160,7 +161,7 @@ public class JugadorTest {
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		try {
-			jugador.desplazar(5);	
+			jugador.avanzar(5);	
 		}
 		catch(NoSePuedeDesplazarJugadorEncarceladoException e) {
 			Assert.assertTrue(false);
@@ -280,7 +281,7 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void testUnJugadorConTresPropiedadesPropiedadesCaeEnAvanceDinamicoHabiendoSumadoDoceEntoncesAvanzaNueve () throws CapitalInsuficienteError {
+	public void testUnJugadorConTresPropiedadesCaeEnAvanceDinamicoHabiendoSumadoDoceEntoncesAvanzaNueve () throws CapitalInsuficienteError {
 		Jugador jugador = new Jugador("Ariel");
 		jugador.comprar(Neuquen.getNeuquen());
 		jugador.comprar(SantaFe.getSantaFe());
@@ -321,5 +322,26 @@ public class JugadorTest {
 		jugador.caerEnCasillero(RetrocesoDinamico.getRetrocesoDinamico());
 		Assert.assertEquals(RetrocesoDinamico.getRetrocesoDinamico(), jugador.casilleroActual());
 	}
+	
+	@Test
+	public void testUnJugadorCaeEnLaPoliciaYPasaAEstarEncarcelado() {
+		Jugador jugador = new Jugador("Amado Budou");
+		jugador.caerEnCasillero(Policia.getPolicia());
+		try {
+			jugador.avanzar(5);	
+		}
+		catch(NoSePuedeDesplazarJugadorEncarceladoException e) {
+			Assert.assertTrue(true);
+		}
+	}
+	
+	@Test
+	public void testUnJugadorCaeEnLaPoliciaYSuUbicacionActualEsLaCarcel() {
+		Jugador jugador = new Jugador("Amado Budou");
+		jugador.caerEnCasillero(Policia.getPolicia());
+		Assert.assertEquals(Carcel.getCarcel(), jugador.casilleroActual());
+	}
+	
+	// HASTA ACA LOS TEST DE LA PRIMERA ENTREGA
 
 }

@@ -75,7 +75,7 @@ public class Jugador {
 	}
 	
 	// Devuelve true en caso de poder desplazarse, false en caso contrario.
-	public void desplazar(int unValorDeDados) {
+	public void avanzar(int unValorDeDados) {
 		//this.ultimaTirada = unValorDeDados;
 		this.estado.avanzar(this, unValorDeDados);
 	}
@@ -86,23 +86,22 @@ public class Jugador {
 
 	public void pagarFianza()  {
 		this.estado.pagarFianza(this);
-		//carcel.cobrarFianza(this);
 	}
 
-	public void desplazarseDinamicamente() {
+	public void avanzarDinamicamente() {
 		
 		if(this.ultimaTirada <= 6) {
-			this.desplazar(this.ultimaTirada -2);
+			this.avanzar(this.ultimaTirada -2);
 			return;
 		}
 		
 		if(this.ultimaTirada <= 10) {
-			this.desplazar(this.capital % this.ultimaTirada);
+			this.avanzar(this.capital % this.ultimaTirada);
 			return;
 		}
 		
 		// Este numero puede ser negativo, supuesto: con avance dinamico no se puede retroceder
-		this.desplazar(this.ultimaTirada - this.cantidadDePropiedades());
+		this.avanzar(this.ultimaTirada - this.cantidadDePropiedades());
 	}
 
 	private int cantidadDePropiedades() {

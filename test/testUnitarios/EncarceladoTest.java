@@ -20,7 +20,7 @@ public class EncarceladoTest {
 	public void testDesplazarUnJugadorEncarceladoLanzaExcepcionNoSePuedeDesplazarJugadorEncarceladoException() {
 		Jugador jugador = new Jugador("Gisella");
 		jugador.encarcelar();
-		jugador.desplazar(4);
+		jugador.avanzar(4);
 	}
 	
 	@Test (expected = NoPuedePagarFianzaException.class) 
@@ -67,7 +67,7 @@ public class EncarceladoTest {
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		jugador.esTuTurno();
-		jugador.desplazar(5);
+		jugador.avanzar(5);
 	}
 
 }
