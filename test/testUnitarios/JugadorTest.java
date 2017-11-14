@@ -82,27 +82,36 @@ public class JugadorTest {
 	}
 	
 	
-	@Test //Aca faltaria el testeo de que no se lanza ninguna excepcion cuando se desplaza
+	@Test 
 	public void testUnJugadorCaeEnLaCarcelYPuedePagarLaFianzaSiElTurnoEsDosOTres()  {
 		Jugador jugador = new Jugador("Gonzalo");
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
 		jugador.esTuTurno(); // En este turno no puede realizar ninguna accion.
 		jugador.esTuTurno();
-		jugador.pagarFianza();
-		//Assert.assertTrue(jugador.desplazar(2));		
+		try {
+			jugador.pagarFianza();
+		}
+		catch(NoPuedePagarFianzaException e) {
+			Assert.assertTrue(false);
+		}
 	}
 	
-	@Test (expected = NoPuedePagarFianzaException.class)
+	@Test
 	public void testUnJugadorNoPuedePagarLaFianzaSiElTurnoEsUno()  {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
 		jugador.esTuTurno();
-		jugador.pagarFianza();
+		try {
+			jugador.pagarFianza();
+		}
+		catch(NoPuedePagarFianzaException e) {
+			Assert.assertTrue(true);
+		}
 	}
 	
-	@Test // Mismo que el anterior, faltaria una comprobacion de que no se lanza la excepcion
+	@Test 
 	public void testUnJugadorPuedePagarLaFianzaSiEsElTercerTurnoQueEstaEnLaCarcel() {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
@@ -110,23 +119,38 @@ public class JugadorTest {
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		jugador.esTuTurno();
-		jugador.pagarFianza();
+		try {
+			jugador.pagarFianza();
+		}
+		catch(NoPuedePagarFianzaException e) {
+			Assert.assertTrue(false);
+		}
 	}
 	
-	@Test (expected = NoEstasEncarceladoException.class)
+	@Test 
 	public void testUnJugadorEnLibertadNoPuedePagarLaFianza() {
 		Jugador jugador = new Jugador("Ariel");
-		jugador.pagarFianza();
+		try {
+			jugador.pagarFianza();
+		}
+		catch(NoEstasEncarceladoException e) {
+			Assert.assertTrue(true);
+		}
 	}
 	
-	@Test (expected = NoSePuedeDesplazarJugadorEncarceladoException.class)
+	@Test
 	public void testUnJugadorEncarceladoIntentaDesplazarse5CasillerosYSeLanzaNoSePuedeDesplazarJugadorEnCarcelException() {
 		Jugador jugador = new Jugador("Ariel");
 		jugador.encarcelar();
-		jugador.desplazar(5);
+		try {
+			jugador.desplazar(5);
+		}
+		catch(NoSePuedeDesplazarJugadorEncarceladoException e) {
+			Assert.assertTrue(true);
+		}
 	}
 	
-	@Test // Aca tambien falta un Assert
+	@Test
 	public void testUnJugadorQueCaeEnLaCarcelQuedaLibreAlCuartoTurnoEntoncesPuedeDesplazarse() {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
@@ -135,17 +159,27 @@ public class JugadorTest {
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		jugador.esTuTurno();
-		jugador.desplazar(5);
+		try {
+			jugador.desplazar(5);	
+		}
+		catch(NoSePuedeDesplazarJugadorEncarceladoException e) {
+			Assert.assertTrue(false);
+		}
 	}
 	
-	@Test(expected = CapitalInsuficienteError.class)
+	@Test
 	public void testUnJugadorNoPuedePagarLaFianzaPorFaltaDeFondosSiendoElTurnoDosOTres () {
 		Jugador jugador = new Jugador("Ariel", 40000); // Este constructor es solo para testear casos de saldo insuficiente
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
 		jugador.esTuTurno();
 		jugador.esTuTurno();
-		jugador.pagarFianza();
+		try {
+			jugador.pagarFianza();
+		}
+		catch(CapitalInsuficienteError e) {
+			Assert.assertTrue(true);
+		}
 	}
 	
 	@Test
