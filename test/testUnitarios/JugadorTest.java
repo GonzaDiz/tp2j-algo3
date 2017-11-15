@@ -79,7 +79,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Ariel");
 		Carcel carcel = Carcel.getCarcel();
 		jugador.caerEnCasillero(carcel);
-		jugador.avanzar(2);
+		jugador.desplazar(2);
 	}
 	
 	
@@ -144,7 +144,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Ariel");
 		jugador.encarcelar();
 		try {
-			jugador.avanzar(5);
+			jugador.desplazar(5);
 		}
 		catch(NoSePuedeDesplazarJugadorEncarceladoException e) {
 			Assert.assertTrue(true);
@@ -161,7 +161,7 @@ public class JugadorTest {
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		try {
-			jugador.avanzar(5);	
+			jugador.desplazar(5);	
 		}
 		catch(NoSePuedeDesplazarJugadorEncarceladoException e) {
 			Assert.assertTrue(false);
@@ -316,11 +316,11 @@ public class JugadorTest {
 	}
 	
 	@Test 
-	public void testUnJugadorCaeEnRetrocesoDinamicoHabiendoSumado2EntoncesRetrocede2CasillerosAlTener0Propiedades() {
+	public void testUnJugadorCaeEnRetrocesoDinamicoHabiendoSumado2EntoncesRetrocede2CasillerosHastaTrenAlTener0Propiedades() {
 		Jugador jugador = new Jugador("Esteban");
 		jugador.obtuvo(2);
 		jugador.caerEnCasillero(RetrocesoDinamico.getRetrocesoDinamico());
-		Assert.assertEquals(RetrocesoDinamico.getRetrocesoDinamico(), jugador.casilleroActual());
+		Assert.assertEquals(Tren.getTren(), jugador.casilleroActual());
 	}
 	
 	@Test
@@ -328,7 +328,7 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Amado Budou");
 		jugador.caerEnCasillero(Policia.getPolicia());
 		try {
-			jugador.avanzar(5);	
+			jugador.desplazar(5);	
 		}
 		catch(NoSePuedeDesplazarJugadorEncarceladoException e) {
 			Assert.assertTrue(true);

@@ -13,11 +13,8 @@ public class Encarcelado extends EstadoJugador {
 	}
 	
 	@Override
-	public void avanzar(Jugador unJugador, int unValorDeDados) {
+	public void desplazar(Jugador unJugador, int cantidadDecasilleros) {
 		throw new NoSePuedeDesplazarJugadorEncarceladoException();
-		//Tablero tablero = Tablero.getTablero();
-		//unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), unValorDeDados));
-		//return false;
 	}
 
 	@Override
@@ -26,13 +23,6 @@ public class Encarcelado extends EstadoJugador {
 		if(turnosEnCarcel == 4) {
 			jugador.liberar();
 		}
-	}
-
-
-	@Override
-	public void retroceder(Jugador jugador, int cantidadDeCasillerosARetroceder) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

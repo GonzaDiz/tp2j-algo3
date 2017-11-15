@@ -3,6 +3,7 @@ package testUnitarios;
 import org.junit.Assert;
 import org.junit.Test;
 
+import modelo.casillero.especial.ImpuestoDeLujo;
 import modelo.excepciones.NoPuedePagarFianzaException;
 import modelo.excepciones.NoSePuedeDesplazarJugadorEncarceladoException;
 import modelo.jugador.Encarcelado;
@@ -20,7 +21,7 @@ public class EncarceladoTest {
 	public void testDesplazarUnJugadorEncarceladoLanzaExcepcionNoSePuedeDesplazarJugadorEncarceladoException() {
 		Jugador jugador = new Jugador("Gisella");
 		jugador.encarcelar();
-		jugador.avanzar(4);
+		jugador.desplazar(4);
 	}
 	
 	@Test (expected = NoPuedePagarFianzaException.class) 
@@ -39,12 +40,15 @@ public class EncarceladoTest {
 	}
 	
 	@Test
-	public void testPagarFianzaHabiendoPasadoDosTurnosEncarceladosNoLanzaNingunaExcepcion() {
+	public void testPagarFianzaHabiendoPasadoDosTurnosEncarceladosLeResta45000AlCapitalDelJugador() {
 		Jugador jugador = new Jugador("Laura");
+		int capital = jugador.capitalTotal();
 		jugador.encarcelar();
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		jugador.pagarFianza();
+		Assert.assertEquals(capital - 45000, jugador.capitalTotal());
+		
 	}
 	
 	@Test
@@ -60,14 +64,16 @@ public class EncarceladoTest {
 	}
 	
 	@Test
-	public void testJugadorPasa4TurnosEncarceladoEntoncesEsLiberadoYSePuedeDesplazar() {
+	public void testJugadorPasa4TurnosEncarceladoEntoncesEsLiberadoYSePuedeDesplazar5CasillerosHastaImpuestoDelujo() {
 		Jugador jugador = new Jugador("Mariano");
 		jugador.encarcelar();
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		jugador.esTuTurno();
 		jugador.esTuTurno();
-		jugador.avanzar(5);
+		jugador.desplazar(5);
+		Assert.assertEquals(ImpuestoDeLujo.getImpuestoDeLujo(), jugador.casilleroActual());
+		
 	}
 
 }

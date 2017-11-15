@@ -30,7 +30,7 @@ public class CarcelTest {
 		Jugador jugador = new Jugador("Emmanuel");
 		Carcel carcel = Carcel.getCarcel();
 		carcel.afectarJugador(jugador);
-		jugador.avanzar(4);
+		jugador.desplazar(4);
 		
 	}
 	

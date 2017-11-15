@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import modelo.Salida;
 import modelo.casillero.Casillero;
+import modelo.casillero.especial.Carcel;
 import modelo.casillero.terrenos.Terreno;
 import modelo.excepciones.CapitalInsuficienteError;
 
@@ -67,6 +68,7 @@ public class Jugador {
 	// Este metodo en principio lo sacamos, ya que los conceptos de 'ofrecer cosas al jugador' como las opciones, estaran contempladas en la vista
 
 	public void encarcelar() {
+		this.casilleroActual = Carcel.getCarcel();
 		this.estado = new Encarcelado();
 	}
 	
@@ -75,9 +77,8 @@ public class Jugador {
 	}
 	
 	// Devuelve true en caso de poder desplazarse, false en caso contrario.
-	public void avanzar(int unValorDeDados) {
-		//this.ultimaTirada = unValorDeDados;
-		this.estado.avanzar(this, unValorDeDados);
+	public void desplazar(int unValorDeDados) {
+		this.estado.desplazar(this, unValorDeDados);
 	}
 
 	public void esTuTurno() {
@@ -88,23 +89,7 @@ public class Jugador {
 		this.estado.pagarFianza(this);
 	}
 
-	public void avanzarDinamicamente() {
-		
-		if(this.ultimaTirada <= 6) {
-			this.avanzar(this.ultimaTirada -2);
-			return;
-		}
-		
-		if(this.ultimaTirada <= 10) {
-			this.avanzar(this.capital % this.ultimaTirada);
-			return;
-		}
-		
-		// Este numero puede ser negativo, supuesto: con avance dinamico no se puede retroceder
-		this.avanzar(this.ultimaTirada - this.cantidadDePropiedades());
-	}
-
-	private int cantidadDePropiedades() {
+	public int cantidadDePropiedades() {
 		
 		int sum = 0;
 		for(Terreno t : terrenosComprados) {
@@ -121,31 +106,12 @@ public class Jugador {
 		return casilleroActual;
 	}
 
-	public void comprar(Terreno unTerreno) throws CapitalInsuficienteError {
-		this.terrenosComprados.add(unTerreno.venderTerrenoA(this));
-		
+	public void comprar(Terreno unTerreno) {
+		this.terrenosComprados.add(unTerreno.venderTerrenoA(this));	
 	}
 
-	public void retrocederDinamicamente() {
-		if(this.ultimaTirada <=6) {
-			this.retroceder(this.ultimaTirada - 2);
-			return;
-		}
-		
-		if(this.ultimaTirada <=10){
-			this.retroceder(this.capital % this.ultimaTirada);
-			return;
-		}
-		
-		this.retroceder(this.ultimaTirada - 2);
-		
+	public int ultimaTirada() {
+		return ultimaTirada;
 	}
-
-	private void retroceder(int cantidadDeCasillerosARetroceder) {
-		this.estado.retroceder(this,cantidadDeCasillerosARetroceder);
-	}
-
-
-
 
 }

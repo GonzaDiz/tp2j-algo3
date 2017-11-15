@@ -6,24 +6,16 @@ import modelo.excepciones.NoEstasEncarceladoException;
 public class Libre extends EstadoJugador {
 
 	@Override
-	public void avanzar(Jugador unJugador, int unValorDeDados) {
-		
+	public void desplazar(Jugador unJugador, int cantidadDeCasilleros) {
 		// Si no se tiene que desplazar, el casillero actual no lo debe tener que volver a afectar
-		if(unValorDeDados == 0) {
-			//return true;
+		if(cantidadDeCasilleros == 0) {
+
 		}
 		else {
 			Tablero tablero = Tablero.getTablero();
-			unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), unValorDeDados));
+			unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), cantidadDeCasilleros));
 			
 		}
-		//for(int i = 0 ; i< unValorDeDados ; i++) {
-		//	unJugador.avanzarUnCasillero();
-		//}
-		
-		
-		//unJugador.caerEnCasillero(unJugador.casilleroActual());
-		//return true;
 	}
 
 	@Override
@@ -31,16 +23,6 @@ public class Libre extends EstadoJugador {
 		
 	}
 
-	@Override
-	public void retroceder(Jugador unJugador, int cantidadDeCasillerosARetroceder) {
-		if (cantidadDeCasillerosARetroceder == 0) {
-		
-		}
-		else {
-			Tablero tablero = Tablero.getTablero();
-			unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), -cantidadDeCasillerosARetroceder));
-		}
-	}
 
 	@Override
 	public void pagarFianza(Jugador jugador) {
