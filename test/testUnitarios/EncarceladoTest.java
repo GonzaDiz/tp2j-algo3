@@ -63,17 +63,5 @@ public class EncarceladoTest {
 		Assert.assertEquals(capital - 45000, jugador.capitalTotal());
 	}
 	
-	@Test
-	public void testJugadorPasa4TurnosEncarceladoEntoncesEsLiberadoYSePuedeDesplazar5CasillerosHastaImpuestoDelujo() {
-		Jugador jugador = new Jugador("Mariano");
-		jugador.encarcelar();
-		jugador.esTuTurno();
-		jugador.esTuTurno();
-		jugador.esTuTurno();
-		jugador.esTuTurno();
-		jugador.desplazar(5);
-		Assert.assertEquals(ImpuestoDeLujo.getImpuestoDeLujo(), jugador.casilleroActual());
-		
-	}
 
 }

@@ -23,7 +23,8 @@ public class Policia extends Casillero {
 
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		unJugador.encarcelar();
+		Carcel carcel = Carcel.getCarcel();
+		unJugador.caerEnCasillero(carcel);
 	}
 
 }

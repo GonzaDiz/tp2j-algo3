@@ -27,8 +27,7 @@ public class Carcel extends Casillero {
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		Carcel carcel = Carcel.getCarcel();
-		unJugador.caerEnCasillero(carcel);
+		unJugador.encarcelar();
 	}
 
 	public void cobrarFianza(Jugador jugador)  {
