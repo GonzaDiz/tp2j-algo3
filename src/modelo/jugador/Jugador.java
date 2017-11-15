@@ -68,7 +68,6 @@ public class Jugador {
 	// Este metodo en principio lo sacamos, ya que los conceptos de 'ofrecer cosas al jugador' como las opciones, estaran contempladas en la vista
 
 	public void encarcelar() {
-		this.casilleroActual = Carcel.getCarcel();
 		this.estado = new Encarcelado();
 	}
 	

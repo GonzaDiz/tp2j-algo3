@@ -29,7 +29,7 @@ public class RetrocesoDinamico extends Casillero {
 			casillerosADesplazar = unJugador.ultimaTirada() - unJugador.cantidadDePropiedades();
 		}
 		
-		else if(unJugador.ultimaTirada() <=10){
+		if(unJugador.ultimaTirada() <=10){
 			casillerosADesplazar = unJugador.capitalTotal() % unJugador.ultimaTirada();
 		}
 		else {
