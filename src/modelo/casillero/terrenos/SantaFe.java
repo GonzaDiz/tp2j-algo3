@@ -7,7 +7,8 @@ public class SantaFe extends TerrenoSimple{
 	private static SantaFe SANTAFE = null;
 	
 	private SantaFe() {
-		
+		this.precio = 15000;
+		this.propietario = null;
 	}
 	
 	private synchronized static void crearSantaFe() {

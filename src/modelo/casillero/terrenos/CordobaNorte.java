@@ -7,6 +7,8 @@ public class CordobaNorte extends TerrenoDoble{
 	private static CordobaNorte CORDOBANORTE = null;
 	
 	private CordobaNorte() {
+		this.precio = 20000;
+		this.propietario = null;
 	}
 	
 	private synchronized static void crearCordobaNorte() {

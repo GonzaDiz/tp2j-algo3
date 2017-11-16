@@ -7,7 +7,8 @@ public class SaltaSur extends TerrenoDoble {
 	private static SaltaSur SALTASUR = null;
 	
 	private SaltaSur() {
-		
+		this.precio = 23000;
+		this.propietario = null;
 	}
 	
 	private synchronized static void crearSaltaSur() {

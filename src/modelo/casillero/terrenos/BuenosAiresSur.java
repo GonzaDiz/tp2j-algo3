@@ -9,8 +9,8 @@ public class BuenosAiresSur extends TerrenoDoble{
 	// Constructor por defecto crea con precio del enunciado.
 	private BuenosAiresSur() {
 		
-		precio = 20000;
-		propietario = null;
+		this.precio = 20000;
+		this.propietario = null;
 	}
 	
 	private synchronized static void crearBuenosAiresSur() {

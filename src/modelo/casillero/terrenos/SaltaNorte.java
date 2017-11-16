@@ -7,7 +7,8 @@ public class SaltaNorte extends TerrenoDoble{
 	private static SaltaNorte SALTANORTE = null;
 	
 	private SaltaNorte() {
-		
+		this.precio = 23000;
+		this.propietario = null;
 	}
 	
 	private synchronized static void crearSaltaNorte() {

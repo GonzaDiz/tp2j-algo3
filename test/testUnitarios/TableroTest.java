@@ -3,8 +3,6 @@ package testUnitarios;
 import org.junit.Assert;
 import org.junit.Test;
 
-import modelo.BuenosAiresNorte;
-import modelo.CordobaSur;
 import modelo.Edesur;
 import modelo.Salida;
 import modelo.Tablero;
@@ -14,6 +12,8 @@ import modelo.casillero.compania.Subte;
 import modelo.casillero.compania.Tren;
 import modelo.casillero.especial.Quini6;
 import modelo.casillero.especial.RetrocesoDinamico;
+import modelo.casillero.terrenos.BuenosAiresNorte;
+import modelo.casillero.terrenos.CordobaSur;
 import modelo.casillero.terrenos.SaltaNorte;
 import modelo.casillero.terrenos.Tucuman;
 
