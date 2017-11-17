@@ -3,7 +3,6 @@ package testUnitarios;
 import org.junit.Assert;
 import org.junit.Test;
 
-import modelo.casillero.especial.ImpuestoDeLujo;
 import modelo.excepciones.NoPuedePagarFianzaException;
 import modelo.excepciones.NoSePuedeDesplazarJugadorEncarceladoException;
 import modelo.jugador.Encarcelado;

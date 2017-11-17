@@ -1,8 +1,8 @@
 package testUnitarios;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import junit.framework.Assert;
 import modelo.casillero.especial.Carcel;
 import modelo.casillero.especial.Policia;
 import modelo.jugador.Jugador;

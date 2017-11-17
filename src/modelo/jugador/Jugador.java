@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import modelo.Salida;
 import modelo.casillero.Casillero;
-import modelo.casillero.especial.Carcel;
 import modelo.casillero.terrenos.Terreno;
 import modelo.excepciones.CapitalInsuficienteError;
 
@@ -73,6 +72,10 @@ public class Jugador {
 	
 	public void liberar() {
 		this.estado = new Libre();	
+	}
+	
+	public void cambiarEstado(EstadoJugador nuevoEstado) {
+		this.estado = nuevoEstado;
 	}
 	
 	// Devuelve true en caso de poder desplazarse, false en caso contrario.
