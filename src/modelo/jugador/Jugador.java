@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import modelo.Salida;
 import modelo.casillero.Casillero;
-import modelo.casillero.especial.Carcel;
 import modelo.casillero.terrenos.Terreno;
 import modelo.excepciones.CapitalInsuficienteError;
 
@@ -111,6 +110,14 @@ public class Jugador {
 
 	public int ultimaTirada() {
 		return ultimaTirada;
+	}
+
+	public void construirCasaEn(Terreno unTerreno) {
+		unTerreno.construirCasaPor(this);
+	}
+
+	public boolean sos(Jugador jugador) {
+		return this == jugador;
 	}
 
 }

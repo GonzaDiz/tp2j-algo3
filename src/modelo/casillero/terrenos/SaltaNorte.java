@@ -7,6 +7,7 @@ public class SaltaNorte extends TerrenoDoble{
 	private static SaltaNorte SALTANORTE = null;
 	
 	private SaltaNorte() {
+		super();
 		this.precio = 23000;
 		this.propietario = null;
 	}
@@ -32,6 +33,11 @@ public class SaltaNorte extends TerrenoDoble{
 	public void afectarJugador(Jugador unJugador) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Terreno terrenoPareja() {
+		return SaltaSur.getSaltaSur();
 	}
 
 }

@@ -8,9 +8,11 @@ public class BuenosAiresSur extends TerrenoDoble{
 
 	// Constructor por defecto crea con precio del enunciado.
 	private BuenosAiresSur() {
-		
+		super();
 		this.precio = 20000;
 		this.propietario = null;
+		this.costoCasa = 5000;
+		this.costoHotel = 8000;
 	}
 	
 	private synchronized static void crearBuenosAiresSur() {
@@ -37,6 +39,11 @@ public class BuenosAiresSur extends TerrenoDoble{
 	@Override
 	public int construcciones() {
 		return 0;
+	}
+
+	@Override
+	public Terreno terrenoPareja() {
+		return BuenosAiresNorte.getBuenosAiresNorte();
 	}
 
 

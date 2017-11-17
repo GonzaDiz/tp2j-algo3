@@ -7,6 +7,7 @@ public class SantaFe extends TerrenoSimple{
 	private static SantaFe SANTAFE = null;
 	
 	private SantaFe() {
+		super();
 		this.precio = 15000;
 		this.propietario = null;
 	}

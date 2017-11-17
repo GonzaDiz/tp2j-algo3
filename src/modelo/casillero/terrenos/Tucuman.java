@@ -7,6 +7,7 @@ public class Tucuman extends TerrenoSimple{
 	private static Tucuman TUCUMAN = null;
 	
 	private Tucuman() {
+		super();
 		this.precio = 25000;
 		this.propietario = null;
 	}

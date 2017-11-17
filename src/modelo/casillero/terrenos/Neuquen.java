@@ -7,8 +7,10 @@ public class Neuquen extends TerrenoSimple{
 	private static Neuquen NEUQUEN = null;
 	
 	private Neuquen() {
+		super();
 		this.precio = 17000;
 		this.propietario = null;
+		this.costoCasa = 4800;
 	}
 	
 	private synchronized static void crearNeuquen() {

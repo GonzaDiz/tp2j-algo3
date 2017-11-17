@@ -1,6 +1,5 @@
 package modelo.casillero.terrenos;
 
-import modelo.casillero.Casillero;
 import modelo.jugador.Jugador;
 
 public class BuenosAiresNorte extends TerrenoDoble {
@@ -8,8 +7,11 @@ public class BuenosAiresNorte extends TerrenoDoble {
 	private static BuenosAiresNorte BUENOSAIRESNORTE = null;
 	
 	private BuenosAiresNorte() {
+		super();
 		this.precio = 25000;
 		this.propietario = null;
+		this.costoCasa = 5500;
+		this.costoHotel = 9000;
 	}
 	
 	private synchronized static void crearBuenosAiresNorte() {
@@ -33,6 +35,11 @@ public class BuenosAiresNorte extends TerrenoDoble {
 	public int construcciones() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Terreno terrenoPareja() {
+		return BuenosAiresSur.getBuenosAiresSur();
 	}
 
 }

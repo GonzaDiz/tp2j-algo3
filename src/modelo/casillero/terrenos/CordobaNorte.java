@@ -7,8 +7,11 @@ public class CordobaNorte extends TerrenoDoble{
 	private static CordobaNorte CORDOBANORTE = null;
 	
 	private CordobaNorte() {
+		super();
 		this.precio = 20000;
 		this.propietario = null;
+		this.costoCasa = 2200;
+		this.costoHotel = 3500;
 	}
 	
 	private synchronized static void crearCordobaNorte() {
@@ -32,6 +35,11 @@ public class CordobaNorte extends TerrenoDoble{
 	public void afectarJugador(Jugador unJugador) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Terreno terrenoPareja() {
+		return CordobaSur.getCordobaSur();
 	}
 
 }

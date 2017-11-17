@@ -430,4 +430,16 @@ public class JugadorTest {
 		Assert.assertEquals(75000, j.capitalTotal());
 	}
 	
+	@Test
+	public void testUnJugadorCaeCuentaConBsAsSurYBsAsNorteYConstruyeUnaCasaEnBsAsSurEntoncesSuDineroDecrementaEn5000() {
+		Jugador j = new Jugador("Shrek");
+		BuenosAiresSur baS = BuenosAiresSur.getBuenosAiresSur();
+		BuenosAiresNorte baN = BuenosAiresNorte.getBuenosAiresNorte();
+		j.comprar(baS); // -25000
+		j.comprar(baN); // -20000
+		j.construirCasaEn(baS); // -5000
+		Assert.assertEquals(50000, j.capitalTotal());
+	}
+	
+	
 }
