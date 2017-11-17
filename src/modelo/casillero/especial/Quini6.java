@@ -8,7 +8,7 @@ import modelo.jugador.Jugador;
 
 public class Quini6 extends Casillero{
 	
-	private ConcurrentHashMap<Jugador, Stack<Integer>> jugadores;
+	private ConcurrentHashMap<Jugador, Stack<Premio>> jugadores;
 	
 	private static Quini6 QUINI6 = null;
 	
@@ -30,32 +30,19 @@ public class Quini6 extends Casillero{
 
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		if (this.noEstaRegistrado(unJugador)) {
-			this.registrarJugador(unJugador);
-		}
-		
-		if(this.puedeCobrar(unJugador)) {
-			this.entregarPremio(unJugador);
-		}
+		Premio premio = jugadores.get(unJugador).lastElement();
+		premio.entregarPremio(unJugador,this);
 	}
 
-	private void entregarPremio(Jugador unJugador) {
-		unJugador.entregarDinero((jugadores.get(unJugador)).pop());		
-	}
-
-	private boolean puedeCobrar(Jugador unJugador) {
-		return !(jugadores.get(unJugador)).empty();
-	}
-	
-	private boolean noEstaRegistrado(Jugador unJugador) {
-		return !jugadores.containsKey(unJugador);
-	}
-
-	private void registrarJugador(Jugador unJugador) {
-		Stack <Integer> premios = new Stack<Integer>();
-		premios.push(30000);
-		premios.push(50000);
+	public void registrarJugador(Jugador unJugador) {
+		Stack <Premio> premios = new Stack<>();
+		premios.push(new SinPremioQuini());
+		premios.push(new PremioQuini30000());
+		premios.push(new PremioQuini50000());
 		jugadores.put(unJugador, premios);
 	}
 	
+	public void actualizarPremios(Jugador unJugador) {
+		jugadores.get(unJugador).pop();
+	}
 }

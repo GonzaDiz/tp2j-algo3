@@ -18,6 +18,7 @@ public class Quini6Test {
 	public void testAfectarJugadorPorPrimeraVezCon100000DeCapitalLoAumentaEn50000() {
 		Jugador jugador = new Jugador("Jorge");
 		Quini6 quini6 = Quini6.getQuini6();
+		quini6.registrarJugador(jugador);
 		quini6.afectarJugador(jugador);
 		Assert.assertEquals(100000 + 50000, jugador.capitalTotal());
 	}
@@ -26,6 +27,7 @@ public class Quini6Test {
 	public void testAfectarJugador2VecesCon100000DeCapitalAumentaEn50000y30000() {
 		Jugador jugador = new Jugador("Damian");
 		Quini6 quini6 =  Quini6.getQuini6();
+		quini6.registrarJugador(jugador);
 		quini6.afectarJugador(jugador);
 		quini6.afectarJugador(jugador);
 		Assert.assertEquals(100000 + 50000 + 30000, jugador.capitalTotal());
@@ -35,6 +37,7 @@ public class Quini6Test {
 	public void testAfectarJugador10VecesCon100000DeCapitalAumentaEn50000y30000() {
 		Jugador jugador = new Jugador("Ezequiel");
 		Quini6 quini6 = Quini6.getQuini6();
+		quini6.registrarJugador(jugador);
 		for (int i = 0; i <10; i++) {
 			quini6.afectarJugador(jugador);
 		}

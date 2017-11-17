@@ -42,6 +42,7 @@ public class JugadorTest {
 	public void testUnJugadorCaeEnQuini6PorPrimeraVezYSuCapitalAumentaEn50000() {
 		Jugador jugador = new Jugador("Ariel");
 		Quini6 quini6 = Quini6.getQuini6();
+		quini6.registrarJugador(jugador);
 		jugador.caerEnCasillero(quini6);
 		Assert.assertEquals(jugador.capitalTotal(), 150000);
 	}
@@ -50,6 +51,7 @@ public class JugadorTest {
 	public void testUnJugadorCaeEnQuini6PorSegundaVezYSuCapitalAumentaEn30000() {
 		Jugador jugador = new Jugador("Gonzalo");
 		Quini6 quini6 = Quini6.getQuini6();
+		quini6.registrarJugador(jugador);
 		jugador.caerEnCasillero(quini6);
 		jugador.caerEnCasillero(quini6);
 		Assert.assertEquals(180000, jugador.capitalTotal());
@@ -59,6 +61,7 @@ public class JugadorTest {
 	public void testUnJugadorCaeEnQuini6PorTerceraVezYSuCapitalNoAumenta() {
 		Jugador jugador = new Jugador("Ariel");
 		Quini6 quini6 = Quini6.getQuini6();
+		quini6.registrarJugador(jugador);
 		jugador.caerEnCasillero(quini6);
 		jugador.caerEnCasillero(quini6);
 		jugador.caerEnCasillero(quini6);
