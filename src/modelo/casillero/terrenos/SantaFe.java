@@ -4,6 +4,13 @@ import modelo.jugador.Jugador;
 
 public class SantaFe extends TerrenoSimple{
 	
+	public SantaFe() {
+		super();
+		this.precio = 15000;
+		this.propietario = null;
+	}
+	
+
 
 	@Override
 	public int construcciones() {

@@ -4,6 +4,12 @@ import modelo.jugador.Jugador;
 
 public class Tucuman extends TerrenoSimple{
 	
+	
+	public Tucuman() {
+		super();
+		this.precio = 25000;
+		this.propietario = null;
+	}
 
 	@Override
 	public int construcciones() {

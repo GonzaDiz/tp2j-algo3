@@ -10,7 +10,15 @@ import modelo.Tablero;
 import modelo.casillero.especial.Carcel;
 import modelo.casillero.especial.Policia;
 import modelo.casillero.especial.Quini6;
+import modelo.casillero.terrenos.BuenosAiresNorte;
 import modelo.casillero.terrenos.BuenosAiresSur;
+import modelo.casillero.terrenos.CordobaNorte;
+import modelo.casillero.terrenos.CordobaSur;
+import modelo.casillero.terrenos.Neuquen;
+import modelo.casillero.terrenos.SaltaNorte;
+import modelo.casillero.terrenos.SaltaSur;
+import modelo.casillero.terrenos.SantaFe;
+import modelo.casillero.terrenos.Tucuman;
 import modelo.excepciones.CapitalInsuficienteError;
 import modelo.excepciones.NoEstasEncarceladoException;
 import modelo.excepciones.NoPuedePagarFianzaException;
@@ -180,5 +188,102 @@ public class JugadorTest {
 	}
 	
 	// HASTA ACA LOS TEST DE LA PRIMERA ENTREGA
+	
+	// Test de la segunda entrega
+	
+	@Test
+	public void testUnJugadorCaeEnBuenosAiresSurCompraElTerrenoYSuCapitalSeDecrementaEn20000() {
+		Jugador j = new Jugador("Guillermo");
+		BuenosAiresSur bsasSur = new BuenosAiresSur();
+		j.caerEnCasillero(bsasSur);
+		j.comprar(bsasSur);
+		Assert.assertEquals(80000, j.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugadorCaeEnBuenosAiresNorteCompraElTerrenoYSuCapitalSeDecrementaEn25000() {
+		Jugador j = new Jugador("Nico");
+		BuenosAiresNorte baN = new BuenosAiresNorte();
+		j.caerEnCasillero(baN);
+		j.comprar(baN);
+		Assert.assertEquals(75000, j.capitalTotal());
+	}
 
+	@Test
+	public void testUnJugadorCaeEnCordobaSurCompraElTerrenoYSuCapitalSeDecrementaEn18000() {
+		Jugador j = new Jugador("Katheryn");
+		CordobaSur cs = new CordobaSur();
+		j.caerEnCasillero(cs);
+		j.comprar(cs);
+		Assert.assertEquals(82000, j.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugadorCaeEnCordobaNorteCompraElTerrenoYSuCapitalSeDecrementaEn20000() {
+		Jugador j = new Jugador("Jonathan");
+		CordobaNorte cn = new CordobaNorte();
+		j.caerEnCasillero(cn);
+		j.comprar(cn);
+		Assert.assertEquals(80000, j.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugadorCaeEnSantaFeCompraElTerrenoYSuCapitalSeDecrementaEn15000() {
+		Jugador j = new Jugador("Esteban");
+		SantaFe sf = new SantaFe();
+		j.caerEnCasillero(sf);
+		j.comprar(sf);
+		Assert.assertEquals(85000, j.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugadorCaeEnSaltaNorteCompraElTerrenoYSuCapitalSeDecrementaEn23000() {
+		Jugador j = new Jugador("Luciano");
+		SaltaNorte sn = new SaltaNorte();
+		j.caerEnCasillero(sn);
+		j.comprar(sn);
+		Assert.assertEquals(77000, j.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugadorCaeEnSaltaSurCompraElTerrenoYSuCapitalSeDecrementaEn23000() {
+		Jugador j = new Jugador("Diego");
+		SaltaSur ss = new SaltaSur();
+		j.caerEnCasillero(ss);
+		j.comprar(ss);
+		Assert.assertEquals(77000, j.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugadorCaeEnNeuquenCompraElTerrenoYSuCapitalSeDecrementaEn17000() {
+		Jugador j = new Jugador("Manfred");
+		Neuquen n = new Neuquen();
+		j.caerEnCasillero(n);
+		j.comprar(n);
+		Assert.assertEquals(83000, j.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugadorCaeEnTucumanCompraElTerrenoYSuCapitalSeDecrementaEn25000() {
+		Jugador j = new Jugador("Sid");
+		Tucuman t = new Tucuman();
+		j.caerEnCasillero(t);
+		j.comprar(t);
+		Assert.assertEquals(75000, j.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugadorCaeCuentaConBsAsSurYBsAsNorteYConstruyeUnaCasaEnBsAsSurEntoncesSuDineroDecrementaEn5000() {
+		Jugador j = new Jugador("Shrek");
+		BuenosAiresSur baS = new BuenosAiresSur();
+		BuenosAiresNorte baN = new BuenosAiresNorte();
+		baS.setTerrenoPareja(baN);
+		baN.setTerrenoPareja(baS);
+		j.comprar(baS); // -25000
+		j.comprar(baN); // -20000
+		j.construirCasaEn(baS); // -5000
+		Assert.assertEquals(50000, j.capitalTotal());
+	}
+	
+	
 }

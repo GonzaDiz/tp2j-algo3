@@ -4,6 +4,13 @@ import modelo.jugador.Jugador;
 
 public class Neuquen extends TerrenoSimple{
 	
+	
+	public Neuquen() {
+		super();
+		this.precio = 17000;
+		this.propietario = null;
+		this.costoCasa = 4800;
+	}
 
 	@Override
 	public int construcciones() {

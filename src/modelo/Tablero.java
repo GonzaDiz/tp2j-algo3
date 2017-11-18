@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import modelo.casillero.Casillero;
 
+
 public class Tablero {
 	
 	private static Tablero TABLERO = null;

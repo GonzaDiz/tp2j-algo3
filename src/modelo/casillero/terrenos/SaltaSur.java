@@ -4,6 +4,14 @@ import modelo.jugador.Jugador;
 
 public class SaltaSur extends TerrenoDoble {
 
+	
+	public SaltaSur() {
+		super();
+		this.precio = 23000;
+		this.propietario = null;
+	}
+	
+
 	@Override
 	public int construcciones() {
 		// TODO Auto-generated method stub

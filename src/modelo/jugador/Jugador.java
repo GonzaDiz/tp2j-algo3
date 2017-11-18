@@ -115,4 +115,12 @@ public class Jugador {
 		return ultimaTirada;
 	}
 
+	public void construirCasaEn(Terreno unTerreno) {
+		unTerreno.construirCasaPor(this);
+	}
+
+	public boolean sos(Jugador jugador) {
+		return this == jugador;
+	}
+
 }
