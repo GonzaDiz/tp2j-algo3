@@ -14,7 +14,7 @@ public abstract class TerrenoDoble extends Terreno {
 	protected ArrayList<Hotel> hoteles; // En principio es un hotel, pero en un futuro se podrian poner mas
 	protected int limiteHoteles;
 	protected int costoHotel;
-	public abstract Terreno terrenoPareja();
+	protected Terreno terrenoPareja;
 	
 	
 	public TerrenoDoble() {
@@ -37,6 +37,14 @@ public abstract class TerrenoDoble extends Terreno {
 	
 	public void actualizarAlquiler() {
 		
+	}
+	
+	public void setTerrenoPareja(Terreno terreno) {
+		this.terrenoPareja = terreno;
+	}
+	
+	public Terreno getTerrenoPareja() {
+		return this.terrenoPareja;
 	}
 
 }

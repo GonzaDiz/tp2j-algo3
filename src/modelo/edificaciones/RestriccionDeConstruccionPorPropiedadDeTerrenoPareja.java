@@ -16,7 +16,7 @@ public class RestriccionDeConstruccionPorPropiedadDeTerrenoPareja implements Res
 
 	@Override
 	public void verificar() {
-		if(this.terreno.terrenoPareja().propietario().sos(this.jugador) == false) {
+		if(this.terreno.getTerrenoPareja().propietario().sos(this.jugador) == false) {
 			throw new SeNecesitanAmbosTerrenosParaEdificarEnUnTerrenoDobleError("Se necesitan ambos terrenos para edificar en un terreno doble.");
 		}
 

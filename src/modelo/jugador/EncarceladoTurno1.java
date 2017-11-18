@@ -4,29 +4,24 @@ import modelo.casillero.especial.Carcel;
 import modelo.excepciones.NoPuedePagarFianzaException;
 import modelo.excepciones.NoSePuedeDesplazarJugadorEncarceladoException;
 
-public class Encarcelado extends EstadoJugador {
-	
+public class EncarceladoTurno1 extends EstadoJugador {
+
 	@Override
-	public void desplazar(Jugador unJugador, int cantidadDecasilleros) {
+	public void desplazar(Jugador unJugador, int cantidadDeCasilleros) {
 		throw new NoSePuedeDesplazarJugadorEncarceladoException();
+		
 	}
 
 	@Override
 	public void actualizarEstado(Jugador jugador) {
-		//turnosEnCarcel++;
-		//if(turnosEnCarcel == 4) {
-		//	jugador.liberar();
-		//}
-		EncarceladoTurno1 encarceladoPor1Turno = new EncarceladoTurno1();
-		jugador.cambiarEstado(encarceladoPor1Turno);
+		EncarceladoTurno2 encarceladoTurno2 = new EncarceladoTurno2();
+		jugador.cambiarEstado(encarceladoTurno2);
+		
 	}
 
 	@Override
 	public void pagarFianza(Jugador jugador, Carcel unaCarcel) {
-			throw new NoPuedePagarFianzaException();
-		
-		
+		throw new NoPuedePagarFianzaException();
 	}
-
 
 }

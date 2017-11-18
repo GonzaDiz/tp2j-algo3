@@ -4,24 +4,12 @@ import modelo.jugador.Jugador;
 
 public class SaltaNorte extends TerrenoDoble{
 	
-	private static SaltaNorte SALTANORTE = null;
-	
-	private SaltaNorte() {
+	public SaltaNorte() {
 		super();
 		this.precio = 23000;
 		this.propietario = null;
 	}
-	
-	private synchronized static void crearSaltaNorte() {
-		if (SALTANORTE == null) {
-			SALTANORTE = new SaltaNorte();
-		}	
-	}
-	
-	public static SaltaNorte getSaltaNorte() {
-		if (SALTANORTE == null) crearSaltaNorte();
-		return SALTANORTE;
-	}
+
 
 	@Override
 	public int construcciones() {
@@ -33,11 +21,6 @@ public class SaltaNorte extends TerrenoDoble{
 	public void afectarJugador(Jugador unJugador) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public Terreno terrenoPareja() {
-		return SaltaSur.getSaltaSur();
 	}
 
 }

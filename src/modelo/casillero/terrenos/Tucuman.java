@@ -4,23 +4,11 @@ import modelo.jugador.Jugador;
 
 public class Tucuman extends TerrenoSimple{
 	
-	private static Tucuman TUCUMAN = null;
 	
-	private Tucuman() {
+	public Tucuman() {
 		super();
 		this.precio = 25000;
 		this.propietario = null;
-	}
-	
-	private synchronized static void crearTucuman() {
-		if (TUCUMAN == null) {
-			TUCUMAN = new Tucuman();
-		}	
-	}
-	
-	public static Tucuman getTucuman() {
-		if (TUCUMAN == null) crearTucuman();
-		return TUCUMAN;
 	}
 
 	@Override
