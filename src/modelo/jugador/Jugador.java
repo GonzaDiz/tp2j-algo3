@@ -2,8 +2,8 @@ package modelo.jugador;
 
 import java.util.ArrayList;
 
-import modelo.Salida;
 import modelo.casillero.Casillero;
+import modelo.casillero.especial.Carcel;
 import modelo.casillero.terrenos.Terreno;
 import modelo.excepciones.CapitalInsuficienteError;
 
@@ -16,7 +16,6 @@ public class Jugador {
 	private Casillero casilleroActual;
 	
 	public Jugador(String unNombre) {
-		this.casilleroActual = Salida.getSalida();
 		this.nombre = unNombre;
 		this.capital = 100000;
 		this.estado = new Libre();
@@ -87,8 +86,8 @@ public class Jugador {
 		this.estado.actualizarEstado(this);	
 	}
 
-	public void pagarFianza()  {
-		this.estado.pagarFianza(this);
+	public void pagarFianza(Carcel unaCarcel)  {
+		this.estado.pagarFianza(this, unaCarcel);
 	}
 
 	public int cantidadDePropiedades() {

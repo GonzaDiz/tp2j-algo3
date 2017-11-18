@@ -10,22 +10,9 @@ public class Quini6 extends Casillero{
 	
 	private ConcurrentHashMap<Jugador, Stack<Premio>> jugadores;
 	
-	private static Quini6 QUINI6 = null;
-	
-	private Quini6() {
+	public Quini6() {
 		this.jugadores = new ConcurrentHashMap<>();
 
-	}
-	
-	private synchronized static void crearQuini6() {
-		if (QUINI6 == null) {
-			QUINI6 = new Quini6();
-		}
-	}
-	
-	public static Quini6 getQuini6() {
-		if (QUINI6 == null) crearQuini6();
-		return QUINI6;
 	}
 
 	@Override

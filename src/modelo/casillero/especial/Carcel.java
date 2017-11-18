@@ -5,24 +5,13 @@ import modelo.jugador.Jugador;
 
 public class Carcel extends Casillero {
 
-	private static Carcel CARCEL = null;
+
 	private int precioFianza;
 
 	
-	private Carcel() {
+	public Carcel() {
 		this.precioFianza = 45000;
 
-	}
-	
-	private synchronized static void crearCarcel() {
-		if (CARCEL == null) {
-			CARCEL = new Carcel();
-		}
-	}
-	
-	public static Carcel getCarcel() {
-		if (CARCEL == null) crearCarcel();
-		return CARCEL;
 	}
 	
 	@Override

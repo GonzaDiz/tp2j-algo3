@@ -11,15 +11,15 @@ import modelo.jugador.Jugador;
 public class CarcelTest {
 	
 	@Test
-	public void testGetCarcelNoDevuelveNull() {
-		Carcel carcel = Carcel.getCarcel();
+	public void testCarcelNoEsNull() {
+		Carcel carcel = new Carcel();
 		Assert.assertNotNull(carcel);
 	}
 	
 	@Test
 	public void testCobrarFianzaDeUnJugadorReduceEn45000SuCapital() {
 		Jugador jugador = new Jugador("Carlos");
-		Carcel carcel = Carcel.getCarcel();
+		Carcel carcel = new Carcel();
 		int capitalOriginal = jugador.capitalTotal();
 		carcel.cobrarFianza(jugador);
 		Assert.assertEquals(capitalOriginal - 45000, jugador.capitalTotal());
@@ -28,7 +28,7 @@ public class CarcelTest {
 	@Test (expected = NoSePuedeDesplazarJugadorEncarceladoException.class)
 	public void testUnJugadorEsAfectadoPorLaCarcelNoSePuedeDesplazar() {
 		Jugador jugador = new Jugador("Emmanuel");
-		Carcel carcel = Carcel.getCarcel();
+		Carcel carcel = new Carcel();
 		carcel.afectarJugador(jugador);
 		jugador.desplazar(4);
 		
@@ -37,9 +37,9 @@ public class CarcelTest {
 	@Test (expected = NoPuedePagarFianzaException.class)
 	public void testUnJugadorIntentaPagarLaFianzaElPrimerTurnoEnCarcelSaltaExcepcionNoPuedePagarFianza() {
 		Jugador jugador = new Jugador("Daniela");
-		Carcel carcel = Carcel.getCarcel();
+		Carcel carcel = new Carcel();
 		carcel.afectarJugador(jugador);
-		jugador.pagarFianza();
+		jugador.pagarFianza(carcel);
 	}
 
 }
