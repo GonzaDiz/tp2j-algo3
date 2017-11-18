@@ -4,6 +4,7 @@ import modelo.casillero.especial.Carcel;
 import modelo.excepciones.NoSePuedeDesplazarJugadorEncarceladoException;
 
 public class EncarceladoTurno2 extends EstadoJugador{
+	
 
 	@Override
 	public void desplazar(Jugador unJugador, int cantidadDeCasilleros) {
@@ -18,9 +19,8 @@ public class EncarceladoTurno2 extends EstadoJugador{
 	}
 
 	@Override
-	public void pagarFianza(Jugador jugador) {
-		Carcel carcel = Carcel.getCarcel();
-		carcel.cobrarFianza(jugador);
+	public void pagarFianza(Jugador jugador, Carcel unaCarcel) {
+		unaCarcel.cobrarFianza(jugador);
 		
 	}
 

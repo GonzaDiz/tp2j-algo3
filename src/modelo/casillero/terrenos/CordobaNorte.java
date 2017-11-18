@@ -4,21 +4,6 @@ import modelo.jugador.Jugador;
 
 public class CordobaNorte extends TerrenoDoble{
 	
-	private static CordobaNorte CORDOBANORTE = null;
-	
-	private CordobaNorte() {
-	}
-	
-	private synchronized static void crearCordobaNorte() {
-		if (CORDOBANORTE == null) {
-			CORDOBANORTE = new CordobaNorte();
-		}
-	}
-	
-	public static CordobaNorte getCordobaNorte() {
-		if (CORDOBANORTE == null) crearCordobaNorte();
-		return CORDOBANORTE;
-	}
 
 	@Override
 	public int construcciones() {

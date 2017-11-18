@@ -18,9 +18,8 @@ public class EncarceladoTurno3 extends EstadoJugador {
 	}
 
 	@Override
-	public void pagarFianza(Jugador jugador) {
-		Carcel carcel = Carcel.getCarcel();
-		carcel.cobrarFianza(jugador);
+	public void pagarFianza(Jugador jugador, Carcel unaCarcel) {
+		unaCarcel.cobrarFianza(jugador);
 	}
 
 }

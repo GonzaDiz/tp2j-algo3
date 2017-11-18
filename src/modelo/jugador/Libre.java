@@ -1,6 +1,7 @@
 package modelo.jugador;
 
 import modelo.Tablero;
+import modelo.casillero.especial.Carcel;
 import modelo.excepciones.NoEstasEncarceladoException;
 
 public class Libre extends EstadoJugador {
@@ -13,7 +14,7 @@ public class Libre extends EstadoJugador {
 		}
 		else {
 			Tablero tablero = Tablero.getTablero();
-			unJugador.caerEnCasillero(tablero.getCasillero(unJugador.casilleroActual(), cantidadDeCasilleros));
+			unJugador.caerEnCasillero(tablero.getCasilleroPorDesplazamiento(unJugador.casilleroActual(), cantidadDeCasilleros));
 			
 		}
 	}
@@ -25,7 +26,7 @@ public class Libre extends EstadoJugador {
 
 
 	@Override
-	public void pagarFianza(Jugador jugador) {
+	public void pagarFianza(Jugador jugador, Carcel unaCarcel) {
 		throw new NoEstasEncarceladoException();
 	}
 

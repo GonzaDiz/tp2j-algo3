@@ -5,26 +5,16 @@ import modelo.jugador.Jugador;
 
 public class Policia extends Casillero {
 	
-	private static Policia POLICIA = null;
+	private Carcel carcel;
 	
-	private Policia() {
-		
-	}
-	private synchronized static void crearPolicia() {
-		if (POLICIA == null) {
-			POLICIA = new Policia();
-		}	
-	}
 	
-	public static Policia getPolicia() {
-		if (POLICIA == null) crearPolicia();
-		return POLICIA;
+	public Policia(Carcel unaCarcel) {
+		this.carcel = unaCarcel;
 	}
 
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		Carcel carcel = Carcel.getCarcel();
-		unJugador.caerEnCasillero(carcel);
+		unJugador.caerEnCasillero(this.carcel);
 	}
 
 }
