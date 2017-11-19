@@ -50,17 +50,15 @@ public abstract class TerrenoDoble extends Terreno {
 		hoteles.add(new Hotel());
 		
 	}
-	
-	private void demolerCasas() {
-		this.casas.clear(); // Vaciamos el ArrayList de casas cuando se constru
-	}
 
 	public void setTerrenoPareja(TerrenoDoble terreno) {
 		this.terrenoPareja = terreno;
 	}
 	
 	public void cobrarAlquilerA(Jugador unJugador) {
-		unJugador.extraerDinero(alquiler.costoAlquilerCon(this.cantidadDeCasas(), this.cantidadDeHoteles()));
+		int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadDeCasas(), this.cantidadDeHoteles());
+		unJugador.extraerDinero(precioAlquiler);
+		this.propietario.entregarDinero(precioAlquiler);
 	}
 
 	public int cantidadDeHoteles() {
@@ -71,6 +69,14 @@ public abstract class TerrenoDoble extends Terreno {
 		return this.cantidadDeCasas() + this.cantidadDeHoteles();
 	}
 
-	
+	@Override
+	protected void demolerConstrucciones() {
+		this.demolerCasas();
+		this.demolerHoteles();
+	}
+
+	private void demolerHoteles() {
+		this.hoteles.clear();	
+	}
 
 }

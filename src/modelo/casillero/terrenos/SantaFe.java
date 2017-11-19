@@ -4,7 +4,7 @@ public class SantaFe extends TerrenoSimple{
 	
 	public SantaFe() {
 		super();
-		this.precio = 15000;
+		this.precioTerreno = 15000;
 		this.propietario = null;
 		this.nombreCasillero = "Santa Fe";
 		this.costoCasa = 4000;

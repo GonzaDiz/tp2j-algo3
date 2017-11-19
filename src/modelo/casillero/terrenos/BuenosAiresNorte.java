@@ -5,7 +5,7 @@ public class BuenosAiresNorte extends TerrenoDoble {
 	
 	public BuenosAiresNorte() {
 		super();
-		this.precio = 25000;
+		this.precioTerreno = 25000;
 		this.propietario = null;
 		this.costoCasa = 5500;
 		this.costoHotel = 9000;

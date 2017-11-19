@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import modelo.casillero.Casillero;
 import modelo.edificaciones.Casa;
 import modelo.edificaciones.RestriccionDeConstruccion;
-import modelo.excepciones.CapitalInsuficienteError;
 import modelo.jugador.Jugador;
 
 public abstract class Terreno extends Casillero {
 	
-	protected int precio;
+	protected int precioTerreno;
 	protected Jugador propietario;
 	protected int limiteCasas;
 	protected ArrayList<Casa> casas;
@@ -31,6 +30,7 @@ public abstract class Terreno extends Casillero {
 	public abstract int construcciones();
 	public abstract void construirCasaPor(Jugador jugador);
 	public abstract void cobrarAlquilerA(Jugador unJugador);
+	protected abstract void demolerConstrucciones();
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
@@ -42,19 +42,23 @@ public abstract class Terreno extends Casillero {
 		}
 	}
 	
+	protected void demolerCasas() {
+		this.casas.clear(); // Vaciamos el ArrayList de casas cuando se construyeron
+	}
+	
 	
 
-	private boolean tienePropietario() {
+	public boolean tienePropietario() {
 		if(this.propietario == null) {
 			return false;
 		}
 		return true;
 	}
 
-	public Terreno venderTerrenoA(Jugador jugador) throws CapitalInsuficienteError {
-		jugador.extraerDinero(this.precio);
+	public void venderTerrenoA(Jugador jugador) {
+		jugador.extraerDinero(this.precioTerreno);
 		this.propietario = jugador;
-		return this;
+		jugador.adquirirPropiedadDe(this);
 	}
 	
 	
@@ -63,11 +67,20 @@ public abstract class Terreno extends Casillero {
 	}
 	
 	protected void verificarRestricciones() {
-		for(RestriccionDeConstruccion r : restricciones) {
+		for(RestriccionDeConstruccion r : this.restricciones) {
 			r.verificar();
 		}
 		
-		restricciones.clear(); // Eliminamos las restricciones ya verificadas.
+		this.restricciones.clear(); // Eliminamos las restricciones ya verificadas.
 	}
+
+	public void cambiarPropietarioA(Jugador jugadorRival) {
+		this.demolerConstrucciones();
+		this.propietario = jugadorRival;
+		jugadorRival.adquirirPropiedadDe(this);
+		
+	}
+
+	
 	
 }

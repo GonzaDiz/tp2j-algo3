@@ -1,7 +1,5 @@
 package modelo.casillero.especial;
 
-import java.util.concurrent.ConcurrentHashMap;
-
 import modelo.casillero.Casillero;
 import modelo.jugador.Jugador;
 

@@ -14,8 +14,8 @@ public class ImpuestoDeLujo extends Casillero {
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		// TODO Auto-generated method stub
-		
+		PorcentajeImpuesto porcentajeImpuesto = new PorcentajeImpuesto(10);
+		unJugador.extraerDinero(unJugador.capitalTotal()*(porcentajeImpuesto.porcentajeDeImpuesto()/100));
 	}
 
 }

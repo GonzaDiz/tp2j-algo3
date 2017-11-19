@@ -12,6 +12,7 @@ import modelo.casillero.compania.Edesur;
 import modelo.casillero.compania.Subte;
 import modelo.casillero.compania.Tren;
 import modelo.casillero.especial.Carcel;
+import modelo.casillero.especial.ImpuestoDeLujo;
 import modelo.casillero.especial.Policia;
 import modelo.casillero.especial.Quini6;
 import modelo.casillero.terrenos.BuenosAiresNorte;
@@ -1195,4 +1196,134 @@ public class JugadorTest {
 	
 	
 	// Test de impuesto de lujo
+
+	@Test
+	public void testUnJugadorCaeEnImpuestoDeLujoYEntoncesSiCapitalSeReduceEnUnDiezPorciento() {
+		Jugador j1 = new Jugador("Moroso");
+		ImpuestoDeLujo c1 = new ImpuestoDeLujo();
+		int capital = j1.capitalTotal();
+		j1.caerEnCasillero(c1);
+		Assert.assertEquals(capital - capital*(10/100), j1.capitalTotal());
+	}
+	//------------------------------
+	
+	
+	
+	
+	
+	// Teste de intercambio de terrenos y companias
+	
+	@Test
+	public void testUnJugador1IntercambiaUnTerreno1SuyoPorUnTerreno2DeOtroJugador2EntoncesElPropietarioDelTerreno2AhoraEsJugador1() {
+		Jugador j1 = new Jugador("Propietario 1");
+		Jugador j2 = new Jugador("Propietario 2");
+		Tucuman c1 = new Tucuman();
+		SantaFe c2 = new SantaFe();
+		j1.comprarTerreno(c1);
+		j2.comprarTerreno(c2);
+		j1.intercambiarTerrenoConPor(c1, j2, c2);
+		Assert.assertEquals(j1, c2.propietario());
+	}
+	
+	@Test
+	public void testUnJugador1IntercambiaUnTerreno1SuyoPorUnTerreno2DeOtroJugador2EntoncesElPropietarioDelTerreno1AhoraEsJugador2() {
+		Jugador j1 = new Jugador("Propietario 1");
+		Jugador j2 = new Jugador("Propietario 2");
+		Tucuman c1 = new Tucuman();
+		SantaFe c2 = new SantaFe();
+		j1.comprarTerreno(c1);
+		j2.comprarTerreno(c2);
+		j1.intercambiarTerrenoConPor(c1, j2, c2);
+		Assert.assertEquals(j2, c1.propietario());
+	}
+	
+	@Test
+	public void testUnJugador1IntercambiaUnTerreno1SuyoPorUnTerreno2DeOtroJugador2EntoncesSiUnJugador3CaeEnTerreno1ElPagoDelAlquilerSeAcreditaAJugador2() {
+		Jugador j1 = new Jugador("Propietario 1");
+		Jugador j2 = new Jugador("Propietario 2");
+		Jugador j3 = new Jugador("El que paga el alquiler");
+		Tucuman c1 = new Tucuman();
+		SantaFe c2 = new SantaFe();
+		j1.comprarTerreno(c1);
+		j2.comprarTerreno(c2);
+		j1.intercambiarTerrenoConPor(c1, j2, c2);
+		int capital = j2.capitalTotal();
+		j3.caerEnCasillero(c1);
+		Assert.assertNotEquals(capital, j2.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugador1IntercambiaUnTerreno1SuyoPorUnTerreno2DeOtroJugador2EntoncesSiUnJugador3CaeEnTerreno1ElPagoDelAlquilerSeAcreditaAJugador2YElMontoEsElEquivalenteAlAlquilerSinConstrucciones() {
+		Jugador j1 = new Jugador("Propietario 1");
+		Jugador j2 = new Jugador("Propietario 2");
+		Jugador j3 = new Jugador("El que paga el alquiler");
+		Tucuman c1 = new Tucuman();
+		SantaFe c2 = new SantaFe();
+		j1.comprarTerreno(c1);
+		j1.construirCasaEn(c1);
+		j2.comprarTerreno(c2);
+		j1.intercambiarTerrenoConPor(c1, j2, c2);
+		int capital = j2.capitalTotal();
+		int alquilerDeTucumanSinConstrucciones = 2500;
+		j3.caerEnCasillero(c1);
+		Assert.assertEquals(capital+alquilerDeTucumanSinConstrucciones, j2.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugador1IntercambiaUnTerreno1DobleConHotelSuyoPorUnTerreno2DeOtroJugador2EntoncesSiUnJugador3CaeEnTerreno1ElPagoDelAlquilerSeAcreditaAJugador2YElMontoEsElEquivalenteAlAlquilerSinConstrucciones() {
+		Jugador j1 = new Jugador("Propietario 1");
+		Jugador j2 = new Jugador("Propietario 2");
+		Jugador j3 = new Jugador("El que paga el alquiler");
+		BuenosAiresSur c1 = new BuenosAiresSur();
+		BuenosAiresNorte c3 = new BuenosAiresNorte();
+		c1.setTerrenoPareja(c3);
+		c3.setTerrenoPareja(c1);
+		j1.comprarTerreno(c1);
+		j1.comprarTerreno(c3);
+		j1.construirCasaEn(c1);
+		j1.construirCasaEn(c1);
+		j1.construirCasaEn(c3);
+		j1.construirCasaEn(c3);
+		j1.construirHotelEn(c1);
+		SantaFe c2 = new SantaFe();
+		j2.comprarTerreno(c2);
+		j1.intercambiarTerrenoConPor(c1, j2, c2);
+		int capital = j2.capitalTotal();
+		int alquilerDeBASurSinConstrucciones = 2000;
+		j3.caerEnCasillero(c1);
+		Assert.assertEquals(capital+alquilerDeBASurSinConstrucciones, j2.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugador1IntercambiaUnaCompania1SuyaPorUnaCompania2DeOtroJugador2EntoncesElPropietarioDeLaCompania2AhoraEsJugador1() {
+		Jugador j1 = new Jugador("Propietario 1");
+		Jugador j2 = new Jugador("Propietario 2");
+		Subte c1 = new Subte();
+		Aysa c2 = new Aysa();
+		j1.comprarCompania(c1);
+		j2.comprarCompania(c2);
+		j1.intercambiarCompaniaConPor(c1,j2,c2);
+		Assert.assertEquals(j1, c2.propietario());
+	}
+	
+	@Test
+	public void testUnJugador1IntercambiaUnaCompania1SuyaPorUnaCompania2DeOtroJugador2EntoncesSiUnJugadorCaeEnLaCompania1ElPagoDeLaMultaSeAcreditaEnJugador2() {
+		Jugador j1 = new Jugador("Propietario 1");
+		Jugador j2 = new Jugador("Propietario 2");
+		Jugador j3 = new Jugador("Paga la multa");
+		Subte c1 = new Subte();
+		Aysa c2 = new Aysa();
+		Tren c3 = new Tren();
+		c1.setCompaniaPareja(c3);
+		c3.setCompaniaPareja(c1);
+		j1.comprarCompania(c1);
+		j2.comprarCompania(c2);
+		j1.intercambiarCompaniaConPor(c1,j2,c2);
+		int capitalInicial = j2.capitalTotal();
+		j3.obtuvo(10);
+		j3.caerEnCasillero(c1);
+		Assert.assertEquals(capitalInicial + 600*10, j2.capitalTotal());
+	}
+	// -------------------------------------
+	// HASTA ACA LOS TEST DE LA SEGUNDA ENTREGA
 }

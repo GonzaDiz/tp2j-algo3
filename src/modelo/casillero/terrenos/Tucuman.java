@@ -5,7 +5,7 @@ public class Tucuman extends TerrenoSimple{
 	
 	public Tucuman() {
 		super();
-		this.precio = 25000;
+		this.precioTerreno = 25000;
 		this.propietario = null;
 		this.nombreCasillero = "Tucuman";
 		this.costoCasa = 7000;

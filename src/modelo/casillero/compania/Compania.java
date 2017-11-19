@@ -25,7 +25,9 @@ public abstract class Compania extends Casillero {
 	}
 	
 	private void cobrarMultaA(Jugador unJugador) {
-		unJugador.extraerDinero(bonificador.bonificacionSegun(this, this.companiaPareja)*unJugador.ultimaTirada());		
+		int precioMulta = bonificador.bonificacionSegun(this, this.companiaPareja)*unJugador.ultimaTirada(); 
+		unJugador.extraerDinero(precioMulta);	
+		this.propietario.entregarDinero(precioMulta);
 	}
 
 	public Jugador propietario() {
@@ -43,9 +45,15 @@ public abstract class Compania extends Casillero {
 		this.companiaPareja = compania;
 	}
 
-	public Compania venderCompaniaA(Jugador jugador) {
+	public void venderCompaniaA(Jugador jugador) {
 		jugador.extraerDinero(this.precioCompania);
 		this.propietario = jugador;
-		return this;
+		jugador.adquirirPropiedadDe(this);
+	}
+
+	public void cambiarPropietarioA(Jugador jugadorRival) {
+		this.propietario = jugadorRival;
+		jugadorRival.adquirirPropiedadDe(this);
+		
 	}
 }

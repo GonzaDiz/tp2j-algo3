@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import modelo.ArmadorDeTablero;
-import modelo.Salida;
 import modelo.Tablero;
 import modelo.casillero.compania.Aysa;
 import modelo.casillero.compania.Subte;

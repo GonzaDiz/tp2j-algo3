@@ -10,6 +10,7 @@ import modelo.casillero.terrenos.TerrenoDoble;
 import modelo.excepciones.CapitalInsuficienteError;
 
 public class Jugador {
+	
 	private String nombre;
 	private int capital;
 	private EstadoJugador estado;
@@ -17,6 +18,7 @@ public class Jugador {
 	private ArrayList<Terreno> terrenosComprados;
 	private ArrayList<Compania> companiasCompradas;
 	private Casillero casilleroActual;
+	private ArrayList<RestriccionDeIntercambio> restriccionesDeIntercambio;;
 	
 	
 	public Jugador(String unNombre) {
@@ -25,6 +27,7 @@ public class Jugador {
 		this.estado = new Libre();
 		this.terrenosComprados = new ArrayList<Terreno>();
 		this.companiasCompradas = new ArrayList<Compania>();
+		this.restriccionesDeIntercambio = new ArrayList<RestriccionDeIntercambio>();
 		
 	}
 
@@ -34,6 +37,7 @@ public class Jugador {
 		this.estado = new Libre();
 		this.terrenosComprados = new ArrayList<Terreno>();
 		this.companiasCompradas = new ArrayList<Compania>();
+		this.restriccionesDeIntercambio = new ArrayList<RestriccionDeIntercambio>();
 	}
 
 	public String tuNombreEs() {
@@ -72,7 +76,6 @@ public class Jugador {
 		this.estado = nuevoEstado;
 	}
 	
-	// Devuelve true en caso de poder desplazarse, false en caso contrario.
 	public void desplazar(int unValorDeDados) {
 		this.estado.desplazar(this, unValorDeDados);
 	}
@@ -103,11 +106,11 @@ public class Jugador {
 	}
 
 	public void comprarTerreno(Terreno unTerreno) {
-		this.terrenosComprados.add(unTerreno.venderTerrenoA(this));	
+		unTerreno.venderTerrenoA(this);	
 	}
 	
 	public void comprarCompania(Compania unaCompania) {
-		this.companiasCompradas.add(unaCompania.venderCompaniaA(this));
+		unaCompania.venderCompaniaA(this);
 	}
 
 	public int ultimaTirada() {
@@ -127,5 +130,57 @@ public class Jugador {
 	public void construirHotelEn(TerrenoDoble unTerrenoDoble) {
 		unTerrenoDoble.construirHotelPor(this);
 	}
+
+	public void intercambiarTerrenoConPor(Terreno unTerrenoPropio, Jugador jugadorRival, Terreno unTerrenoDelRival) {
+		this.cederTerrenoA(unTerrenoPropio, jugadorRival);
+		jugadorRival.cederTerrenoA(unTerrenoDelRival, this);
+		
+	}
+	
+	public void intercambiarCompaniaConPor(Compania unaCompaniaPropia, Jugador jugadorRival, Compania unaCompaniaDelRival) {
+		this.cederCompaniaA(unaCompaniaPropia, jugadorRival);
+		jugadorRival.cederCompaniaA(unaCompaniaDelRival, this);
+		
+	}
+
+	private void cederCompaniaA(Compania unaCompaniaPropia, Jugador jugadorRival) {
+		this.restriccionesDeIntercambio.add(new RestriccionDeIntercambioDeCompaniaPorNoSerPropietario(this.companiasCompradas, unaCompaniaPropia));
+		this.restriccionesDeIntercambio.add(new RestriccionDeIntercambioPorSerElMismoJugador(this, jugadorRival));
+		this.verificarRestriccionesDeIntercambio();
+		
+		this.companiasCompradas.remove(unaCompaniaPropia);
+		unaCompaniaPropia.cambiarPropietarioA(jugadorRival);
+		
+	}
+
+	private void cederTerrenoA(Terreno unTerrenoPropio, Jugador jugadorRival) {
+		this.restriccionesDeIntercambio.add(new RestriccionDeIntercambioDeTerrenoPorNoSerPropietario(this.terrenosComprados, unTerrenoPropio));
+		this.restriccionesDeIntercambio.add(new RestriccionDeIntercambioPorSerElMismoJugador(this, jugadorRival));
+		this.verificarRestriccionesDeIntercambio();
+		
+		this.terrenosComprados.remove(unTerrenoPropio);
+		unTerrenoPropio.cambiarPropietarioA(jugadorRival);
+		
+		
+	}
+
+	private void verificarRestriccionesDeIntercambio() {
+		for(RestriccionDeIntercambio r : this.restriccionesDeIntercambio) {
+			r.verificar();
+		}
+		
+		this.restriccionesDeIntercambio.clear(); // Eliminamos las restricciones ya verificadas.
+		
+	}
+
+	public void adquirirPropiedadDe(Terreno terreno) {
+		this.terrenosComprados.add(terreno);
+	}
+
+	public void adquirirPropiedadDe(Compania compania) {
+		this.companiasCompradas.add(compania);	
+	}
+
+	
 
 }

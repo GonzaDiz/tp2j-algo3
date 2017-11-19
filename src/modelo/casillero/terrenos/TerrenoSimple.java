@@ -23,11 +23,18 @@ public abstract class TerrenoSimple extends Terreno{
 	}
 	
 	public void cobrarAlquilerA(Jugador unJugador) {
-		unJugador.extraerDinero(alquiler.costoAlquilerCon(this.cantidadDeCasas()));
+		int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadDeCasas());
+		unJugador.extraerDinero(precioAlquiler);
+		this.propietario.entregarDinero(precioAlquiler);
 	}
 	
 	public int construcciones() {
 		return this.cantidadDeCasas();
+	}
+	
+	@Override
+	protected void demolerConstrucciones() {
+		this.demolerCasas();
 	}
 
 }
