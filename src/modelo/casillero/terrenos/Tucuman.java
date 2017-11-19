@@ -1,7 +1,5 @@
 package modelo.casillero.terrenos;
 
-import modelo.jugador.Jugador;
-
 public class Tucuman extends TerrenoSimple{
 	
 	
@@ -9,18 +7,10 @@ public class Tucuman extends TerrenoSimple{
 		super();
 		this.precio = 25000;
 		this.propietario = null;
+		this.nombreCasillero = "Tucuman";
+		this.costoCasa = 7000;
+		this.alquiler = new AlquilerTerrenoSimple(this);
 	}
 
-	@Override
-	public int construcciones() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void afectarJugador(Jugador unJugador) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

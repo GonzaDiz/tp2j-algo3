@@ -1,27 +1,14 @@
 package modelo.casillero.terrenos;
 
-import modelo.jugador.Jugador;
-
 public class SantaFe extends TerrenoSimple{
 	
 	public SantaFe() {
 		super();
 		this.precio = 15000;
 		this.propietario = null;
-	}
-	
-
-
-	@Override
-	public int construcciones() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void afectarJugador(Jugador unJugador) {
-		// TODO Auto-generated method stub
-		
+		this.nombreCasillero = "Santa Fe";
+		this.costoCasa = 4000;
+		this.alquiler = new AlquilerTerrenoSimple(this);
 	}
 
 }

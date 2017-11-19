@@ -13,22 +13,12 @@ public class BuenosAiresSur extends TerrenoDoble{
 		propietario = null;
 		this.costoCasa = 5000;
 		this.costoHotel = 8000;
+		this.nombreCasillero = "Buenos Aires Sur";
+		this.alquiler = new AlquilerTerrenoDoble(this);
 	}
 	
-	
-	@Override
-	public void afectarJugador(Jugador unJugador) {
-		// Aqui estaran contempladas las opciones del terreno hacia el jugador
-		
-	}
 	public Jugador propietario() {
 		return propietario;
-	}
-
-
-	@Override
-	public int construcciones() {
-		return 0;
 	}
 
 

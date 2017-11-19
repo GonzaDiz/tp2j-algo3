@@ -9,19 +9,11 @@ public class SaltaSur extends TerrenoDoble {
 		super();
 		this.precio = 23000;
 		this.propietario = null;
+		this.costoCasa = 4500;
+		this.costoHotel = 7500;
+		this.nombreCasillero = "Salta Sur";
+		this.alquiler = new AlquilerTerrenoDoble(this);
 	}
 	
-
-	@Override
-	public int construcciones() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void afectarJugador(Jugador unJugador) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

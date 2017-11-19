@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import modelo.edificaciones.Casa;
 import modelo.edificaciones.Hotel;
+import modelo.edificaciones.RestriccionDeConstruccionPorFaltaDeCasasEnElTerreno;
+import modelo.edificaciones.RestriccionDeConstruccionPorFaltaDeCasasEnElTerrenoPareja;
 import modelo.edificaciones.RestriccionDeConstruccionPorLimiteDeCasas;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedad;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedadDeTerrenoPareja;
@@ -14,11 +16,13 @@ public abstract class TerrenoDoble extends Terreno {
 	protected ArrayList<Hotel> hoteles; // En principio es un hotel, pero en un futuro se podrian poner mas
 	protected int limiteHoteles;
 	protected int costoHotel;
-	protected Terreno terrenoPareja;
+	protected TerrenoDoble terrenoPareja;
+	protected AlquilerTerrenoDoble alquiler;
 	
 	
 	public TerrenoDoble() {
 		super();
+		this.hoteles = new ArrayList<Hotel>();
 		this.limiteHoteles = 1;
 		this.limiteCasas = 2;
 	}
@@ -27,24 +31,46 @@ public abstract class TerrenoDoble extends Terreno {
 		
 		this.restricciones.add(new RestriccionDeConstruccionPorPropiedad(this, jugador));
 		this.restricciones.add(new RestriccionDeConstruccionPorLimiteDeCasas(this, this.limiteCasas));
-		this.restricciones.add(new RestriccionDeConstruccionPorPropiedadDeTerrenoPareja(this, jugador));
+		this.restricciones.add(new RestriccionDeConstruccionPorPropiedadDeTerrenoPareja(this.terrenoPareja, jugador));
 		this.verificarRestricciones();
 		
 		jugador.extraerDinero(this.costoCasa);
 		casas.add(new Casa());
-		this.actualizarAlquiler();
 	}
-	
-	public void actualizarAlquiler() {
+
+	public void construirHotelPor(Jugador jugador) {
+		this.restricciones.add(new RestriccionDeConstruccionPorPropiedad(this, jugador));
+		this.restricciones.add(new RestriccionDeConstruccionPorPropiedadDeTerrenoPareja(this.terrenoPareja, jugador));
+		this.restricciones.add(new RestriccionDeConstruccionPorFaltaDeCasasEnElTerreno(this, this.limiteCasas));
+		this.restricciones.add(new RestriccionDeConstruccionPorFaltaDeCasasEnElTerrenoPareja(this, this.limiteCasas));
+		this.verificarRestricciones();
+		
+		this.demolerCasas();
+		jugador.extraerDinero(this.costoHotel);
+		hoteles.add(new Hotel());
 		
 	}
 	
-	public void setTerrenoPareja(Terreno terreno) {
+	private void demolerCasas() {
+		this.casas.clear(); // Vaciamos el ArrayList de casas cuando se constru
+	}
+
+	public void setTerrenoPareja(TerrenoDoble terreno) {
 		this.terrenoPareja = terreno;
 	}
 	
-	public Terreno getTerrenoPareja() {
-		return this.terrenoPareja;
+	public void cobrarAlquilerA(Jugador unJugador) {
+		unJugador.extraerDinero(alquiler.costoAlquilerCon(this.cantidadDeCasas(), this.cantidadDeHoteles()));
 	}
+
+	public int cantidadDeHoteles() {
+		return this.hoteles.size();
+	}
+	
+	public int construcciones() {
+		return this.cantidadDeCasas() + this.cantidadDeHoteles();
+	}
+
+	
 
 }

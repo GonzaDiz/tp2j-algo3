@@ -1,9 +1,18 @@
 package modelo.casillero.especial;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 import modelo.casillero.Casillero;
 import modelo.jugador.Jugador;
 
 public class RetrocesoDinamico extends Casillero {
+	
+	
+	public RetrocesoDinamico() {
+		super();
+		this.nombreCasillero = "Retroceso Dinamico";
+
+	}
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {

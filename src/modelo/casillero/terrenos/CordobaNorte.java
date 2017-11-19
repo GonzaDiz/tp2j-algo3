@@ -10,18 +10,10 @@ public class CordobaNorte extends TerrenoDoble{
 		this.propietario = null;
 		this.costoCasa = 2200;
 		this.costoHotel = 3500;
+		this.nombreCasillero = "Cordoba Norte";
+		this.alquiler = new AlquilerTerrenoDoble(this);
 	}
 
-	@Override
-	public int construcciones() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public void afectarJugador(Jugador unJugador) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -7,6 +7,11 @@ public class Policia extends Casillero {
 	
 	private Carcel carcel;
 	
+	public Policia() {
+		super();
+		this.nombreCasillero = "Policia";
+
+	}
 	
 	public Policia(Carcel unaCarcel) {
 		this.carcel = unaCarcel;

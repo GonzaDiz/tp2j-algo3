@@ -5,7 +5,11 @@ import modelo.jugador.Jugador;
 
 public class AvanceDinamico extends Casillero{
 	
-
+	public AvanceDinamico() {
+		super();
+		this.nombreCasillero = "Avance Dinamico";
+	}
+	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
 		int cantidadDeCasillerosADesplazar;

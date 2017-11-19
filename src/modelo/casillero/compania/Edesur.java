@@ -1,14 +1,13 @@
 package modelo.casillero.compania;
 
-import modelo.casillero.Casillero;
-import modelo.jugador.Jugador;
-
-public class Edesur extends Casillero {
+public class Edesur extends Compania {
 	
-	@Override
-	public void afectarJugador(Jugador unJugador) {
-		// TODO Auto-generated method stub
-
+	
+	public Edesur() {
+		super();
+		this.nombreCasillero = "Edesur";
+		this.precioCompania = 35000;
+		this.bonificador = new BonificadorDeCompania(this);
 	}
 
 }

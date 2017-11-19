@@ -11,7 +11,9 @@ public class Quini6 extends Casillero{
 	private ConcurrentHashMap<Jugador, Stack<Premio>> jugadores;
 	
 	public Quini6() {
+		super();
 		this.jugadores = new ConcurrentHashMap<>();
+		this.nombreCasillero = "Quini 6";
 
 	}
 

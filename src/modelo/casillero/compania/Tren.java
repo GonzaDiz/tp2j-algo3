@@ -1,13 +1,12 @@
 package modelo.casillero.compania;
 
-import modelo.jugador.Jugador;
-
 public class Tren extends Compania {
 
-	@Override
-	public void afectarJugador(Jugador unJugador) {
-		// TODO Auto-generated method stub
-		
+	public Tren() {
+		super();
+		this.nombreCasillero = "Tren";
+		this.precioCompania = 38000;
+		this.bonificador = new BonificadorDeCompania(this);
 	}
-
+	
 }

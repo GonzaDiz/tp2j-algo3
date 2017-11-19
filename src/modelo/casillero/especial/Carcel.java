@@ -8,9 +8,10 @@ public class Carcel extends Casillero {
 
 	private int precioFianza;
 
-	
 	public Carcel() {
+		super();
 		this.precioFianza = 45000;
+		this.nombreCasillero = "Carcel";
 
 	}
 	

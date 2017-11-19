@@ -3,6 +3,7 @@ package modelo;
 import java.util.ArrayList;
 
 import modelo.casillero.Casillero;
+import modelo.excepciones.ElTableroNoPoseeEseCasilleroError;
 
 
 public class Tablero {
@@ -41,6 +42,16 @@ public class Tablero {
 	
 	public void agregarCasillero(Casillero unCasillero) {
 		casilleros.add(unCasillero);
+	}
+
+	public Casillero getCasillero(Casillero unCasillero) {
+		for(Casillero c : casilleros) {
+			if(c.sos(unCasillero)) {
+				return c;
+			}
+		}
+		
+		throw new ElTableroNoPoseeEseCasilleroError("El tablero no tiene ese casillero");
 	}
 
 }

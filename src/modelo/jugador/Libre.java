@@ -10,7 +10,7 @@ public class Libre extends EstadoJugador {
 	public void desplazar(Jugador unJugador, int cantidadDeCasilleros) {
 		// Si no se tiene que desplazar, el casillero actual no lo debe tener que volver a afectar
 		if(cantidadDeCasilleros == 0) {
-
+			return;
 		}
 		else {
 			Tablero tablero = Tablero.getTablero();

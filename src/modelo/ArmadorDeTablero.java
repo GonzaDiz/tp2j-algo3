@@ -28,27 +28,62 @@ public class ArmadorDeTablero {
 	public ArrayList<Casillero> casilleros;
 	
 	public void armarTablero(Tablero tablero) {
-		tablero.agregarCasillero(new Salida());
-		tablero.agregarCasillero(new Quini6()); 
-		tablero.agregarCasillero(new BuenosAiresSur());
-		tablero.agregarCasillero(new Edesur());
-		tablero.agregarCasillero(new BuenosAiresNorte());
+		
+		// Creamos casilleros
+		Salida salida = new Salida();
+		Quini6 quni6 = new Quini6();
+		BuenosAiresSur baS = new BuenosAiresSur();
+		Edesur edesur = new Edesur();
+		BuenosAiresNorte baN = new BuenosAiresNorte();
 		Carcel carcel = new Carcel();
+		CordobaSur cordobaSur = new CordobaSur();
+		AvanceDinamico avanceDinamico = new AvanceDinamico();
+		Subte subte = new Subte();
+		CordobaNorte cordobaNorte = new CordobaNorte();
+		ImpuestoDeLujo impuestoDeLujo = new ImpuestoDeLujo();
+		SantaFe santaFe = new SantaFe();
+		Aysa aysa = new Aysa();
+		SaltaNorte saltaNorte = new SaltaNorte();
+		SaltaSur saltaSur = new SaltaSur();
+		Policia policia = new Policia(carcel);
+		Tren tren = new Tren();
+		Neuquen neuquen = new Neuquen();
+		RetrocesoDinamico retrocesoDinamico = new RetrocesoDinamico();
+		Tucuman tucuman = new Tucuman();
+		
+		// Agregamos las parejas
+		baS.setTerrenoPareja(baN);
+		baN.setTerrenoPareja(baS);
+		cordobaSur.setTerrenoPareja(cordobaNorte);
+		cordobaNorte.setTerrenoPareja(cordobaSur);
+		saltaNorte.setTerrenoPareja(saltaSur);
+		saltaSur.setTerrenoPareja(saltaSur);
+		aysa.setCompaniaPareja(edesur);
+		edesur.setCompaniaPareja(aysa);
+		subte.setCompaniaPareja(tren);
+		tren.setCompaniaPareja(tren);
+	
+		// Agregamos las casilleros al tablero
+ 		tablero.agregarCasillero(salida);
+		tablero.agregarCasillero(quni6); 
+		tablero.agregarCasillero(baS);
+		tablero.agregarCasillero(edesur);
+		tablero.agregarCasillero(baN);
 		tablero.agregarCasillero(carcel);
-		tablero.agregarCasillero(new CordobaSur());
-		tablero.agregarCasillero(new AvanceDinamico());
-		tablero.agregarCasillero(new Subte());
-		tablero.agregarCasillero(new CordobaNorte());
-		tablero.agregarCasillero(new ImpuestoDeLujo());
-		tablero.agregarCasillero(new SantaFe());
-		tablero.agregarCasillero(new Aysa());
-		tablero.agregarCasillero(new SaltaNorte());
-		tablero.agregarCasillero(new SaltaSur());
-		tablero.agregarCasillero(new Policia(carcel));
-		tablero.agregarCasillero(new Tren());
-		tablero.agregarCasillero(new Neuquen());
-		tablero.agregarCasillero(new RetrocesoDinamico());
-		tablero.agregarCasillero(new Tucuman());
+		tablero.agregarCasillero(cordobaSur);
+		tablero.agregarCasillero(avanceDinamico);
+		tablero.agregarCasillero(subte);
+		tablero.agregarCasillero(cordobaNorte);
+		tablero.agregarCasillero(impuestoDeLujo);
+		tablero.agregarCasillero(santaFe);
+		tablero.agregarCasillero(aysa);
+		tablero.agregarCasillero(saltaNorte);
+		tablero.agregarCasillero(saltaSur);
+		tablero.agregarCasillero(policia);
+		tablero.agregarCasillero(tren);
+		tablero.agregarCasillero(neuquen);
+		tablero.agregarCasillero(retrocesoDinamico);
+		tablero.agregarCasillero(tucuman);
 	}
 
 }

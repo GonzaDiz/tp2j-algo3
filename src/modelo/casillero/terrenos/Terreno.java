@@ -12,7 +12,6 @@ public abstract class Terreno extends Casillero {
 	
 	protected int precio;
 	protected Jugador propietario;
-	protected int precioAlquiler;
 	protected int limiteCasas;
 	protected ArrayList<Casa> casas;
 	protected int costoCasa;
@@ -21,6 +20,7 @@ public abstract class Terreno extends Casillero {
 	public Terreno() {
 		this.casas = new ArrayList<Casa>();
 		this.restricciones = new ArrayList<RestriccionDeConstruccion>();
+		this.propietario = null;
 
 	}
 	
@@ -29,13 +29,34 @@ public abstract class Terreno extends Casillero {
 	}
 	
 	public abstract int construcciones();
-	protected abstract void actualizarAlquiler();
+	public abstract void construirCasaPor(Jugador jugador);
+	public abstract void cobrarAlquilerA(Jugador unJugador);
+	
+	@Override
+	public void afectarJugador(Jugador unJugador) {
+		
+		if(this.tienePropietario()) {
+			if(this.propietario().sos(unJugador) == false) {
+				this.cobrarAlquilerA(unJugador);
+			}
+		}
+	}
+	
+	
+
+	private boolean tienePropietario() {
+		if(this.propietario == null) {
+			return false;
+		}
+		return true;
+	}
+
 	public Terreno venderTerrenoA(Jugador jugador) throws CapitalInsuficienteError {
 		jugador.extraerDinero(this.precio);
 		this.propietario = jugador;
 		return this;
 	}
-	public abstract void construirCasaPor(Jugador jugador);
+	
 	
 	public Jugador propietario() {
 		return this.propietario;

@@ -6,17 +6,17 @@ import modelo.jugador.Jugador;
 
 public class RestriccionDeConstruccionPorPropiedadDeTerrenoPareja implements RestriccionDeConstruccion {
 
-	private TerrenoDoble terreno;
+	private TerrenoDoble terrenoPareja;
 	private Jugador jugador;
 	
 	public RestriccionDeConstruccionPorPropiedadDeTerrenoPareja(TerrenoDoble terrenoDoble, Jugador jugador) {
 		this.jugador = jugador;
-		this.terreno = terrenoDoble;
+		this.terrenoPareja = terrenoDoble;
 	}
 
 	@Override
 	public void verificar() {
-		if(this.terreno.getTerrenoPareja().propietario().sos(this.jugador) == false) {
+		if(this.terrenoPareja.propietario().sos(this.jugador) == false) {
 			throw new SeNecesitanAmbosTerrenosParaEdificarEnUnTerrenoDobleError("Se necesitan ambos terrenos para edificar en un terreno doble.");
 		}
 
