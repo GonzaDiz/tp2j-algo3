@@ -117,8 +117,6 @@ public class Jugador {
 		return ultimaTirada;
 	}
 
-	
-
 	public boolean sos(Jugador jugador) {
 		return this == jugador;
 	}
@@ -141,6 +139,14 @@ public class Jugador {
 		this.cederCompaniaA(unaCompaniaPropia, jugadorRival);
 		jugadorRival.cederCompaniaA(unaCompaniaDelRival, this);
 		
+	}
+	
+	public void adquirirPropiedadDe(Terreno terreno) {
+		this.terrenosComprados.add(terreno);
+	}
+
+	public void adquirirPropiedadDe(Compania compania) {
+		this.companiasCompradas.add(compania);	
 	}
 
 	private void cederCompaniaA(Compania unaCompaniaPropia, Jugador jugadorRival) {
@@ -173,13 +179,6 @@ public class Jugador {
 		
 	}
 
-	public void adquirirPropiedadDe(Terreno terreno) {
-		this.terrenosComprados.add(terreno);
-	}
-
-	public void adquirirPropiedadDe(Compania compania) {
-		this.companiasCompradas.add(compania);	
-	}
 
 	
 

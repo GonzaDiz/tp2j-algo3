@@ -1,8 +1,5 @@
 package modelo;
 
-import java.util.ArrayList;
-
-import modelo.casillero.Casillero;
 import modelo.casillero.compania.Aysa;
 import modelo.casillero.compania.Edesur;
 import modelo.casillero.compania.Subte;
@@ -13,6 +10,7 @@ import modelo.casillero.especial.ImpuestoDeLujo;
 import modelo.casillero.especial.Policia;
 import modelo.casillero.especial.Quini6;
 import modelo.casillero.especial.RetrocesoDinamico;
+import modelo.casillero.especial.Salida;
 import modelo.casillero.terrenos.BuenosAiresNorte;
 import modelo.casillero.terrenos.BuenosAiresSur;
 import modelo.casillero.terrenos.CordobaNorte;
@@ -24,8 +22,6 @@ import modelo.casillero.terrenos.SantaFe;
 import modelo.casillero.terrenos.Tucuman;
 
 public class ArmadorDeTablero {
-	
-	public ArrayList<Casillero> casilleros;
 	
 	public void armarTablero(Tablero tablero) {
 		

@@ -23,10 +23,6 @@ public abstract class Terreno extends Casillero {
 
 	}
 	
-	public int cantidadDeCasas() {
-		return casas.size();
-	}
-	
 	public abstract int construcciones();
 	public abstract void construirCasaPor(Jugador jugador);
 	public abstract void cobrarAlquilerA(Jugador unJugador);
@@ -42,12 +38,6 @@ public abstract class Terreno extends Casillero {
 		}
 	}
 	
-	protected void demolerCasas() {
-		this.casas.clear(); // Vaciamos el ArrayList de casas cuando se construyeron
-	}
-	
-	
-
 	public boolean tienePropietario() {
 		if(this.propietario == null) {
 			return false;
@@ -61,9 +51,19 @@ public abstract class Terreno extends Casillero {
 		jugador.adquirirPropiedadDe(this);
 	}
 	
-	
 	public Jugador propietario() {
 		return this.propietario;
+	}
+
+	public void cambiarPropietarioA(Jugador jugadorRival) {
+		this.demolerConstrucciones();
+		this.propietario = jugadorRival;
+		jugadorRival.adquirirPropiedadDe(this);
+		
+	}
+	
+	public int cantidadDeCasas() {
+		return casas.size();
 	}
 	
 	protected void verificarRestricciones() {
@@ -74,13 +74,8 @@ public abstract class Terreno extends Casillero {
 		this.restricciones.clear(); // Eliminamos las restricciones ya verificadas.
 	}
 
-	public void cambiarPropietarioA(Jugador jugadorRival) {
-		this.demolerConstrucciones();
-		this.propietario = jugadorRival;
-		jugadorRival.adquirirPropiedadDe(this);
-		
+	protected void demolerCasas() {
+		this.casas.clear(); // Vaciamos el ArrayList de casas cuando se construyeron
 	}
-
-	
 	
 }

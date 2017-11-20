@@ -23,12 +23,6 @@ public abstract class Compania extends Casillero {
 			}
 		}
 	}
-	
-	private void cobrarMultaA(Jugador unJugador) {
-		int precioMulta = bonificador.bonificacionSegun(this, this.companiaPareja)*unJugador.ultimaTirada(); 
-		unJugador.extraerDinero(precioMulta);	
-		this.propietario.entregarDinero(precioMulta);
-	}
 
 	public Jugador propietario() {
 		return this.propietario;
@@ -55,5 +49,11 @@ public abstract class Compania extends Casillero {
 		this.propietario = jugadorRival;
 		jugadorRival.adquirirPropiedadDe(this);
 		
+	}
+	
+	private void cobrarMultaA(Jugador unJugador) {
+		int precioMulta = bonificador.bonificacionSegun(this, this.companiaPareja)*unJugador.ultimaTirada(); 
+		unJugador.extraerDinero(precioMulta);	
+		this.propietario.entregarDinero(precioMulta);
 	}
 }

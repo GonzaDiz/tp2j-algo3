@@ -15,6 +15,7 @@ public class Policia extends Casillero {
 	
 	public Policia(Carcel unaCarcel) {
 		this.carcel = unaCarcel;
+		this.nombreCasillero = "Policia";
 	}
 
 	@Override

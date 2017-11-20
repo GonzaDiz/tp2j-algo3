@@ -27,6 +27,16 @@ public abstract class TerrenoDoble extends Terreno {
 		this.limiteCasas = 2;
 	}
 	
+	public void cobrarAlquilerA(Jugador unJugador) {
+		int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadDeCasas(), this.cantidadDeHoteles());
+		unJugador.extraerDinero(precioAlquiler);
+		this.propietario.entregarDinero(precioAlquiler);
+	}
+	
+	public int construcciones() {
+		return this.cantidadDeCasas() + this.cantidadDeHoteles();
+	}
+	
 	public void construirCasaPor(Jugador jugador) {
 		
 		this.restricciones.add(new RestriccionDeConstruccionPorPropiedad(this, jugador));
@@ -55,18 +65,8 @@ public abstract class TerrenoDoble extends Terreno {
 		this.terrenoPareja = terreno;
 	}
 	
-	public void cobrarAlquilerA(Jugador unJugador) {
-		int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadDeCasas(), this.cantidadDeHoteles());
-		unJugador.extraerDinero(precioAlquiler);
-		this.propietario.entregarDinero(precioAlquiler);
-	}
-
 	public int cantidadDeHoteles() {
 		return this.hoteles.size();
-	}
-	
-	public int construcciones() {
-		return this.cantidadDeCasas() + this.cantidadDeHoteles();
 	}
 
 	@Override
