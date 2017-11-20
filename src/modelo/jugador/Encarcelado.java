@@ -13,10 +13,6 @@ public class Encarcelado extends EstadoJugador {
 
 	@Override
 	public void actualizarEstado(Jugador jugador) {
-		//turnosEnCarcel++;
-		//if(turnosEnCarcel == 4) {
-		//	jugador.liberar();
-		//}
 		EncarceladoTurno1 encarceladoPor1Turno = new EncarceladoTurno1();
 		jugador.cambiarEstado(encarceladoPor1Turno);
 	}
