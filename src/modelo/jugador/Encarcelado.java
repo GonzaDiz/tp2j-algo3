@@ -19,9 +19,7 @@ public class Encarcelado extends EstadoJugador {
 
 	@Override
 	public void pagarFianza(Jugador jugador, Carcel unaCarcel) {
-			throw new NoPuedePagarFianzaException();
-		
-		
+			throw new NoPuedePagarFianzaException();	
 	}
 
 
