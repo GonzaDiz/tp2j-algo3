@@ -5,6 +5,7 @@ import modelo.jugador.Jugador;
 
 public class ImpuestoDeLujo extends Casillero {
 	
+	private int porcentajeDeImpuesto = 10;
 
 	public ImpuestoDeLujo() {
 		super();
@@ -14,8 +15,7 @@ public class ImpuestoDeLujo extends Casillero {
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		PorcentajeImpuesto porcentajeImpuesto = new PorcentajeImpuesto(10);
-		unJugador.extraerDinero(unJugador.capitalTotal()*(porcentajeImpuesto.porcentajeDeImpuesto()/100));
+		unJugador.extraerDinero(unJugador.capitalTotal()*(this.porcentajeDeImpuesto/100));
 	}
 
 }
