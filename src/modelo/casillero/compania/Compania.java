@@ -6,33 +6,22 @@ import modelo.jugador.Jugador;
 public abstract class Compania extends Casillero {
 
 	protected int precioCompania;
-	protected Jugador propietario;
+	protected Propietario propietario;
 	protected Compania companiaPareja;
 	protected BonificadorDeCompania bonificador;
 	
 	public Compania() {
-		this.propietario = null;
+		this.propietario = new PropietarioNull();
+		//this.companiaPareja = new CompaniaNull();
 	}
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		
-		if(this.tienePropietario()) {
-			if(this.propietario().sos(unJugador) == false) {
-				this.cobrarMultaA(unJugador);
-			}
-		}
+		this.cobrarMultaA(unJugador);
 	}
 
-	public Jugador propietario() {
+	public Propietario propietario() {
 		return this.propietario;
-	}
-
-	public boolean tienePropietario() {
-		if(this.propietario == null) {
-			return false;
-		}
-		return true;
 	}
 
 	public void setCompaniaPareja(Compania compania) {
@@ -41,14 +30,13 @@ public abstract class Compania extends Casillero {
 
 	public void venderCompaniaA(Jugador jugador) {
 		jugador.extraerDinero(this.precioCompania);
-		this.propietario = jugador;
+		this.propietario = new PropietarioReal(jugador);
 		jugador.adquirirPropiedadDe(this);
 	}
 
 	public void cambiarPropietarioA(Jugador jugadorRival) {
-		this.propietario = jugadorRival;
+		this.propietario = new PropietarioReal(jugadorRival);
 		jugadorRival.adquirirPropiedadDe(this);
-		
 	}
 	
 	private void cobrarMultaA(Jugador unJugador) {

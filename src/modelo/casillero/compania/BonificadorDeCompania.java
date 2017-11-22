@@ -30,12 +30,8 @@ public class BonificadorDeCompania {
 	}
 
 	public int bonificacionSegun(Compania unaCompania, Compania companiaPareja) {
-	
-		if(companiaPareja.tienePropietario()) {
-			if(unaCompania.propietario().sos(companiaPareja.propietario())) {
-				return this.bonificadorConCompaniaPareja;
-			}
-		
+		if(unaCompania.propietario().sos(companiaPareja.propietario())) {
+			return this.bonificadorConCompaniaPareja;
 		}
 		return this.bonificadorSinCompaniaPareja;
 	}
