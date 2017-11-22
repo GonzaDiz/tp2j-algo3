@@ -11,13 +11,13 @@ public class TableroTest {
 	
 	@Test
 	public void testCrearTableroNoDevuelveNull() {
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		Assert.assertNotNull(tablero);
 	}
 	
 	@Test
 	public void testAgregarUnCasilleroATablero(){
-		Tablero unTablero = Tablero.getTablero();
+		Tablero unTablero = Tablero.getInstance();
 		Carcel unaCarcel = new Carcel();
 		unTablero.agregarCasillero(unaCarcel);
 		Casillero otraCarcel = unTablero.getCasillero(0); 

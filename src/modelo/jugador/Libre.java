@@ -13,7 +13,7 @@ public class Libre extends EstadoJugador {
 			return;
 		}
 		else {
-			Tablero tablero = Tablero.getTablero();
+			Tablero tablero = Tablero.getInstance();
 			unJugador.caerEnCasillero(tablero.getCasilleroPorDesplazamiento(unJugador.casilleroActual(), cantidadDeCasilleros));
 			
 		}

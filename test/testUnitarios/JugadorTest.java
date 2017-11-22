@@ -144,7 +144,7 @@ public class JugadorTest {
 	@Test (expected = NoSePuedeDesplazarJugadorEncarceladoException.class)
 	public void testUnJugadorEncarceladoIntentaDesplazarse5CasillerosYSeLanzaNoSePuedeDesplazarJugadorEnCarcelException() {
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.encarcelar();
@@ -154,7 +154,7 @@ public class JugadorTest {
 	@Test
 	public void testUnJugadorQueCaeEnLaCarcelQuedaLibreAlCuartoTurnoEntoncesPuedeDesplazarse() {
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		Carcel carcel = new Carcel();
@@ -179,7 +179,7 @@ public class JugadorTest {
 	@Test (expected = NoSePuedeDesplazarJugadorEncarceladoException.class)
 	public void testUnJugadorCaeEnLaPoliciaYPasaAEstarEncarcelado() {
 		Jugador jugador = new Jugador("Amado Budou");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		Carcel carcel = new Carcel();

@@ -8,22 +8,15 @@ import modelo.excepciones.ElTableroNoPoseeEseCasilleroError;
 
 public class Tablero {
 	
-	private static Tablero TABLERO = null;
+	private static Tablero INSTANCE = new Tablero();
 	private ArrayList<Casillero> casilleros;
 
 	private Tablero() {
 		this.casilleros = new ArrayList<>();
 	}
 	
-	private synchronized static void crearTablero() {
-		if (TABLERO == null) {
-			TABLERO = new Tablero();
-		}	
-	}
-	
-	public static Tablero getTablero() {
-		if (TABLERO == null) crearTablero();
-		return TABLERO;
+	public static Tablero getInstance() {
+		return INSTANCE;
 	}
 
 	// Una posible mejora para evitar estos ifs es implementar una estructura de datos Lista Circular

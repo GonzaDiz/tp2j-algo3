@@ -24,7 +24,7 @@ public class RetrocesoDinamicoTest {
 		RetrocesoDinamico rd = new RetrocesoDinamico();
 		Subte c = new Subte();
 		Jugador jugador = new Jugador("Lucas");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(12);
@@ -37,7 +37,7 @@ public class RetrocesoDinamicoTest {
 		RetrocesoDinamico rd = new RetrocesoDinamico();
 		CordobaNorte c = new CordobaNorte();
 		Jugador jugador = new Jugador("Uriel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(11);
@@ -49,7 +49,7 @@ public class RetrocesoDinamicoTest {
 	public void testUnJugadorCaeEnRetrocesoDinamicoHabiendoSumado10EntoncesRetrocede100000mod10() {
 		RetrocesoDinamico rd = new RetrocesoDinamico();
 		Jugador jugador = new Jugador("Damian");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(10);
@@ -62,7 +62,7 @@ public class RetrocesoDinamicoTest {
 		RetrocesoDinamico rd = new RetrocesoDinamico();
 		Tren c = new Tren();
 		Jugador jugador = new Jugador("Esteban");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(2);

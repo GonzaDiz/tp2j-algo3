@@ -29,7 +29,7 @@ public class AvanceDinamicoTest {
 	@Test
 	public void testUnJugadorCaeEnAvanceDinamicoHabiendoSumadoDosEntoncesAvanzaCeroLugares () {
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(2); // Este mensaje recibira una tirada de dados aleatoria como paramtero
@@ -42,7 +42,7 @@ public class AvanceDinamicoTest {
 		AvanceDinamico ad = new AvanceDinamico();
 		Subte subte = new Subte();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(3);
@@ -55,7 +55,7 @@ public class AvanceDinamicoTest {
 		AvanceDinamico ad = new AvanceDinamico();
 		CordobaNorte cn = new CordobaNorte();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(4);
@@ -68,7 +68,7 @@ public class AvanceDinamicoTest {
 		AvanceDinamico ad = new AvanceDinamico();
 		ImpuestoDeLujo il = new ImpuestoDeLujo();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(5);
@@ -81,7 +81,7 @@ public class AvanceDinamicoTest {
 		AvanceDinamico ad = new AvanceDinamico();
 		SantaFe sf = new SantaFe();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(6);
@@ -95,7 +95,7 @@ public class AvanceDinamicoTest {
 		AvanceDinamico ad = new AvanceDinamico();
 		Aysa c = new Aysa();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(7);
@@ -108,7 +108,7 @@ public class AvanceDinamicoTest {
 		// 100000 % 8 = 0
 		AvanceDinamico ad = new AvanceDinamico();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(8);
@@ -122,7 +122,7 @@ public class AvanceDinamicoTest {
 		AvanceDinamico ad = new AvanceDinamico();
 		Subte c = new Subte();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(9);
@@ -135,7 +135,7 @@ public class AvanceDinamicoTest {
 		// 100000 % 10 = 0
 		AvanceDinamico ad = new AvanceDinamico();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(10);
@@ -148,7 +148,7 @@ public class AvanceDinamicoTest {
 		AvanceDinamico ad = new AvanceDinamico();
 		CordobaNorte c = new CordobaNorte();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(11);
@@ -161,7 +161,7 @@ public class AvanceDinamicoTest {
 		AvanceDinamico ad = new AvanceDinamico();
 		Tucuman c = new Tucuman();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(12);
@@ -174,7 +174,7 @@ public class AvanceDinamicoTest {
 		AvanceDinamico ad = new AvanceDinamico();
 		Tren c = new Tren();
 		Jugador jugador = new Jugador("Ariel");
-		Tablero tablero = Tablero.getTablero();
+		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.comprarTerreno(new Neuquen());
