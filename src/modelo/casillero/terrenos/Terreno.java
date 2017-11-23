@@ -3,6 +3,9 @@ package modelo.casillero.terrenos;
 import java.util.ArrayList;
 
 import modelo.casillero.Casillero;
+import modelo.casillero.compania.Propietario;
+import modelo.casillero.compania.PropietarioNull;
+import modelo.casillero.compania.PropietarioReal;
 import modelo.edificaciones.Casa;
 import modelo.edificaciones.RestriccionDeConstruccion;
 import modelo.jugador.Jugador;
@@ -10,7 +13,7 @@ import modelo.jugador.Jugador;
 public abstract class Terreno extends Casillero {
 	
 	protected int precioTerreno;
-	protected Jugador propietario;
+	protected Propietario propietario;
 	protected int limiteCasas;
 	protected ArrayList<Casa> casas;
 	protected int costoCasa;
@@ -19,7 +22,7 @@ public abstract class Terreno extends Casillero {
 	public Terreno() {
 		this.casas = new ArrayList<Casa>();
 		this.restricciones = new ArrayList<RestriccionDeConstruccion>();
-		this.propietario = null;
+		this.propietario = new PropietarioNull();
 
 	}
 	
@@ -32,32 +35,27 @@ public abstract class Terreno extends Casillero {
 	public void afectarJugador(Jugador unJugador) {
 		
 		if(this.tienePropietario()) {
-			if(this.propietario().sos(unJugador) == false) {
 				this.cobrarAlquilerA(unJugador);
-			}
 		}
 	}
 	
 	public boolean tienePropietario() {
-		if(this.propietario == null) {
-			return false;
-		}
-		return true;
+		return this.propietario.sosPropietario();
 	}
 
 	public void venderTerrenoA(Jugador jugador) {
 		jugador.extraerDinero(this.precioTerreno);
-		this.propietario = jugador;
+		this.propietario = new PropietarioReal(jugador);
 		jugador.adquirirPropiedadDe(this);
 	}
 	
-	public Jugador propietario() {
+	public Propietario propietario() {
 		return this.propietario;
 	}
 
 	public void cambiarPropietarioA(Jugador jugadorRival) {
 		this.demolerConstrucciones();
-		this.propietario = jugadorRival;
+		this.propietario = new PropietarioReal(jugadorRival);
 		jugadorRival.adquirirPropiedadDe(this);
 		
 	}

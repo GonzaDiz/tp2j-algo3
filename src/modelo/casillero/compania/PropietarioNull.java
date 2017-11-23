@@ -18,4 +18,9 @@ public class PropietarioNull extends Propietario {
 	public Jugador jugador() {
 		return null;
 	}
+
+	@Override
+	public boolean sosPropietario() {
+		return false;
+	}
 }

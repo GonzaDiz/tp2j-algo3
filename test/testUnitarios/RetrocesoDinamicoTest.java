@@ -8,7 +8,8 @@ import modelo.Tablero;
 import modelo.casillero.compania.Subte;
 import modelo.casillero.compania.Tren;
 import modelo.casillero.especial.RetrocesoDinamico;
-import modelo.casillero.terrenos.CordobaNorte;
+import modelo.casillero.terrenos.Terreno;
+import modelo.casillero.terrenos.TerrenosFactory;
 import modelo.jugador.Jugador;
 
 public class RetrocesoDinamicoTest {
@@ -34,8 +35,9 @@ public class RetrocesoDinamicoTest {
 	
 	@Test
 	public void testUnJugadorCaEnRetrocesoDinamicoHabiendoSumado11EntoncesRetrocede9HastaCordobaNorte() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		RetrocesoDinamico rd = new RetrocesoDinamico();
-		CordobaNorte c = new CordobaNorte();
+		Terreno c = terrenosFactory.crearCordobaNorte();
 		Jugador jugador = new Jugador("Uriel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
