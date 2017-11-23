@@ -5,13 +5,18 @@ import modelo.edificaciones.RestriccionDeConstruccionPorLimiteDeCasas;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedad;
 import modelo.jugador.Jugador;
 
-public abstract class TerrenoSimple extends Terreno{
+public  class TerrenoSimple extends Terreno{
 
 	protected AlquilerTerrenoSimple alquiler;
 	
-	public TerrenoSimple() {
+	public TerrenoSimple(int precioTerreno, Jugador propietario, String nombreCasillero, int costoCasa, AlquilerTerrenoSimple alquiler ) {
 		super();
 		this.limiteCasas = 1;
+		this.precioTerreno = precioTerreno;
+		this.propietario = propietario;
+		this.nombreCasillero = nombreCasillero;
+		this.costoCasa = costoCasa;
+		this.alquiler = alquiler;
 	}
 	
 	public void construirCasaPor(Jugador jugador) {

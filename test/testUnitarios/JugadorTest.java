@@ -15,15 +15,9 @@ import modelo.casillero.especial.Carcel;
 import modelo.casillero.especial.ImpuestoDeLujo;
 import modelo.casillero.especial.Policia;
 import modelo.casillero.especial.Quini6;
-import modelo.casillero.terrenos.BuenosAiresNorte;
-import modelo.casillero.terrenos.BuenosAiresSur;
-import modelo.casillero.terrenos.CordobaNorte;
-import modelo.casillero.terrenos.CordobaSur;
-import modelo.casillero.terrenos.Neuquen;
-import modelo.casillero.terrenos.SaltaNorte;
-import modelo.casillero.terrenos.SaltaSur;
-import modelo.casillero.terrenos.SantaFe;
-import modelo.casillero.terrenos.Tucuman;
+import modelo.casillero.terrenos.Terreno;
+import modelo.casillero.terrenos.TerrenoDoble;
+import modelo.casillero.terrenos.TerrenosFactory;
 import modelo.excepciones.CapitalInsuficienteError;
 import modelo.excepciones.LimiteDeEdificacionesExcedidoError;
 import modelo.excepciones.NoEstasEncarceladoException;
@@ -83,8 +77,9 @@ public class JugadorTest {
 
 	@Test
 	public void testUnJugadorCaeEnUnTerrenoYAlComprarloSeVuelveElPropietario() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador jugador = new Jugador("Gonzalo");
-		BuenosAiresSur bsasSur = new BuenosAiresSur();
+		TerrenoDoble bsasSur = terrenosFactory.crearBuenosAiresSur();
 		jugador.caerEnCasillero(bsasSur);
 		jugador.comprarTerreno(bsasSur);
 		Assert.assertEquals(jugador, bsasSur.propietario());
@@ -205,8 +200,9 @@ public class JugadorTest {
 	// Test de compra de los terrenos
 	@Test
 	public void testUnJugadorCaeEnBuenosAiresSurCompraElTerrenoYSuCapitalSeDecrementaEn20000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Guillermo");
-		BuenosAiresSur bsasSur = new BuenosAiresSur();
+		TerrenoDoble bsasSur = terrenosFactory.crearBuenosAiresSur();
 		j.caerEnCasillero(bsasSur);
 		j.comprarTerreno(bsasSur);
 		Assert.assertEquals(80000, j.capitalTotal());
@@ -214,8 +210,9 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnBuenosAiresNorteCompraElTerrenoYSuCapitalSeDecrementaEn25000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Nico");
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		j.caerEnCasillero(baN);
 		j.comprarTerreno(baN);
 		Assert.assertEquals(75000, j.capitalTotal());
@@ -223,8 +220,9 @@ public class JugadorTest {
 
 	@Test
 	public void testUnJugadorCaeEnCordobaSurCompraElTerrenoYSuCapitalSeDecrementaEn18000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Katheryn");
-		CordobaSur cs = new CordobaSur();
+		TerrenoDoble cs = terrenosFactory.crearCordobaSur();
 		j.caerEnCasillero(cs);
 		j.comprarTerreno(cs);
 		Assert.assertEquals(82000, j.capitalTotal());
@@ -232,8 +230,9 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnCordobaNorteCompraElTerrenoYSuCapitalSeDecrementaEn20000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Jonathan");
-		CordobaNorte cn = new CordobaNorte();
+		TerrenoDoble  cn = terrenosFactory.crearCordobaNorte(); 
 		j.caerEnCasillero(cn);
 		j.comprarTerreno(cn);
 		Assert.assertEquals(80000, j.capitalTotal());
@@ -241,8 +240,9 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnSantaFeCompraElTerrenoYSuCapitalSeDecrementaEn15000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Esteban");
-		SantaFe sf = new SantaFe();
+		Terreno sf = terrenosFactory.crearSantaFe();
 		j.caerEnCasillero(sf);
 		j.comprarTerreno(sf);
 		Assert.assertEquals(85000, j.capitalTotal());
@@ -250,17 +250,19 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnSaltaNorteCompraElTerrenoYSuCapitalSeDecrementaEn23000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Luciano");
-		SaltaNorte sn = new SaltaNorte();
+		TerrenoDoble sn = terrenosFactory.crearSaltaNorte(); 
 		j.caerEnCasillero(sn);
 		j.comprarTerreno(sn);
 		Assert.assertEquals(77000, j.capitalTotal());
 	}
 	
 	@Test
-	public void testUnJugadorCaeEnSaltaSurCompraElTerrenoYSuCapitalSeDecrementaEn23000() {
+	public void testUnJugadorCaeEnTerrenoDobleCompraElTerrenoYSuCapitalSeDecrementaEn23000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Diego");
-		SaltaSur ss = new SaltaSur();
+		TerrenoDoble ss = terrenosFactory.crearSaltaSur(); 
 		j.caerEnCasillero(ss);
 		j.comprarTerreno(ss);
 		Assert.assertEquals(77000, j.capitalTotal());
@@ -268,8 +270,9 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnNeuquenCompraElTerrenoYSuCapitalSeDecrementaEn17000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Manfred");
-		Neuquen n = new Neuquen();
+		Terreno n = terrenosFactory.crearNeuquen();
 		j.caerEnCasillero(n);
 		j.comprarTerreno(n);
 		Assert.assertEquals(83000, j.capitalTotal());
@@ -277,8 +280,9 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnTucumanCompraElTerrenoYSuCapitalSeDecrementaEn25000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Sid");
-		Tucuman t = new Tucuman();
+		Terreno t = terrenosFactory.crearTucuman();
 		j.caerEnCasillero(t);
 		j.comprarTerreno(t);
 		Assert.assertEquals(75000, j.capitalTotal());
@@ -293,8 +297,9 @@ public class JugadorTest {
 	@Test
 	public void testUnJugadorCuentaConBsAsSurYBsAsNorteYConstruyeUnaCasaEnBsAsSurEntoncesSuDineroDecrementaEn5000() {
 		Jugador j = new Jugador("Shrek");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j.comprarTerreno(baS); // -25000
@@ -305,9 +310,10 @@ public class JugadorTest {
 	
 	@Test  (expected = LimiteDeEdificacionesExcedidoError.class)
 	public void testUnJugadorNoPuedeConstruirMasDeDosCasasEnUnTerrenoDoble() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Shrek");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j.comprarTerreno(baS); // -25000
@@ -319,10 +325,11 @@ public class JugadorTest {
 	
 	@Test  (expected = SoloElPropietarioPuedeEdificarEnElTerrenoError.class)
 	public void testUnJugadorNoPuedeConstruirEnUnTerrenoQueNoEsPropietario() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Shrek");
 		Jugador j2 = new Jugador("Principe Encantador");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j1.comprarTerreno(baN); // -20000
@@ -332,10 +339,11 @@ public class JugadorTest {
 	
 	@Test  (expected = SeNecesitanAmbosTerrenosParaEdificarEnUnTerrenoDobleError.class)
 	public void testUnJugadorNecesitaAmbosTerrenosParaConstruirEnUnTerrenoDoble() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Mili De Mayolas");
 		Jugador j2 = new Jugador("Magui Ilari");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j1.comprarTerreno(baS);
@@ -345,9 +353,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCuentaConBsAsSurYBsAsNorteYConstruyeUnaCasaEnBsAsNortEntoncesSuDineroDecrementaEn5500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Pedro");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j.comprarTerreno(baS); // -25000
@@ -358,9 +367,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCuentaConCordobaSurYCordobaNorteYConstruyeUnaCasaEnCordobaSurEntoncesSuDineroDecrementaEn2000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Diego");
-		CordobaSur cS = new CordobaSur();
-		CordobaNorte cN = new CordobaNorte();
+		TerrenoDoble cS = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  cN = terrenosFactory.crearCordobaNorte(); 
 		cS.setTerrenoPareja(cN);
 		cN.setTerrenoPareja(cS);
 		j.comprarTerreno(cS); // -18000
@@ -371,9 +381,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCuentaConCordobaSurYCordobaNorteYConstruyeUnaCasaEnCordobaNorteEntoncesSuDineroDecrementaEn2200() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Migu");
-		CordobaSur cS = new CordobaSur();
-		CordobaNorte cN = new CordobaNorte();
+		TerrenoDoble cS = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  cN = terrenosFactory.crearCordobaNorte(); 
 		cS.setTerrenoPareja(cN);
 		cN.setTerrenoPareja(cS);
 		j.comprarTerreno(cS); // -18000
@@ -383,10 +394,11 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void testUnJugadorCuentaConSaltaSurYSaltaNorteYConstruyeUnaCasaEnSaltaSurEntoncesSuDineroDecrementaEn4500() {
+	public void testUnJugadorCuentaConTerrenoDobleYSaltaNorteYConstruyeUnaCasaEnTerrenoDobleEntoncesSuDineroDecrementaEn4500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Diego");
-		SaltaSur ss = new SaltaSur();
-		SaltaNorte sn = new SaltaNorte();
+		TerrenoDoble ss = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble sn = terrenosFactory.crearSaltaNorte(); 
 		ss.setTerrenoPareja(sn);
 		sn.setTerrenoPareja(ss);
 		j.comprarTerreno(ss); // -23000
@@ -396,10 +408,11 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void testUnJugadorCuentaConSaltaSurYSaltaNorteYConstruyeUnaCasaEnSaltaNorteEntoncesSuDineroDecrementaEn4500() {
+	public void testUnJugadorCuentaConTerrenoDobleYSaltaNorteYConstruyeUnaCasaEnSaltaNorteEntoncesSuDineroDecrementaEn4500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j = new Jugador("Diego");
-		SaltaSur ss = new SaltaSur();
-		SaltaNorte sn = new SaltaNorte();
+		TerrenoDoble ss = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble sn = terrenosFactory.crearSaltaNorte(); 
 		ss.setTerrenoPareja(sn);
 		sn.setTerrenoPareja(ss);
 		j.comprarTerreno(ss); // -23000
@@ -410,10 +423,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnBuenosAiresSurQueTieneUnaCasaYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe3000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j1.comprarTerreno(baS); // -25000
@@ -425,10 +439,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnBuenosAiresSurQueTieneDosCasasYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe3500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j1.comprarTerreno(baS); // -25000
@@ -441,10 +456,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnBuenosAiresNorteQueTieneDosCasasYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe4000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j1.comprarTerreno(baS); // -25000
@@ -469,10 +485,11 @@ public class JugadorTest {
 	// Test de pago de alquileres con una casa
 	@Test
 	public void testUnJugadorCaeEnBuenosAiresNorteQueTieneUnaCasaYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe3500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j1.comprarTerreno(baS); // -25000
@@ -484,10 +501,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnCordobaSurQueTieneUnaCasaYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe1500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		CordobaSur c1 = new CordobaSur();
-		CordobaNorte c2 = new CordobaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  c2 = terrenosFactory.crearCordobaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -499,10 +517,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnCordobaNoQueTieneDosCasasYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe2500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		CordobaSur c1 = new CordobaSur();
-		CordobaNorte c2 = new CordobaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  c2 = terrenosFactory.crearCordobaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -515,10 +534,12 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnCordobaNorteQueTieneUnaCasaYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe1800() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
+		
 		Jugador j2 = new Jugador("Don Ramon");
-		CordobaSur c1 = new CordobaSur();
-		CordobaNorte c2 = new CordobaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  c2 = terrenosFactory.crearCordobaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -530,10 +551,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnCordobaNorteQueTieneUnaCasaYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe2900() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		CordobaSur c1 = new CordobaSur();
-		CordobaNorte c2 = new CordobaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  c2 = terrenosFactory.crearCordobaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -545,11 +567,12 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void testUnJugadorCaeEnSaltaSurQueTieneUnaCasaYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe3250() {
+	public void testUnJugadorCaeEnTerrenoDobleQueTieneUnaCasaYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe3250() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		SaltaSur c1 = new SaltaSur();
-		SaltaNorte c2 = new SaltaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble c2 = terrenosFactory.crearSaltaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -560,11 +583,12 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void testUnJugadorCaeEnSaltaSurQueTieneDosCasasYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe3850() {
+	public void testUnJugadorCaeEnTerrenoDobleQueTieneDosCasasYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe3850() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		SaltaSur c1 = new SaltaSur();
-		SaltaNorte c2 = new SaltaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble c2 = terrenosFactory.crearSaltaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -577,10 +601,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnSaltaNorteQueTieneUnaCasaYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe3250() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		SaltaSur c1 = new SaltaSur();
-		SaltaNorte c2 = new SaltaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble c2 = terrenosFactory.crearSaltaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -592,10 +617,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCaeEnSaltaNorteQueTieneDosCasasYEsDeOtroJugadorEntoncesDebePagarUnAlquilerDe3850() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		SaltaSur c1 = new SaltaSur();
-		SaltaNorte c2 = new SaltaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble c2 = terrenosFactory.crearSaltaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -616,9 +642,10 @@ public class JugadorTest {
 	// Test de restricciones de construccion de hoteles
 	@Test
 	public void testUnJugadorConstruyeUnHotelEnBuenosAiresSurSinTenerLaCapacidadMaximaDeCasasEntoncesSuCapitalNoSeDecrementa() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Martin");
-		BuenosAiresSur baS = new BuenosAiresSur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		baS.setTerrenoPareja(baN);
 		baN.setTerrenoPareja(baS);
 		j1.comprarTerreno(baS);
@@ -637,9 +664,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorConstruyeUnHotelEnBuenosAiresSurSinTenerLaCapacidadMaximaDeCasasEnSuTerrenoParejaEntoncesSuCapitalNoSeDecrementa() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Gerardo");
-		BuenosAiresSur c1 = new BuenosAiresSur();
-		BuenosAiresNorte c2 = new BuenosAiresNorte();
+		TerrenoDoble c1 = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble c2 = terrenosFactory.crearBuenosAiresNorte();
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -665,9 +693,10 @@ public class JugadorTest {
 	// Test de construcciones de hoteles
 	@Test
 	public void testUnJugadorConstruyeUnHotelEnBuenosAiresSurTeniendoLaCapacidadMaximaDeCasasEnAmbosTerrenosEntoncesSuCapitalSeDecrementaEn8000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Rochi");
-		BuenosAiresSur c1 = new BuenosAiresSur();
-		BuenosAiresNorte c2 = new BuenosAiresNorte();
+		TerrenoDoble c1 = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble c2 = terrenosFactory.crearBuenosAiresNorte();
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -683,9 +712,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorConstruyeUnHotelEnBuenosAiresNorteTeniendoLaCapacidadMaximaDeCasasEnAmbosTerrenosEntoncesSuCapitalSeDecrementaEn9000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("El Uro");
-		BuenosAiresSur c1 = new BuenosAiresSur();
-		BuenosAiresNorte c2 = new BuenosAiresNorte();
+		TerrenoDoble c1 = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble c2 = terrenosFactory.crearBuenosAiresNorte();
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -701,9 +731,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorConstruyeUnHotelEnCordobaSurTeniendoLaCapacidadMaximaDeCasasEnAmbosTerrenosEntoncesSuCapitalSeDecrementaEn3000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Bianca");
-		CordobaSur c1 = new CordobaSur();
-		CordobaNorte c2 = new CordobaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  c2 = terrenosFactory.crearCordobaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -719,9 +750,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorConstruyeUnHotelEnCordobaNorteTeniendoLaCapacidadMaximaDeCasasEnAmbosTerrenosEntoncesSuCapitalSeDecrementaEn3500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Bianca");
-		CordobaSur c1 = new CordobaSur();
-		CordobaNorte c2 = new CordobaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  c2 = terrenosFactory.crearCordobaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -736,10 +768,11 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void testUnJugadorConstruyeUnHotelEnSaltaSurTeniendoLaCapacidadMaximaDeCasasEnAmbosTerrenosEntoncesSuCapitalSeDecrementaEn7500() {
+	public void testUnJugadorConstruyeUnHotelEnTerrenoDobleTeniendoLaCapacidadMaximaDeCasasEnAmbosTerrenosEntoncesSuCapitalSeDecrementaEn7500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Mica");
-		SaltaSur c1 = new SaltaSur();
-		SaltaNorte c2 = new SaltaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble c2 = terrenosFactory.crearSaltaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -755,9 +788,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorConstruyeUnHotelEnSaltaNorteTeniendoLaCapacidadMaximaDeCasasEnAmbosTerrenosEntoncesSuCapitalSeDecrementaEn7500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Lila Peralta");
-		SaltaSur c1 = new SaltaSur();
-		SaltaNorte c2 = new SaltaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble c2 = terrenosFactory.crearSaltaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -780,10 +814,11 @@ public class JugadorTest {
 	// Test de pago de alquileres en terrenos con hoteles
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnBuenosAiresSurQueTieneUnHotelEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn5000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		BuenosAiresSur c1 = new BuenosAiresSur();
-		BuenosAiresNorte c2 = new BuenosAiresNorte();
+		TerrenoDoble c1 = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble c2 = terrenosFactory.crearBuenosAiresNorte();
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -799,10 +834,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnBuenosAiresNorteQueTieneUnHotelEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn6000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		BuenosAiresSur c1 = new BuenosAiresSur();
-		BuenosAiresNorte c2 = new BuenosAiresNorte();
+		TerrenoDoble c1 = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble c2 = terrenosFactory.crearBuenosAiresNorte();
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -818,10 +854,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnCordobaSurQueTieneUnHotelEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn3000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		CordobaSur c1 = new CordobaSur();
-		CordobaNorte c2 = new CordobaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  c2 = terrenosFactory.crearCordobaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -837,10 +874,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnCordobaNorteQueTieneUnHotelEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn3500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		CordobaSur c1 = new CordobaSur();
-		CordobaNorte c2 = new CordobaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearCordobaSur();
+		TerrenoDoble  c2 = terrenosFactory.crearCordobaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -855,11 +893,12 @@ public class JugadorTest {
 	}
 	
 	@Test
-	public void testUnJugadorNoPropietarioCaeEnSaltaSurQueTieneUnHotelEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn5500() {
+	public void testUnJugadorNoPropietarioCaeEnTerrenoDobleQueTieneUnHotelEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn5500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		SaltaSur c1 = new SaltaSur();
-		SaltaNorte c2 = new SaltaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble c2 = terrenosFactory.crearSaltaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -875,10 +914,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnSaltaNorteQueTieneUnHotelEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn5500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		SaltaSur c1 = new SaltaSur();
-		SaltaNorte c2 = new SaltaNorte();
+		TerrenoDoble c1 = terrenosFactory.crearSaltaSur(); 
+		TerrenoDoble c2 = terrenosFactory.crearSaltaNorte(); 
 		c1.setTerrenoPareja(c2);
 		c2.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -899,8 +939,9 @@ public class JugadorTest {
 	// Test de construcciones de casas en terrenos simples
 	@Test
 	public void testUnJugadorCuentaConSantaFeYConstruyeUnaCasaEntoncesSuCapitalDecrementaEn4000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Me canse de pensar nombres");
-		SantaFe c1 = new SantaFe();
+		Terreno c1 = terrenosFactory.crearSantaFe();
 		j1.comprarTerreno(c1);
 		int capital = j1.capitalTotal();
 		j1.construirCasaEn(c1);
@@ -909,8 +950,9 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCuentaConNeuquenYConstruyeUnaCasaEntoncesSuCapitalDecrementaEn4800() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Me canse de pensar nombres");
-		Neuquen c1 = new Neuquen();
+		Terreno c1 = terrenosFactory.crearNeuquen();
 		j1.comprarTerreno(c1);
 		int capital = j1.capitalTotal();
 		j1.construirCasaEn(c1);
@@ -919,8 +961,9 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorCuentaConTucumanYConstruyeUnaCasaEntoncesSuCapitalDecrementaEn7000() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Me canse de pensar nombres");
-		Tucuman c1 = new Tucuman();
+		Terreno c1 = terrenosFactory.crearTucuman();
 		j1.comprarTerreno(c1);
 		int capital = j1.capitalTotal();
 		j1.construirCasaEn(c1);
@@ -934,9 +977,10 @@ public class JugadorTest {
 	// Test de pago de alquileres en terrenos simples
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnSantaFeQueNoTieneCasasEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn1500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		SantaFe c1 = new SantaFe();
+		Terreno c1 = terrenosFactory.crearSantaFe();
 		j1.comprarTerreno(c1);
 		int capital = j2.capitalTotal();
 		j2.caerEnCasillero(c1);
@@ -945,9 +989,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnNeuquenQueNoTieneCasasEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn1800() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		Neuquen c1 = new Neuquen();
+		Terreno c1 = terrenosFactory.crearNeuquen();
 		j1.comprarTerreno(c1);
 		int capital = j2.capitalTotal();
 		j2.caerEnCasillero(c1);
@@ -956,9 +1001,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnTucumanQueNoTieneCasasEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn2500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		Tucuman c1 = new Tucuman();
+		Terreno c1 = terrenosFactory.crearTucuman();
 		j1.comprarTerreno(c1);
 		int capital = j2.capitalTotal();
 		j2.caerEnCasillero(c1);
@@ -967,9 +1013,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnSantaFeQueTieneUnaCasaEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn3500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		SantaFe c1 = new SantaFe();
+		Terreno c1 = terrenosFactory.crearSantaFe();
 		j1.comprarTerreno(c1);
 		j1.construirCasaEn(c1);
 		int capital = j2.capitalTotal();
@@ -979,9 +1026,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnSantaFeQueTieneUnaCasaEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn3800() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		Neuquen c1 = new Neuquen();
+		Terreno c1 = terrenosFactory.crearNeuquen();
 		j1.comprarTerreno(c1);
 		j1.construirCasaEn(c1);
 		int capital = j2.capitalTotal();
@@ -991,9 +1039,10 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugadorNoPropietarioCaeEnSantaFeQueTieneUnaCasaEntoncesDebePagarElAlquilerYSuCapitalSeDecrementaEn4500() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Senior Barriga");
 		Jugador j2 = new Jugador("Don Ramon");
-		Tucuman c1 = new Tucuman();
+		Terreno c1 = terrenosFactory.crearTucuman();
 		j1.comprarTerreno(c1);
 		j1.construirCasaEn(c1);
 		int capital = j2.capitalTotal();
@@ -1227,10 +1276,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugador1IntercambiaUnTerreno1SuyoPorUnTerreno2DeOtroJugador2EntoncesElPropietarioDelTerreno2AhoraEsJugador1() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Propietario 1");
 		Jugador j2 = new Jugador("Propietario 2");
-		Tucuman c1 = new Tucuman();
-		SantaFe c2 = new SantaFe();
+		Terreno c1 = terrenosFactory.crearTucuman();
+		Terreno c2 = terrenosFactory.crearSantaFe();
 		j1.comprarTerreno(c1);
 		j2.comprarTerreno(c2);
 		j1.intercambiarTerrenoConPor(c1, j2, c2);
@@ -1239,10 +1289,11 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugador1IntercambiaUnTerreno1SuyoPorUnTerreno2DeOtroJugador2EntoncesElPropietarioDelTerreno1AhoraEsJugador2() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Propietario 1");
 		Jugador j2 = new Jugador("Propietario 2");
-		Tucuman c1 = new Tucuman();
-		SantaFe c2 = new SantaFe();
+		Terreno c1 = terrenosFactory.crearTucuman();
+		Terreno c2 = terrenosFactory.crearSantaFe();
 		j1.comprarTerreno(c1);
 		j2.comprarTerreno(c2);
 		j1.intercambiarTerrenoConPor(c1, j2, c2);
@@ -1251,11 +1302,12 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugador1IntercambiaUnTerreno1SuyoPorUnTerreno2DeOtroJugador2EntoncesSiUnJugador3CaeEnTerreno1ElPagoDelAlquilerSeAcreditaAJugador2() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Propietario 1");
 		Jugador j2 = new Jugador("Propietario 2");
 		Jugador j3 = new Jugador("El que paga el alquiler");
-		Tucuman c1 = new Tucuman();
-		SantaFe c2 = new SantaFe();
+		Terreno c1 = terrenosFactory.crearTucuman();
+		Terreno c2 = terrenosFactory.crearSantaFe();
 		j1.comprarTerreno(c1);
 		j2.comprarTerreno(c2);
 		j1.intercambiarTerrenoConPor(c1, j2, c2);
@@ -1266,11 +1318,12 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugador1IntercambiaUnTerreno1SuyoPorUnTerreno2DeOtroJugador2EntoncesSiUnJugador3CaeEnTerreno1ElPagoDelAlquilerSeAcreditaAJugador2YElMontoEsElEquivalenteAlAlquilerSinConstrucciones() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Propietario 1");
 		Jugador j2 = new Jugador("Propietario 2");
 		Jugador j3 = new Jugador("El que paga el alquiler");
-		Tucuman c1 = new Tucuman();
-		SantaFe c2 = new SantaFe();
+		Terreno c1 = terrenosFactory.crearTucuman();
+		Terreno c2 = terrenosFactory.crearSantaFe();
 		j1.comprarTerreno(c1);
 		j1.construirCasaEn(c1);
 		j2.comprarTerreno(c2);
@@ -1283,11 +1336,12 @@ public class JugadorTest {
 	
 	@Test
 	public void testUnJugador1IntercambiaUnTerreno1DobleConHotelSuyoPorUnTerreno2DeOtroJugador2EntoncesSiUnJugador3CaeEnTerreno1ElPagoDelAlquilerSeAcreditaAJugador2YElMontoEsElEquivalenteAlAlquilerSinConstrucciones() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		Jugador j1 = new Jugador("Propietario 1");
 		Jugador j2 = new Jugador("Propietario 2");
 		Jugador j3 = new Jugador("El que paga el alquiler");
-		BuenosAiresSur c1 = new BuenosAiresSur();
-		BuenosAiresNorte c3 = new BuenosAiresNorte();
+		TerrenoDoble c1 = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble c3 = terrenosFactory.crearBuenosAiresNorte();
 		c1.setTerrenoPareja(c3);
 		c3.setTerrenoPareja(c1);
 		j1.comprarTerreno(c1);
@@ -1297,7 +1351,7 @@ public class JugadorTest {
 		j1.construirCasaEn(c3);
 		j1.construirCasaEn(c3);
 		j1.construirHotelEn(c1);
-		SantaFe c2 = new SantaFe();
+		Terreno c2 = terrenosFactory.crearSantaFe();
 		j2.comprarTerreno(c2);
 		j1.intercambiarTerrenoConPor(c1, j2, c2);
 		int capital = j2.capitalTotal();

@@ -11,7 +11,7 @@ import modelo.edificaciones.RestriccionDeConstruccionPorPropiedad;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedadDeTerrenoPareja;
 import modelo.jugador.Jugador;
 
-public abstract class TerrenoDoble extends Terreno {
+public class TerrenoDoble extends Terreno {
 
 	protected ArrayList<Hotel> hoteles; // En principio es un hotel, pero en un futuro se podrian poner mas
 	protected int limiteHoteles;
@@ -20,11 +20,17 @@ public abstract class TerrenoDoble extends Terreno {
 	protected AlquilerTerrenoDoble alquiler;
 	
 	
-	public TerrenoDoble() {
+	public TerrenoDoble(int precioTerreno, Jugador propietario, int costoCasa, int costoHotel, String nombreCasillero, AlquilerTerrenoDoble alquiler) {
 		super();
 		this.hoteles = new ArrayList<Hotel>();
 		this.limiteHoteles = 1;
 		this.limiteCasas = 2;
+		this.precioTerreno = precioTerreno;
+		this.propietario = propietario;
+		this.costoCasa = costoCasa;
+		this.costoHotel = costoHotel;
+		this.nombreCasillero = nombreCasillero;
+		this.alquiler = alquiler;
 	}
 	
 	public void cobrarAlquilerA(Jugador unJugador) {
