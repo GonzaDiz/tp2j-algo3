@@ -82,7 +82,7 @@ public class JugadorTest {
 		TerrenoDoble bsasSur = terrenosFactory.crearBuenosAiresSur();
 		jugador.caerEnCasillero(bsasSur);
 		jugador.comprarTerreno(bsasSur);
-		Assert.assertEquals(jugador, bsasSur.propietario());
+		Assert.assertEquals(jugador, bsasSur.propietario().jugador());
 	}
 
 	@Test (expected = NoSePuedeDesplazarJugadorEncarceladoException.class)
@@ -1284,7 +1284,7 @@ public class JugadorTest {
 		j1.comprarTerreno(c1);
 		j2.comprarTerreno(c2);
 		j1.intercambiarTerrenoConPor(c1, j2, c2);
-		Assert.assertEquals(j1, c2.propietario());
+		Assert.assertEquals(j1, c2.propietario().jugador());
 	}
 	
 	@Test
@@ -1297,7 +1297,7 @@ public class JugadorTest {
 		j1.comprarTerreno(c1);
 		j2.comprarTerreno(c2);
 		j1.intercambiarTerrenoConPor(c1, j2, c2);
-		Assert.assertEquals(j2, c1.propietario());
+		Assert.assertEquals(j2, c1.propietario().jugador());
 	}
 	
 	@Test
