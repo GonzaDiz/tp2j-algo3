@@ -10,4 +10,6 @@ public abstract class Propietario {
 
 	public abstract Jugador jugador();
 
+	public abstract boolean sosPropietario();
+
 }

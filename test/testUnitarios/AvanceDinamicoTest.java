@@ -10,11 +10,9 @@ import modelo.casillero.compania.Subte;
 import modelo.casillero.compania.Tren;
 import modelo.casillero.especial.AvanceDinamico;
 import modelo.casillero.especial.ImpuestoDeLujo;
-import modelo.casillero.terrenos.CordobaNorte;
-import modelo.casillero.terrenos.Neuquen;
-import modelo.casillero.terrenos.SaltaSur;
-import modelo.casillero.terrenos.SantaFe;
-import modelo.casillero.terrenos.Tucuman;
+import modelo.casillero.terrenos.Terreno;
+import modelo.casillero.terrenos.TerrenoDoble;
+import modelo.casillero.terrenos.TerrenosFactory;
 import modelo.excepciones.CapitalInsuficienteError;
 import modelo.jugador.Jugador;
 
@@ -52,8 +50,9 @@ public class AvanceDinamicoTest {
 	
 	@Test
 	public void testUnJugadorCaeEnAvanceDinamicoHabiendoSumadoCuatroEntoncesAvanzaDosLugares () {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		AvanceDinamico ad = new AvanceDinamico();
-		CordobaNorte cn = new CordobaNorte();
+		TerrenoDoble cn = terrenosFactory.crearCordobaNorte();
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
@@ -78,8 +77,9 @@ public class AvanceDinamicoTest {
 	
 	@Test
 	public void testUnJugadorCaeEnAvanceDinamicoHabiendoSumadoSeisEntoncesAvanzaCuatroLugares () {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		AvanceDinamico ad = new AvanceDinamico();
-		SantaFe sf = new SantaFe();
+		Terreno sf = terrenosFactory.crearSantaFe();
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
@@ -145,8 +145,9 @@ public class AvanceDinamicoTest {
 	
 	@Test
 	public void testUnJugadorSinPropiedadesCaeEnAvanceDinamicoHabiendoSumadoOnceEntoncesAvanzaOnceCaeEnRetrocesoDinamicoYRetrocedeHastaSantaFe () {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		AvanceDinamico ad = new AvanceDinamico();
-		CordobaNorte c = new CordobaNorte();
+		TerrenoDoble c = terrenosFactory.crearCordobaNorte();
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
@@ -158,28 +159,30 @@ public class AvanceDinamicoTest {
 	
 	@Test
 	public void testUnJugadorSinPropiedadesCaeEnAvanceDinamicoHabiendoSumadoDoceEntoncesAvanzaDoce () {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		AvanceDinamico ad = new AvanceDinamico();
-		Tucuman c = new Tucuman();
+		Terreno tucuman = terrenosFactory.crearTucuman();
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(12);
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
-		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
+		Assert.assertEquals(tablero.getCasillero(tucuman), jugador.casilleroActual());
 	}
 	
 	@Test
 	public void testUnJugadorConTresPropiedadesCaeEnAvanceDinamicoHabiendoSumadoDoceEntoncesAvanzaNueve () throws CapitalInsuficienteError {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		AvanceDinamico ad = new AvanceDinamico();
 		Tren c = new Tren();
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.comprarTerreno(new Neuquen());
-		jugador.comprarTerreno(new SantaFe());
-		jugador.comprarTerreno(new SaltaSur());
+		jugador.comprarTerreno(terrenosFactory.crearNeuquen());
+		jugador.comprarTerreno(terrenosFactory.crearSantaFe());
+		jugador.comprarTerreno(terrenosFactory.crearSaltaSur());
 		jugador.obtuvo(12);
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());

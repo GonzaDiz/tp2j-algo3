@@ -11,32 +11,40 @@ import modelo.edificaciones.RestriccionDeConstruccionPorPropiedad;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedadDeTerrenoPareja;
 import modelo.jugador.Jugador;
 
-public abstract class TerrenoDoble extends Terreno {
+public class TerrenoDoble extends Terreno {
 
-	protected ArrayList<Hotel> hoteles; // En principio es un hotel, pero en un futuro se podrian poner mas
-	protected int limiteHoteles;
-	protected int costoHotel;
-	protected TerrenoDoble terrenoPareja;
-	protected AlquilerTerrenoDoble alquiler;
+	private ArrayList<Hotel> hoteles; // En principio es un hotel, pero en un futuro se podrian poner mas
+	private int limiteHoteles;
+	private int costoHotel;
+	private TerrenoDoble terrenoPareja;
+	private AlquilerTerrenoDoble alquiler;
 	
 	
-	public TerrenoDoble() {
+	public TerrenoDoble(int precioTerreno, int costoCasa, int costoHotel, String nombreCasillero, AlquilerTerrenoDoble alquiler) {
 		super();
 		this.hoteles = new ArrayList<Hotel>();
 		this.limiteHoteles = 1;
 		this.limiteCasas = 2;
+		this.precioTerreno = precioTerreno;
+		this.costoCasa = costoCasa;
+		this.costoHotel = costoHotel;
+		this.nombreCasillero = nombreCasillero;
+		this.alquiler = alquiler;
 	}
 	
+	@Override
 	public void cobrarAlquilerA(Jugador unJugador) {
 		int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadDeCasas(), this.cantidadDeHoteles());
 		unJugador.extraerDinero(precioAlquiler);
 		this.propietario.entregarDinero(precioAlquiler);
 	}
 	
+	@Override
 	public int construcciones() {
 		return this.cantidadDeCasas() + this.cantidadDeHoteles();
 	}
 	
+	@Override
 	public void construirCasaPor(Jugador jugador) {
 		
 		this.restricciones.add(new RestriccionDeConstruccionPorPropiedad(this, jugador));

@@ -18,7 +18,7 @@ public class RestriccionDeConstruccionPorPropiedad implements RestriccionDeConst
 	@Override
 	public void verificar() {
 		if(this.terreno.tienePropietario()) {
-			if(terreno.propietario().sos(jugador) == false) {
+			if(terreno.propietario().jugador() != this.jugador) {
 				throw new SoloElPropietarioPuedeEdificarEnElTerrenoError("Solo el jugador propietario puede edificar en el terreno.");
 			}
 		}

@@ -11,41 +11,39 @@ import modelo.casillero.especial.Policia;
 import modelo.casillero.especial.Quini6;
 import modelo.casillero.especial.RetrocesoDinamico;
 import modelo.casillero.especial.Salida;
-import modelo.casillero.terrenos.BuenosAiresNorte;
-import modelo.casillero.terrenos.BuenosAiresSur;
-import modelo.casillero.terrenos.CordobaNorte;
-import modelo.casillero.terrenos.CordobaSur;
-import modelo.casillero.terrenos.Neuquen;
-import modelo.casillero.terrenos.SaltaNorte;
-import modelo.casillero.terrenos.SaltaSur;
-import modelo.casillero.terrenos.SantaFe;
-import modelo.casillero.terrenos.Tucuman;
+import modelo.casillero.terrenos.Terreno;
+import modelo.casillero.terrenos.TerrenoDoble;
+import modelo.casillero.terrenos.TerrenosFactory;
 
 public class ArmadorDeTablero {
 	
 	public void armarTablero(Tablero tablero) {
 		
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
+		
 		// Creamos casilleros
 		Salida salida = new Salida();
 		Quini6 quni6 = new Quini6();
-		BuenosAiresSur baS = new BuenosAiresSur();
+		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
 		Edesur edesur = new Edesur();
-		BuenosAiresNorte baN = new BuenosAiresNorte();
+		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		Carcel carcel = new Carcel();
-		CordobaSur cordobaSur = new CordobaSur();
+		TerrenoDoble cordobaSur = terrenosFactory.crearCordobaSur();
 		AvanceDinamico avanceDinamico = new AvanceDinamico();
 		Subte subte = new Subte();
-		CordobaNorte cordobaNorte = new CordobaNorte();
+		TerrenoDoble cordobaNorte = terrenosFactory.crearCordobaNorte();
 		ImpuestoDeLujo impuestoDeLujo = new ImpuestoDeLujo();
-		SantaFe santaFe = new SantaFe();
+		Terreno santaFe = terrenosFactory.crearSantaFe();
 		Aysa aysa = new Aysa();
-		SaltaNorte saltaNorte = new SaltaNorte();
-		SaltaSur saltaSur = new SaltaSur();
+		TerrenoDoble saltaNorte = terrenosFactory.crearSaltaNorte();
+		TerrenoDoble saltaSur = terrenosFactory.crearSaltaSur();
 		Policia policia = new Policia(carcel);
 		Tren tren = new Tren();
-		Neuquen neuquen = new Neuquen();
+		Terreno neuquen = terrenosFactory.crearNeuquen();
 		RetrocesoDinamico retrocesoDinamico = new RetrocesoDinamico();
-		Tucuman tucuman = new Tucuman();
+		//Tucuman tucuman = new Tucuman();
+		Terreno tucuman = terrenosFactory.crearTucuman();
+		
 		
 		// Agregamos las parejas
 		baS.setTerrenoPareja(baN);

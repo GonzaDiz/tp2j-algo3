@@ -19,10 +19,16 @@ public class PropietarioReal extends Propietario{
 	public boolean sos(Propietario unPropietario) {
 		return this.jugador == unPropietario.jugador();
 	}
+	
 
 	@Override
 	public Jugador jugador() {
 		return this.jugador;
+	}
+
+	@Override
+	public boolean sosPropietario() {
+		return true;
 	}
 
 }
