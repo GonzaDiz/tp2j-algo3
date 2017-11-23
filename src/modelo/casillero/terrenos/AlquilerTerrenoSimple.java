@@ -11,23 +11,8 @@ public class AlquilerTerrenoSimple {
 		return tablaDeAlquileres[cantidadDeCasas];
 	}
 	
-	public AlquilerTerrenoSimple(int unMonto, int otroMonto) {
-		tablaDeAlquileres[CASAS_0] = unMonto;
-		tablaDeAlquileres[CASAS_1] = otroMonto;
+	public AlquilerTerrenoSimple(int montoAlquilerSinCasa, int montoAlquilerConCasa) {
+		tablaDeAlquileres[CASAS_0] = montoAlquilerSinCasa;
+		tablaDeAlquileres[CASAS_1] = montoAlquilerConCasa;
 	}
-	
-//	public AlquilerTerrenoSimple(Neuquen c) {
-//		tablaDeAlquileres[CASAS_0] = 1800;
-//		tablaDeAlquileres[CASAS_1] = 3800;
-//	}
-	
-//	public AlquilerTerrenoSimple(SantaFe c) {
-//		tablaDeAlquileres[CASAS_0] = 1500;
-//		tablaDeAlquileres[CASAS_1] = 3500;
-//	}
-	//	public AlquilerTerrenoSimple(Tucuman c) {
-//		tablaDeAlquileres[CASAS_0] = 2500;
-//		tablaDeAlquileres[CASAS_1] = 4500;
-//	}
-
 }

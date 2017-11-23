@@ -5,9 +5,8 @@ import org.junit.Test;
 
 import modelo.ArmadorDeTablero;
 import modelo.Tablero;
-import modelo.casillero.compania.Aysa;
-import modelo.casillero.compania.Subte;
-import modelo.casillero.compania.Tren;
+import modelo.casillero.compania.Compania;
+import modelo.casillero.compania.CompaniaFactory;
 import modelo.casillero.especial.AvanceDinamico;
 import modelo.casillero.especial.ImpuestoDeLujo;
 import modelo.casillero.terrenos.Terreno;
@@ -37,8 +36,9 @@ public class AvanceDinamicoTest {
 	
 	@Test
 	public void testUnJugadorCaeEnAvanceDinamicoHabiendoSumadoTresEntoncesAvanzaUnLugar () {
+		CompaniaFactory companiaFactory = new CompaniaFactory();
 		AvanceDinamico ad = new AvanceDinamico();
-		Subte subte = new Subte();
+		Compania subte = companiaFactory.crearSubte();
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
@@ -92,15 +92,16 @@ public class AvanceDinamicoTest {
 	@Test
 	public void testUnJugadorCaeEnAvanceDinamicoHabiendoSumadoSieteEntoncesAvanza100000mod7 () {
 		// 100000 % 7 = 5
+		CompaniaFactory companiaFactory = new CompaniaFactory();
 		AvanceDinamico ad = new AvanceDinamico();
-		Aysa c = new Aysa();
+		Compania aysa = companiaFactory.crearAysa();
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(7);
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
-		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
+		Assert.assertEquals(tablero.getCasillero(aysa), jugador.casilleroActual());
 	}
 	
 	@Test
@@ -119,15 +120,16 @@ public class AvanceDinamicoTest {
 	@Test
 	public void testUnJugadorCaeEnAvanceDinamicoHabiendoSumadoNueveEntoncesAvanza100000mod9 () {
 		// 100000 % 9 = 1
+		CompaniaFactory companiaFactory = new CompaniaFactory();
 		AvanceDinamico ad = new AvanceDinamico();
-		Subte c = new Subte();
+		Compania subte = companiaFactory.crearSubte();
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(9);
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
-		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
+		Assert.assertEquals(tablero.getCasillero(subte), jugador.casilleroActual());
 	}
 	
 	@Test
@@ -173,9 +175,10 @@ public class AvanceDinamicoTest {
 	
 	@Test
 	public void testUnJugadorConTresPropiedadesCaeEnAvanceDinamicoHabiendoSumadoDoceEntoncesAvanzaNueve () throws CapitalInsuficienteError {
+		CompaniaFactory companiaFactory = new CompaniaFactory();
 		TerrenosFactory terrenosFactory = new TerrenosFactory();
 		AvanceDinamico ad = new AvanceDinamico();
-		Tren c = new Tren();
+		Compania tren = companiaFactory.crearTren();
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
@@ -185,7 +188,7 @@ public class AvanceDinamicoTest {
 		jugador.comprarTerreno(terrenosFactory.crearSaltaSur());
 		jugador.obtuvo(12);
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
-		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
+		Assert.assertEquals(tablero.getCasillero(tren), jugador.casilleroActual());
 	}
 	
 }

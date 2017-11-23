@@ -31,15 +31,6 @@ public class Jugador {
 		
 	}
 
-	public Jugador(String unNombre, int unMontoInicial) {
-		this.nombre = unNombre;
-		this.capital = unMontoInicial;
-		this.estado = new Libre();
-		this.terrenosComprados = new ArrayList<Terreno>();
-		this.companiasCompradas = new ArrayList<Compania>();
-		this.restriccionesDeIntercambio = new ArrayList<RestriccionDeIntercambio>();
-	}
-
 	public String tuNombreEs() {
 		return nombre;
 	}

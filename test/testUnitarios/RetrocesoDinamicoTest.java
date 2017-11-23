@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import modelo.ArmadorDeTablero;
 import modelo.Tablero;
-import modelo.casillero.compania.Subte;
-import modelo.casillero.compania.Tren;
+import modelo.casillero.compania.Compania;
+import modelo.casillero.compania.CompaniaFactory;
 import modelo.casillero.especial.RetrocesoDinamico;
 import modelo.casillero.terrenos.Terreno;
 import modelo.casillero.terrenos.TerrenosFactory;
@@ -22,15 +22,16 @@ public class RetrocesoDinamicoTest {
 	
 	@Test
 	public void testUnJugadorCaeEnRetrocesoDinamicoHabiendoSumadoDoceEntoncesRetrocede10HastaSubte() {
+		CompaniaFactory companiaFactory = new CompaniaFactory();
 		RetrocesoDinamico rd = new RetrocesoDinamico();
-		Subte c = new Subte();
+		Compania subte = companiaFactory.crearSubte();
 		Jugador jugador = new Jugador("Lucas");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(12);
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
-		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
+		Assert.assertEquals(tablero.getCasillero(subte), jugador.casilleroActual());
 	}
 	
 	@Test
@@ -61,15 +62,16 @@ public class RetrocesoDinamicoTest {
 	
 	@Test 
 	public void testUnJugadorCaeEnRetrocesoDinamicoHabiendoSumado2EntoncesRetrocede2CasillerosHastaTrenAlTener0Propiedades() {
+		CompaniaFactory companiaFactory = new CompaniaFactory();
 		RetrocesoDinamico rd = new RetrocesoDinamico();
-		Tren c = new Tren();
+		Compania tren = companiaFactory.crearTren();
 		Jugador jugador = new Jugador("Esteban");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
 		jugador.obtuvo(2);
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
-		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
+		Assert.assertEquals(tablero.getCasillero(tren), jugador.casilleroActual());
 	}
 
 }

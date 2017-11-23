@@ -2,10 +2,10 @@ package modelo.casillero.terrenos;
 
 import java.util.ArrayList;
 
+import modelo.Propietario;
+import modelo.PropietarioNull;
+import modelo.PropietarioReal;
 import modelo.casillero.Casillero;
-import modelo.casillero.compania.Propietario;
-import modelo.casillero.compania.PropietarioNull;
-import modelo.casillero.compania.PropietarioReal;
 import modelo.edificaciones.Casa;
 import modelo.edificaciones.RestriccionDeConstruccion;
 import modelo.jugador.Jugador;
@@ -28,12 +28,11 @@ public abstract class Terreno extends Casillero {
 	
 	public abstract int construcciones();
 	public abstract void construirCasaPor(Jugador jugador);
-	public abstract void cobrarAlquilerA(Jugador unJugador);
+	protected abstract void cobrarAlquilerA(Jugador unJugador);
 	protected abstract void demolerConstrucciones();
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		
 		if(this.tienePropietario()) {
 				this.cobrarAlquilerA(unJugador);
 		}

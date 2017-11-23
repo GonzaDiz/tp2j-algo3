@@ -1,18 +1,23 @@
 package modelo.casillero.compania;
 
+import modelo.Propietario;
+import modelo.PropietarioNull;
+import modelo.PropietarioReal;
 import modelo.casillero.Casillero;
 import modelo.jugador.Jugador;
 
-public abstract class Compania extends Casillero {
+public class Compania extends Casillero {
 
 	protected int precioCompania;
 	protected Propietario propietario;
 	protected Compania companiaPareja;
 	protected BonificadorDeCompania bonificador;
 	
-	public Compania() {
+	public Compania(String nombre, int precio, BonificadorDeCompania bonificador) {
 		this.propietario = new PropietarioNull();
-		//this.companiaPareja = new CompaniaNull();
+		this.nombreCasillero = nombre;
+		this.precioCompania = precio;
+		this.bonificador = bonificador;
 	}
 	
 	@Override

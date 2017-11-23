@@ -1,9 +1,7 @@
 package modelo;
 
-import modelo.casillero.compania.Aysa;
-import modelo.casillero.compania.Edesur;
-import modelo.casillero.compania.Subte;
-import modelo.casillero.compania.Tren;
+import modelo.casillero.compania.Compania;
+import modelo.casillero.compania.CompaniaFactory;
 import modelo.casillero.especial.AvanceDinamico;
 import modelo.casillero.especial.Carcel;
 import modelo.casillero.especial.ImpuestoDeLujo;
@@ -20,25 +18,26 @@ public class ArmadorDeTablero {
 	public void armarTablero(Tablero tablero) {
 		
 		TerrenosFactory terrenosFactory = new TerrenosFactory();
+		CompaniaFactory companiaFactory = new CompaniaFactory();
 		
 		// Creamos casilleros
 		Salida salida = new Salida();
 		Quini6 quni6 = new Quini6();
 		TerrenoDoble baS = terrenosFactory.crearBuenosAiresSur();
-		Edesur edesur = new Edesur();
+		Compania edesur = companiaFactory.crearEdesur();
 		TerrenoDoble baN = terrenosFactory.crearBuenosAiresNorte();
 		Carcel carcel = new Carcel();
 		TerrenoDoble cordobaSur = terrenosFactory.crearCordobaSur();
 		AvanceDinamico avanceDinamico = new AvanceDinamico();
-		Subte subte = new Subte();
+		Compania subte = companiaFactory.crearSubte();
 		TerrenoDoble cordobaNorte = terrenosFactory.crearCordobaNorte();
 		ImpuestoDeLujo impuestoDeLujo = new ImpuestoDeLujo();
 		Terreno santaFe = terrenosFactory.crearSantaFe();
-		Aysa aysa = new Aysa();
+		Compania aysa = companiaFactory.crearAysa();
 		TerrenoDoble saltaNorte = terrenosFactory.crearSaltaNorte();
 		TerrenoDoble saltaSur = terrenosFactory.crearSaltaSur();
 		Policia policia = new Policia(carcel);
-		Tren tren = new Tren();
+		Compania tren = companiaFactory.crearTren();
 		Terreno neuquen = terrenosFactory.crearNeuquen();
 		RetrocesoDinamico retrocesoDinamico = new RetrocesoDinamico();
 		//Tucuman tucuman = new Tucuman();

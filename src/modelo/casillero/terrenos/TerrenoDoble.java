@@ -14,7 +14,7 @@ import modelo.jugador.Jugador;
 public class TerrenoDoble extends Terreno {
 
 	private ArrayList<Hotel> hoteles; // En principio es un hotel, pero en un futuro se podrian poner mas
-	private int limiteHoteles;
+//	private int limiteHoteles;
 	private int costoHotel;
 	private TerrenoDoble terrenoPareja;
 	private AlquilerTerrenoDoble alquiler;
@@ -23,8 +23,9 @@ public class TerrenoDoble extends Terreno {
 	public TerrenoDoble(int precioTerreno, int costoCasa, int costoHotel, String nombreCasillero, AlquilerTerrenoDoble alquiler) {
 		super();
 		this.hoteles = new ArrayList<Hotel>();
-		this.limiteHoteles = 1;
+//		this.limiteHoteles = 1;
 		this.limiteCasas = 2;
+		
 		this.precioTerreno = precioTerreno;
 		this.costoCasa = costoCasa;
 		this.costoHotel = costoHotel;
