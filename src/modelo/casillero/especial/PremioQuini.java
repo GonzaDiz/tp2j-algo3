@@ -4,7 +4,7 @@ import modelo.jugador.Jugador;
 
 public class PremioQuini implements Premio{
 	
-	private int monto = 30000;
+	private int monto;
 	
 	public PremioQuini(int monto) {
 		this.monto = monto;
