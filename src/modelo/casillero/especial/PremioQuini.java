@@ -2,13 +2,17 @@ package modelo.casillero.especial;
 
 import modelo.jugador.Jugador;
 
-public class PremioQuini30000 implements Premio{
+public class PremioQuini implements Premio{
 	
-	private int PREMIO = 30000;
+	private int monto = 30000;
+	
+	public PremioQuini(int monto) {
+		this.monto = monto;
+	}
 
 	@Override
 	public void entregarPremio(Jugador unJugador, Quini6 quini6) {
-		unJugador.entregarDinero(PREMIO);
+		unJugador.entregarDinero(monto);
 		quini6.actualizarPremios(unJugador);
 	}
 

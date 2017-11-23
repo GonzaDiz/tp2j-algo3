@@ -26,8 +26,8 @@ public class Quini6 extends Casillero{
 	public void registrarJugador(Jugador unJugador) {
 		Stack <Premio> premios = new Stack<>();
 		premios.push(new SinPremioQuini());
-		premios.push(new PremioQuini30000());
-		premios.push(new PremioQuini50000());
+		premios.push(new PremioQuini(30000));
+		premios.push(new PremioQuini(50000));
 		jugadores.put(unJugador, premios);
 	}
 	
