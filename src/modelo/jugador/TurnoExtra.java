@@ -1,5 +1,6 @@
 package modelo.jugador;
 
+import modelo.Tablero;
 import modelo.Turno;
 import modelo.casillero.especial.Carcel;
 
@@ -7,6 +8,13 @@ public class TurnoExtra implements EstadoJugador {
 	
 	@Override
 	public void desplazar(Jugador unJugador, int cantidadDeCasilleros) {
+		if(cantidadDeCasilleros == 0) {
+			return;
+		}
+		else {
+			Tablero tablero = Tablero.getInstance();
+			unJugador.caerEnCasillero(tablero.getCasilleroPorDesplazamiento(unJugador.casilleroActual(), cantidadDeCasilleros));
+		}
 	}
 
 	@Override

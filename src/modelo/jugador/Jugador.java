@@ -193,4 +193,8 @@ public class Jugador {
 		
 	}
 
+	public int arrojaDados(Turno turno) {
+		return turno.arrojarDados(this);
+	}
+
 }

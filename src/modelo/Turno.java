@@ -8,13 +8,11 @@ import modelo.jugador.Jugador;
 public class Turno {
 	
 	private LinkedList<Jugador> jugadores;
-	private Dado dado1;
-	private Dado dado2;
+	private ParDeDados dados;
 	
 	public Turno() {
 		this.jugadores = new LinkedList<>();
-		this.dado1 = new Dado();
-		this.dado2 = new Dado();
+		this.dados = new ParDeDados();
 	}
 	
 	public void agregarJugador(Jugador jugador) {
@@ -35,17 +33,11 @@ public class Turno {
 		jugadores.addLast(jugador);
 	}
 
-	public void arrojarDados(Jugador jugador) {
-		int valorDado1 = dado1.arrojar();
-		int valorDado2 = dado2.arrojar();
-		
-//		if (valorDado1 == valorDado2) {
-//			jugador.obtuvo(new TiroDoble(valorDado1,valorDado2));
-//		}
-//		else {
-//			jugador.obtuvo(new TiroSimple(valorDado1,valorDado2));
-//		}
-		jugador.desplazar(valorDado1 + valorDado2);
+	public int arrojarDados(Jugador jugador) {
+		TiroDeDados tiroDeDados = dados.arrojar();
+		jugador.obtuvo(tiroDeDados);
+		jugador.desplazar(tiroDeDados.valor());
+		return tiroDeDados.valor();
 	}
 
 	public void asignarTurnoExtra(Jugador jugador) {
