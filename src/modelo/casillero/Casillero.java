@@ -1,10 +1,12 @@
 package modelo.casillero;
 
+import modelo.Posicion;
 import modelo.jugador.Jugador;
 
 public abstract class Casillero {
 	
 	protected String nombreCasillero;
+	protected Posicion posicion;
 	
 	public abstract void afectarJugador(Jugador unJugador);
 	
@@ -15,6 +17,14 @@ public abstract class Casillero {
 	
 	public String nombre() {
 		return this.nombreCasillero;
+	}
+	
+	public void setPosicion(Posicion unaPosicion) {
+		this.posicion = unaPosicion;
+	}
+	
+	public Posicion getPosicion() {
+		return this.posicion;
 	}
 	
 }

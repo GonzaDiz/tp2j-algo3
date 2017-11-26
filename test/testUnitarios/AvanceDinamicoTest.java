@@ -1,5 +1,7 @@
 package testUnitarios;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,7 +31,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(2)); // Este mensaje recibira una tirada de dados aleatoria como paramtero
 		jugador.caerEnCasillero(tablero.getCasillero(new AvanceDinamico()));
 		Assert.assertEquals(tablero.getCasillero(new AvanceDinamico()), jugador.casilleroActual());		
@@ -43,7 +47,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(3));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(subte), jugador.casilleroActual());
@@ -57,7 +63,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(4));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(cn), jugador.casilleroActual());
@@ -70,7 +78,10 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(5));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(il), jugador.casilleroActual());
@@ -84,7 +95,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(6));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(sf), jugador.casilleroActual());
@@ -99,7 +112,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(7));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(aysa), jugador.casilleroActual());
@@ -112,7 +127,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(8));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(ad), jugador.casilleroActual());
@@ -127,7 +144,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(9));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(subte), jugador.casilleroActual());
@@ -140,7 +159,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(10));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(ad), jugador.casilleroActual());
@@ -154,7 +175,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(11));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
@@ -168,7 +191,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(12));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(tucuman), jugador.casilleroActual());
@@ -183,7 +208,9 @@ public class AvanceDinamicoTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.comprarTerreno(terrenosFactory.crearNeuquen());
 		jugador.comprarTerreno(terrenosFactory.crearSantaFe());
 		jugador.comprarTerreno(terrenosFactory.crearSaltaSur());

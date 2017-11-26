@@ -1,5 +1,7 @@
 package testUnitarios;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -104,14 +106,17 @@ public class TercerEntregaTest {
 	
 	@Test
 	public void testUnJugadorArrojaLosDadosYSuPosicionCambiaSegunLoQueIndiquenLosDados() {
-		Tablero tablero = Tablero.getInstance();
-		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
-		Casillero salida = tablero.getCasillero(new Salida());
-		
 		Jugador jugador1 = new Jugador("Ariel");
 		Jugador jugador2 = new Jugador("Gonza");
 		Jugador jugador3 = new Jugador("Uriel");
+		Tablero tablero = Tablero.getInstance();
+		ArmadorDeTablero armador = new ArmadorDeTablero();
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador1);
+		jugadores.add(jugador2);
+		jugadores.add(jugador3);
+		armador.armarTablero(tablero, jugadores);
+		Casillero salida = tablero.getCasillero(new Salida());
 		
 		jugador1.caerEnCasillero(salida);
 		jugador2.caerEnCasillero(salida);

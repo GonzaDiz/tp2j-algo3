@@ -1,5 +1,7 @@
 package testUnitarios;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,7 +31,9 @@ public class RetrocesoDinamicoTest {
 		Jugador jugador = new Jugador("Lucas");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(12));
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
 		Assert.assertEquals(tablero.getCasillero(subte), jugador.casilleroActual());
@@ -43,7 +47,9 @@ public class RetrocesoDinamicoTest {
 		Jugador jugador = new Jugador("Uriel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(11));
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
 		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
@@ -55,7 +61,9 @@ public class RetrocesoDinamicoTest {
 		Jugador jugador = new Jugador("Damian");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(10));
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
 		Assert.assertEquals(tablero.getCasillero(rd),jugador.casilleroActual());
@@ -69,7 +77,9 @@ public class RetrocesoDinamicoTest {
 		Jugador jugador = new Jugador("Esteban");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		jugador.obtuvo(new TiroSimple(2));
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
 		Assert.assertEquals(tablero.getCasillero(tren), jugador.casilleroActual());
