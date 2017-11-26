@@ -31,6 +31,7 @@ public abstract class Terreno extends Casillero {
 	public abstract void construirCasaPor(Jugador jugador);
 	protected abstract void cobrarAlquilerA(Jugador unJugador);
 	protected abstract void demolerConstrucciones();
+	protected abstract int valorTotal();
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
@@ -77,5 +78,11 @@ public abstract class Terreno extends Casillero {
 //		this.casas.clear(); // Vaciamos el ArrayList de casas cuando se construyeron
 		this.cantidadCasas = 0;
 	}
-	
+
+	public  void vender(Jugador jugador) { 
+		int monto = this.valorTotal() * (85/100);
+		jugador.entregarDinero(monto);
+		this.demolerConstrucciones();
+		this.propietario = new PropietarioNull();
+	}
 }

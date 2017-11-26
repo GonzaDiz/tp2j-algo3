@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import modelo.TiroDoble;
 import modelo.Turno;
+import modelo.casillero.terrenos.TerrenoDoble;
+import modelo.casillero.terrenos.TerrenosFactory;
 import modelo.jugador.Jugador;
 
 public class TercerEntregaTes {
@@ -57,5 +59,37 @@ public class TercerEntregaTes {
 		
 		Assert.assertFalse(jugadorConTurno.sos(turno.proximoJugador()));
 	}
-
+	
+	@Test
+	public void testUnJugadorVendeUnTerrenoYObtieneElValorDelTerrenoYSusEdificacionesMenosUn15Porciento() {
+		Jugador jugador = new Jugador("Ariel");
+		int costoSaltaSur = 23000;
+		int costoCasa =  4500;
+		
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
+		TerrenoDoble saltaSur = terrenosFactory.crearSaltaSur();
+		TerrenoDoble saltaNorte = terrenosFactory.crearSaltaNorte();
+		saltaSur.setTerrenoPareja(saltaNorte);
+		saltaNorte.setTerrenoPareja(saltaSur);
+		
+		jugador.comprarTerreno(saltaSur);
+		jugador.comprarTerreno(saltaNorte);
+		jugador.construirCasaEn(saltaSur);
+		
+		int capital = jugador.capitalTotal();
+		jugador.venderTerreno(saltaSur);
+		Assert.assertEquals(capital + ((85/100) * (costoSaltaSur + costoCasa)), jugador.capitalTotal());
+	}
+	
+//	@Test
+//	public void testUnJugadorArrojaLosDadosYSuPosicionCambiaSegunLoQueIndiquenLosDados() {
+//		Jugador jugador1 = new Jugador("Ariel");
+//		Jugador jugador2 = new Jugador("Gonza");
+//		Jugador jugador3 = new Jugador("Uriel");
+//		Turno turno = new Turno();
+//		turno.agregarJugador(jugador1);
+//		turno.agregarJugador(jugador2);
+//		turno.agregarJugador(jugador3);
+//		turno.asignarTurnos();
+//	}
 }

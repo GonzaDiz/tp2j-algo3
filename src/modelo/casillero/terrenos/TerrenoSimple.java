@@ -45,4 +45,10 @@ public  class TerrenoSimple extends Terreno{
 		this.demolerCasas();
 	}
 
+
+	@Override
+	protected int valorTotal() {
+		return this.precioTerreno + (this.cantidadCasas * this.costoCasa);
+	}
+
 }

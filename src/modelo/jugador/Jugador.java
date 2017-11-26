@@ -162,9 +162,7 @@ public class Jugador {
 		this.verificarRestriccionesDeIntercambio();
 		
 		this.terrenosComprados.remove(unTerrenoPropio);
-		unTerrenoPropio.cambiarPropietarioA(jugadorRival);
-		
-		
+		unTerrenoPropio.cambiarPropietarioA(jugadorRival);	
 	}
 
 	private void verificarRestriccionesDeIntercambio() {
@@ -178,6 +176,11 @@ public class Jugador {
 
 	public void terminarTurno(Turno turno) {
 		this.estado.terminarTurno(turno,this);
+	}
+
+	public void venderTerreno(Terreno unTerreno) {
+		unTerreno.vender(this);
+		this.terrenosComprados.remove(unTerreno);
 	}
 
 }

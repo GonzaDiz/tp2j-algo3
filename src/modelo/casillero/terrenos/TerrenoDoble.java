@@ -92,4 +92,9 @@ public class TerrenoDoble extends Terreno {
 		this.cantidadHoteles = 0;
 	}
 
+	@Override
+	protected int valorTotal() {
+		return this.precioTerreno + (this.cantidadCasas * this.costoCasa) + (this.cantidadHoteles * this.costoHotel);
+	}
+
 }
