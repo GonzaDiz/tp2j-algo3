@@ -1,10 +1,15 @@
 package vista;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Stack;
+import java.util.concurrent.ConcurrentHashMap;
 
+import controlador.BotonTirarDadosHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -16,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelo.Algopoly;
+import modelo.Turno;
 import modelo.jugador.Jugador;
 
 
@@ -24,34 +30,49 @@ public class ContenedorPrincipal extends BorderPane {
 	
 	VBox contenedorCentral;
 	Canvas canvasCentral;
-	Stack<Color> colores;
-	ArrayList<VistaJugador> vistaJugadores;
-	
+	LinkedList<Color> colores;
+	VistaJugadores vistaJugadores;
+	//ArrayList<VistaJugador> vistaJugadores;
+//	ConcurrentHashMap<Jugador, VistaJugador> vistaJugadores;
 	
 	public ContenedorPrincipal(Stage stage, Algopoly algopoly) {
-		this.vistaJugadores = new ArrayList<>();
-		this.colores = new Stack<>();
-		colores.push(Color.RED);
-		colores.push(Color.BLUE);
-		colores.push(Color.GREEN);
+		//this.vistaJugadores = new ConcurrentHashMap<>();
+		this.colores = new LinkedList<>();
+		this.colores.push(Color.RED);
+		this.colores.push(Color.BLUE);
+		this.colores.push(Color.GREEN);
 		this.setCentro(algopoly.getJugadores());
+		this.setBotonera(algopoly);
 	}
 	
 	private void setBotonera(Algopoly algopoly) {
-		//Button boton
+		//Jugador jugador = algopoly.getJugadorConTurno();
+		//Turno turno = algopoly.getTurno();
+//		VistaJugador vistaJugadorConTurno = vistaJugadores.get(jugador);
+		Button botonTirarDados = new Button();
+		botonTirarDados.setText("Tirar dados");
+//		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,jugador,turno,);
+		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly);
+		botonTirarDados.setOnAction(botonTirarDadosHandler);
+		
+		VBox contenedorVertical = new VBox(botonTirarDados);
+		contenedorVertical.setSpacing(10);
+		contenedorVertical.setPadding(new Insets(15));
+		this.setLeft(contenedorVertical);
 	}
+	
+	
 	
 	private void setCentro(ArrayList<Jugador> jugadores) {
 		canvasCentral = new Canvas(871,871);
 		
-		for (Jugador jugador : jugadores) {
-			vistaJugadores.add(new VistaJugador(jugador,canvasCentral,this.colores.pop()));
-		}
+//		for (Jugador jugador : jugadores) {
+//			vistaJugadores.put(jugador,new VistaJugador(jugador,canvasCentral,this.colores.pop()));
+//			vistaJugadores.get(jugador).dibujar();
+//		}	
 		
-		for (VistaJugador vistaJugador : this.vistaJugadores) {
-			vistaJugador.dibujar();
-		}
-		
+		vistaJugadores = new VistaJugadores(jugadores,canvasCentral,this.colores);
+		vistaJugadores.dibujar();
 		
 		contenedorCentral = new VBox(canvasCentral);
 		contenedorCentral.setAlignment(Pos.CENTER);

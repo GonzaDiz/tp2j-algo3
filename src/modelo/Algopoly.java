@@ -35,4 +35,12 @@ public class Algopoly {
 		return this.jugadores;
 	}
 
+	public Jugador getJugadorConTurno() {
+		return this.turno.proximoJugador();
+	}
+
+	public Turno getTurno() {
+		return this.turno;
+	}
+
 }
