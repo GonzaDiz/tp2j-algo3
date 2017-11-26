@@ -2,6 +2,7 @@ package modelo.jugador;
 
 import java.util.ArrayList;
 
+import modelo.SinTiro;
 import modelo.TiroDeDados;
 import modelo.Turno;
 import modelo.casillero.Casillero;
@@ -30,6 +31,7 @@ public class Jugador {
 		this.terrenosComprados = new ArrayList<Terreno>();
 		this.companiasCompradas = new ArrayList<Compania>();
 		this.restriccionesDeIntercambio = new ArrayList<RestriccionDeIntercambio>();
+		this.ultimaTirada = new SinTiro();
 		
 	}
 
@@ -91,7 +93,8 @@ public class Jugador {
 	}
 
 	public void obtuvo(TiroDeDados tiroDeDados) {
-		tiroDeDados.actualizarEstado(this);
+		//this.ultimaTirada.actualizarEstado(this,tiroDeDados);
+		tiroDeDados.actualizarEstado(this,this.ultimaTirada);
 		this.ultimaTirada = tiroDeDados;		
 	}
 
@@ -174,7 +177,6 @@ public class Jugador {
 	}
 
 	public void terminarTurno(Turno turno) {
-//		turno.terminarTurno(this);
 		this.estado.terminarTurno(turno,this);
 	}
 

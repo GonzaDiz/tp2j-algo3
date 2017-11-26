@@ -16,7 +16,6 @@ public class Libre implements EstadoJugador {
 		else {
 			Tablero tablero = Tablero.getInstance();
 			unJugador.caerEnCasillero(tablero.getCasilleroPorDesplazamiento(unJugador.casilleroActual(), cantidadDeCasilleros));
-			
 		}
 	}
 

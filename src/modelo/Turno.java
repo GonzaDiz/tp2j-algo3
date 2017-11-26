@@ -25,8 +25,10 @@ public class Turno {
 		Collections.shuffle(jugadores);
 	}
 
-	public Jugador getJugadorConTurno() {
-		return jugadores.removeFirst();
+	public Jugador proximoJugador() {
+		Jugador proximoJugador = jugadores.removeFirst();
+		proximoJugador.esTuTurno();
+		return proximoJugador;
 	}
 
 	public void terminarTurno(Jugador jugador) {
@@ -43,8 +45,6 @@ public class Turno {
 //		else {
 //			jugador.obtuvo(new TiroSimple(valorDado1,valorDado2));
 //		}
-
-			
 		jugador.desplazar(valorDado1 + valorDado2);
 	}
 

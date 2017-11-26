@@ -2,22 +2,15 @@ package modelo;
 
 import modelo.jugador.Jugador;
 
-public class TiroSimple implements TiroDeDados {
-	
-	private int valorDeDados;
-	
-	public TiroSimple(int valorDeDados) {
-		this.valorDeDados = valorDeDados;
-	}
+public class SinTiro implements TiroDeDados{
 
 	@Override
 	public int valor() {
-		return this.valorDeDados;
+		return 0;
 	}
 
 	@Override
 	public void actualizarEstado(Jugador jugador, TiroDeDados tiroDados) {
-		
 	}
 
 	@Override

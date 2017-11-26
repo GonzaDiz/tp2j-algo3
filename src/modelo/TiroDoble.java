@@ -1,6 +1,7 @@
 package modelo;
 
 import modelo.jugador.Jugador;
+import modelo.jugador.Libre;
 import modelo.jugador.TurnoExtra;
 
 public class TiroDoble implements TiroDeDados{
@@ -15,11 +16,18 @@ public class TiroDoble implements TiroDeDados{
 	public int valor() {
 		return this.valorDeDados;
 	}
-
-	@Override
-	public void actualizarEstado(Jugador jugador) {
-		jugador.cambiarEstado(new TurnoExtra());
-		
+	
+	public void actualizarEstado(Jugador jugador, TiroDeDados tiroDados) {
+		if (tiroDados.sosDoble()) {
+			jugador.cambiarEstado(new Libre());
+		}
+		else {
+			jugador.cambiarEstado(new TurnoExtra());
+		}
 	}
 
+	@Override
+	public boolean sosDoble() {
+		return true;
+	}
 }
