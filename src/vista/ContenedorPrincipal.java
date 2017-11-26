@@ -2,7 +2,6 @@ package vista;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Stack;
 import java.util.concurrent.ConcurrentHashMap;
 
 import controlador.BotonTirarDadosHandler;
@@ -21,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelo.Algopoly;
-import modelo.Turno;
 import modelo.jugador.Jugador;
 
 
@@ -32,29 +30,27 @@ public class ContenedorPrincipal extends BorderPane {
 	Canvas canvasCentral;
 	LinkedList<Color> colores;
 	VistaJugadores vistaJugadores;
-	//ArrayList<VistaJugador> vistaJugadores;
-//	ConcurrentHashMap<Jugador, VistaJugador> vistaJugadores;
+	ConcurrentHashMap<Jugador, VistaInformacionJugador> vistaInformacionJugadores;
+//	VistaInformacionJugador infoJugador1;
+//	VistaInformacionJugador infoJugador2;
+//	VistaInformacionJugador infoJugador3;
+
 	
 	public ContenedorPrincipal(Stage stage, Algopoly algopoly) {
-		//this.vistaJugadores = new ConcurrentHashMap<>();
 		this.colores = new LinkedList<>();
 		this.colores.push(Color.RED);
 		this.colores.push(Color.BLUE);
 		this.colores.push(Color.GREEN);
+		this.setInformacionJugadores(algopoly.getJugadores());
 		this.setCentro(algopoly.getJugadores());
-		this.setBotonera(algopoly);
+		this.setBotonera(algopoly);		
 	}
 	
 	private void setBotonera(Algopoly algopoly) {
-		//Jugador jugador = algopoly.getJugadorConTurno();
-		//Turno turno = algopoly.getTurno();
-//		VistaJugador vistaJugadorConTurno = vistaJugadores.get(jugador);
 		Button botonTirarDados = new Button();
 		botonTirarDados.setText("Tirar dados");
-//		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,jugador,turno,);
-		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly);
+		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly,vistaInformacionJugadores);
 		botonTirarDados.setOnAction(botonTirarDadosHandler);
-		
 		VBox contenedorVertical = new VBox(botonTirarDados);
 		contenedorVertical.setSpacing(10);
 		contenedorVertical.setPadding(new Insets(15));
@@ -83,6 +79,26 @@ public class ContenedorPrincipal extends BorderPane {
 		
 	}
 
+	private void setInformacionJugadores(ArrayList<Jugador> jugadores) {
+		this.vistaInformacionJugadores = new ConcurrentHashMap<>();
+//		VBox boxInformacionJugador1 = new VBox();
+//		VBox boxInformacionJugador2 = new VBox();
+//		VBox boxInformacionJugador3 = new VBox();
+		VBox contenedorVerticalInfo = new VBox();
+		for(Jugador j : jugadores) {
+			VBox vbox = new VBox();
+			this.vistaInformacionJugadores.put(j, new VistaInformacionJugador(j, vbox));
+			contenedorVerticalInfo.getChildren().add(vbox);
+		}
+//		
+//		this.infoJugador1 = new VistaInformacionJugador(jugadores.get(0), boxInformacionJugador1);
+//		this.infoJugador2 = new VistaInformacionJugador(jugadores.get(1), boxInformacionJugador2);
+//		this.infoJugador3 = new VistaInformacionJugador(jugadores.get(2), boxInformacionJugador3);
+//		
+//		
+//		VBox contenedorVerticalInfo = new VBox(boxInformacionJugador1,boxInformacionJugador2,boxInformacionJugador3);
+		this.setRight(contenedorVerticalInfo);
+	}
 }
 
 
