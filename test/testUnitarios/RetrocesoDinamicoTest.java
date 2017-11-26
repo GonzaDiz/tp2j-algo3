@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import modelo.ArmadorDeTablero;
 import modelo.Tablero;
+import modelo.TiroSimple;
 import modelo.casillero.compania.Compania;
 import modelo.casillero.compania.CompaniaFactory;
 import modelo.casillero.especial.RetrocesoDinamico;
@@ -29,7 +30,7 @@ public class RetrocesoDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(12);
+		jugador.obtuvo(new TiroSimple(12));
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
 		Assert.assertEquals(tablero.getCasillero(subte), jugador.casilleroActual());
 	}
@@ -43,7 +44,7 @@ public class RetrocesoDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(11);
+		jugador.obtuvo(new TiroSimple(11));
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
 		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
 	}
@@ -55,7 +56,7 @@ public class RetrocesoDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(10);
+		jugador.obtuvo(new TiroSimple(10));
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
 		Assert.assertEquals(tablero.getCasillero(rd),jugador.casilleroActual());
 	}
@@ -69,7 +70,7 @@ public class RetrocesoDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(2);
+		jugador.obtuvo(new TiroSimple(2));
 		jugador.caerEnCasillero(tablero.getCasillero(rd));
 		Assert.assertEquals(tablero.getCasillero(tren), jugador.casilleroActual());
 	}

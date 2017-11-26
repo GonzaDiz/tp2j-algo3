@@ -1,10 +1,11 @@
 package modelo.jugador;
 
+import modelo.Turno;
 import modelo.casillero.especial.Carcel;
 import modelo.excepciones.NoPuedePagarFianzaException;
 import modelo.excepciones.NoSePuedeDesplazarJugadorEncarceladoException;
 
-public class Encarcelado extends EstadoJugador {
+public class Encarcelado implements EstadoJugador {
 	
 	@Override
 	public void desplazar(Jugador unJugador, int cantidadDecasilleros) {
@@ -22,5 +23,9 @@ public class Encarcelado extends EstadoJugador {
 			throw new NoPuedePagarFianzaException();	
 	}
 
+	@Override
+	public void terminarTurno(Turno turno, Jugador jugador) {
+		turno.terminarTurno(jugador);
+	}
 
 }

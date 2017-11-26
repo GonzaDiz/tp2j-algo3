@@ -2,6 +2,8 @@ package modelo.jugador;
 
 import java.util.ArrayList;
 
+import modelo.TiroDeDados;
+import modelo.Turno;
 import modelo.casillero.Casillero;
 import modelo.casillero.compania.Compania;
 import modelo.casillero.especial.Carcel;
@@ -14,7 +16,7 @@ public class Jugador {
 	private String nombre;
 	private int capital;
 	private EstadoJugador estado;
-	private int ultimaTirada;
+	private TiroDeDados ultimaTirada;
 	private ArrayList<Terreno> terrenosComprados;
 	private ArrayList<Compania> companiasCompradas;
 	private Casillero casilleroActual;
@@ -88,8 +90,9 @@ public class Jugador {
 		return sum+terrenosComprados.size();
 	}
 
-	public void obtuvo(int unValorDeDados) {
-		this.ultimaTirada = unValorDeDados;		
+	public void obtuvo(TiroDeDados tiroDeDados) {
+		tiroDeDados.actualizarEstado(this);
+		this.ultimaTirada = tiroDeDados;		
 	}
 
 	public Casillero casilleroActual() {
@@ -105,7 +108,7 @@ public class Jugador {
 	}
 
 	public int ultimaTirada() {
-		return ultimaTirada;
+		return ultimaTirada.valor();
 	}
 
 	public boolean sos(Jugador jugador) {
@@ -170,7 +173,9 @@ public class Jugador {
 		
 	}
 
-
-	
+	public void terminarTurno(Turno turno) {
+//		turno.terminarTurno(this);
+		this.estado.terminarTurno(turno,this);
+	}
 
 }

@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import modelo.ArmadorDeTablero;
 import modelo.Tablero;
+import modelo.TiroSimple;
 import modelo.casillero.compania.Compania;
 import modelo.casillero.compania.CompaniaFactory;
 import modelo.casillero.especial.AvanceDinamico;
@@ -29,7 +30,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(2); // Este mensaje recibira una tirada de dados aleatoria como paramtero
+		jugador.obtuvo(new TiroSimple(2)); // Este mensaje recibira una tirada de dados aleatoria como paramtero
 		jugador.caerEnCasillero(tablero.getCasillero(new AvanceDinamico()));
 		Assert.assertEquals(tablero.getCasillero(new AvanceDinamico()), jugador.casilleroActual());		
 	}
@@ -43,7 +44,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(3);
+		jugador.obtuvo(new TiroSimple(3));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(subte), jugador.casilleroActual());
 	}
@@ -57,7 +58,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(4);
+		jugador.obtuvo(new TiroSimple(4));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(cn), jugador.casilleroActual());
 	}
@@ -70,7 +71,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(5);
+		jugador.obtuvo(new TiroSimple(5));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(il), jugador.casilleroActual());
 	}
@@ -84,7 +85,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(6);
+		jugador.obtuvo(new TiroSimple(6));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(sf), jugador.casilleroActual());
 	}
@@ -99,7 +100,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(7);
+		jugador.obtuvo(new TiroSimple(7));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(aysa), jugador.casilleroActual());
 	}
@@ -112,7 +113,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(8);
+		jugador.obtuvo(new TiroSimple(8));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(ad), jugador.casilleroActual());
 	}
@@ -127,7 +128,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(9);
+		jugador.obtuvo(new TiroSimple(9));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(subte), jugador.casilleroActual());
 	}
@@ -140,7 +141,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(10);
+		jugador.obtuvo(new TiroSimple(10));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(ad), jugador.casilleroActual());
 	}
@@ -154,7 +155,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(11);
+		jugador.obtuvo(new TiroSimple(11));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(c), jugador.casilleroActual());
 	}
@@ -168,7 +169,7 @@ public class AvanceDinamicoTest {
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
 		armador.armarTablero(tablero);
-		jugador.obtuvo(12);
+		jugador.obtuvo(new TiroSimple(12));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(tucuman), jugador.casilleroActual());
 	}
@@ -186,7 +187,7 @@ public class AvanceDinamicoTest {
 		jugador.comprarTerreno(terrenosFactory.crearNeuquen());
 		jugador.comprarTerreno(terrenosFactory.crearSantaFe());
 		jugador.comprarTerreno(terrenosFactory.crearSaltaSur());
-		jugador.obtuvo(12);
+		jugador.obtuvo(new TiroSimple(12));
 		jugador.caerEnCasillero(tablero.getCasillero(ad));
 		Assert.assertEquals(tablero.getCasillero(tren), jugador.casilleroActual());
 	}

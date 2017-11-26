@@ -1,9 +1,10 @@
 package modelo.jugador;
 
+import modelo.Turno;
 import modelo.casillero.especial.Carcel;
 import modelo.excepciones.NoSePuedeDesplazarJugadorEncarceladoException;
 
-public class EncarceladoTurno2 extends EstadoJugador{
+public class EncarceladoTurno2 implements EstadoJugador{
 	
 
 	@Override
@@ -24,4 +25,8 @@ public class EncarceladoTurno2 extends EstadoJugador{
 		
 	}
 
+	@Override
+	public void terminarTurno(Turno turno, Jugador jugador) {
+		turno.terminarTurno(jugador);
+	}
 }

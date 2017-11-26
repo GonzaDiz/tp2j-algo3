@@ -2,29 +2,31 @@ package modelo.jugador;
 
 import modelo.Turno;
 import modelo.casillero.especial.Carcel;
-import modelo.excepciones.NoSePuedeDesplazarJugadorEncarceladoException;
 
-public class EncarceladoTurno3 implements EstadoJugador {
+public class TurnoExtra implements EstadoJugador {
 
 	@Override
 	public void desplazar(Jugador unJugador, int cantidadDeCasilleros) {
-		throw new NoSePuedeDesplazarJugadorEncarceladoException();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void actualizarEstado(Jugador jugador) {
-		EstadoJugador libre = new Libre();
-		jugador.cambiarEstado(libre);
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void pagarFianza(Jugador jugador, Carcel unaCarcel) {
-		unaCarcel.cobrarFianza(jugador);
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void terminarTurno(Turno turno, Jugador jugador) {
-		turno.terminarTurno(jugador);
+		turno.asignarTurnoExtra(jugador);
+		
 	}
+
 }

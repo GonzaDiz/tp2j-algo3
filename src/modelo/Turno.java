@@ -47,4 +47,8 @@ public class Turno {
 			
 		jugador.desplazar(valorDado1 + valorDado2);
 	}
+
+	public void asignarTurnoExtra(Jugador jugador) {
+		jugadores.addFirst(jugador);
+	}
 }

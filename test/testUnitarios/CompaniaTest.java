@@ -3,6 +3,7 @@ package testUnitarios;
 import org.junit.Assert;
 import org.junit.Test;
 
+import modelo.TiroSimple;
 import modelo.casillero.compania.Compania;
 import modelo.casillero.compania.CompaniaFactory;
 import modelo.jugador.Jugador;
@@ -20,7 +21,7 @@ public class CompaniaTest {
 			Compania aysa = companiaFactory.crearAysa();
 			c1.setCompaniaPareja(aysa);
 			aysa.setCompaniaPareja(c1);
-			j1.caerEnCasillero(c1);
+			//j1.caerEnCasillero(c1);
 			int capital = j1.capitalTotal();
 			j1.comprarCompania(c1);
 			Assert.assertEquals(capital - 35000, j1.capitalTotal());
@@ -34,7 +35,7 @@ public class CompaniaTest {
 			Compania tren = companiaFactory.crearTren();
 			c1.setCompaniaPareja(tren);
 			tren.setCompaniaPareja(c1);
-			j1.caerEnCasillero(c1);
+			//j1.caerEnCasillero(c1);
 			int capital = j1.capitalTotal();
 			j1.comprarCompania(c1);
 			Assert.assertEquals(capital - 40000, j1.capitalTotal());
@@ -48,7 +49,7 @@ public class CompaniaTest {
 			Compania edesur = companiaFactory.crearEdesur();
 			c1.setCompaniaPareja(edesur);
 			edesur.setCompaniaPareja(c1);
-			j1.caerEnCasillero(c1);
+			//j1.caerEnCasillero(c1);
 			int capital = j1.capitalTotal();
 			j1.comprarCompania(c1);
 			Assert.assertEquals(capital - 30000, j1.capitalTotal());
@@ -62,7 +63,7 @@ public class CompaniaTest {
 			Compania subte = companiaFactory.crearSubte();
 			c1.setCompaniaPareja(subte);
 			subte.setCompaniaPareja(c1);
-			j1.caerEnCasillero(c1);
+			//j1.caerEnCasillero(c1);
 			int capital = j1.capitalTotal();
 			j1.comprarCompania(c1);
 			Assert.assertEquals(capital - 38000, j1.capitalTotal());
@@ -85,7 +86,7 @@ public class CompaniaTest {
 			c1.setCompaniaPareja(c2);
 			c2.setCompaniaPareja(c1);
 			j1.comprarCompania(c1);
-			j2.obtuvo(10);
+			j2.obtuvo(new TiroSimple(10));
 			int capital = j2.capitalTotal();
 			j2.caerEnCasillero(c1);
 			Assert.assertEquals(capital - 500*10, j2.capitalTotal());
@@ -102,7 +103,7 @@ public class CompaniaTest {
 			c2.setCompaniaPareja(c1);
 			j1.comprarCompania(c1);
 			j1.comprarCompania(c2);
-			j2.obtuvo(10);
+			j2.obtuvo(new TiroSimple(10));
 			int capital = j2.capitalTotal();
 			j2.caerEnCasillero(c1);
 			Assert.assertEquals(capital - 1000*10, j2.capitalTotal());
@@ -118,7 +119,7 @@ public class CompaniaTest {
 			c1.setCompaniaPareja(c2);
 			c2.setCompaniaPareja(c1);
 			j1.comprarCompania(c2);
-			j2.obtuvo(10);
+			j2.obtuvo(new TiroSimple(10));
 			int capital = j2.capitalTotal();
 			j2.caerEnCasillero(c2);
 			Assert.assertEquals(capital - 300*10, j2.capitalTotal());
@@ -136,7 +137,7 @@ public class CompaniaTest {
 			presidente.comprarCompania(c1);
 			presidente.comprarCompania(c2);
 			Assert.assertEquals(c2.propietario().jugador(), presidente);
-			j2.obtuvo(10);
+			j2.obtuvo(new TiroSimple(10));
 			int capital = j2.capitalTotal();
 			j2.caerEnCasillero(c2);
 			Assert.assertEquals(capital - 500*10, j2.capitalTotal());
@@ -152,7 +153,7 @@ public class CompaniaTest {
 			c1.setCompaniaPareja(c2);
 			c2.setCompaniaPareja(c1);
 			j1.comprarCompania(c1);
-			j2.obtuvo(10);
+			j2.obtuvo(new TiroSimple(10));
 			int capital = j2.capitalTotal();
 			j2.caerEnCasillero(c1);
 			Assert.assertEquals(capital - 450*10, j2.capitalTotal());
@@ -169,7 +170,7 @@ public class CompaniaTest {
 			c2.setCompaniaPareja(c1);
 			j1.comprarCompania(c1);
 			j1.comprarCompania(c2);
-			j2.obtuvo(10);
+			j2.obtuvo(new TiroSimple(10));
 			int capital = j2.capitalTotal();
 			j2.caerEnCasillero(c1);
 			Assert.assertEquals(capital - 800*10, j2.capitalTotal());
@@ -185,7 +186,7 @@ public class CompaniaTest {
 			c1.setCompaniaPareja(c2);
 			c2.setCompaniaPareja(c1);
 			j1.comprarCompania(c2);
-			j2.obtuvo(10);
+			j2.obtuvo(new TiroSimple(10));
 			int capital = j2.capitalTotal();
 			j2.caerEnCasillero(c2);
 			Assert.assertEquals(capital - 600*10, j2.capitalTotal());
@@ -202,7 +203,7 @@ public class CompaniaTest {
 			c2.setCompaniaPareja(c1);
 			j1.comprarCompania(c1);
 			j1.comprarCompania(c2);
-			j2.obtuvo(10);
+			j2.obtuvo(new TiroSimple(10));
 			int capital = j2.capitalTotal();
 			j2.caerEnCasillero(c2);
 			Assert.assertEquals(capital - 1100*10, j2.capitalTotal());
@@ -237,7 +238,7 @@ public class CompaniaTest {
 			j2.comprarCompania(c2);
 			j1.intercambiarCompaniaConPor(c1,j2,c2);
 			int capitalInicial = j2.capitalTotal();
-			j3.obtuvo(10);
+			j3.obtuvo(new TiroSimple(10));
 			j3.caerEnCasillero(c1);
 			Assert.assertEquals(capitalInicial + 600*10, j2.capitalTotal());
 		}

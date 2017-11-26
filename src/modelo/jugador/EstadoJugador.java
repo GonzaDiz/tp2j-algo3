@@ -1,10 +1,12 @@
 package modelo.jugador;
 
+import modelo.Turno;
 import modelo.casillero.especial.Carcel;
 
-abstract public class EstadoJugador {
+public interface EstadoJugador {
 	abstract public void desplazar(Jugador unJugador, int cantidadDeCasilleros);
 	abstract public void actualizarEstado(Jugador jugador);
 	abstract public void pagarFianza(Jugador jugador, Carcel unaCarcel);
+	public abstract void terminarTurno(Turno turno, Jugador jugador);
 
 }
