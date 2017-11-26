@@ -5,11 +5,13 @@ import org.junit.Test;
 
 import modelo.TiroDoble;
 import modelo.Turno;
+import modelo.casillero.compania.Compania;
+import modelo.casillero.compania.CompaniaFactory;
 import modelo.casillero.terrenos.TerrenoDoble;
 import modelo.casillero.terrenos.TerrenosFactory;
 import modelo.jugador.Jugador;
 
-public class TercerEntregaTes {
+public class TercerEntregaTest {
 	
 	@Test
 	public void testUnJugadorObtieneUnTiroDobleEntoncesTieneUnTurnoExtra() {
@@ -79,6 +81,21 @@ public class TercerEntregaTes {
 		int capital = jugador.capitalTotal();
 		jugador.venderTerreno(saltaSur);
 		Assert.assertEquals(capital + ((85/100) * (costoSaltaSur + costoCasa)), jugador.capitalTotal());
+	}
+	
+	@Test
+	public void testUnJugadorVendeUnaCompaniaYObtieneElValorDeLaMismaMenosUn15Porciento() {
+		Jugador jugador = new Jugador("Ariel");
+		int costoAysa = 30000;
+		CompaniaFactory companiaFactory = new CompaniaFactory();
+		Compania aysa = companiaFactory.crearAysa();
+		Compania edesur = companiaFactory.crearEdesur();
+		aysa.setCompaniaPareja(edesur);
+		edesur.setCompaniaPareja(aysa);
+		jugador.comprarCompania(aysa);
+		int capital = jugador.capitalTotal();
+		jugador.venderCompania(aysa);
+		Assert.assertEquals(capital + (85/100 * costoAysa), jugador.capitalTotal());
 	}
 	
 //	@Test

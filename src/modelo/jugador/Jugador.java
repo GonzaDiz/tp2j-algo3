@@ -21,7 +21,7 @@ public class Jugador {
 	private ArrayList<Terreno> terrenosComprados;
 	private ArrayList<Compania> companiasCompradas;
 	private Casillero casilleroActual;
-	private ArrayList<RestriccionDeIntercambio> restriccionesDeIntercambio;;
+	private ArrayList<RestriccionDeIntercambio> restriccionesDeIntercambio;
 	
 	
 	public Jugador(String unNombre) {
@@ -179,8 +179,18 @@ public class Jugador {
 	}
 
 	public void venderTerreno(Terreno unTerreno) {
+		this.restriccionesDeIntercambio.add(new RestriccionDeIntercambioDeTerrenoPorNoSerPropietario(this.terrenosComprados, unTerreno));
+		this.verificarRestriccionesDeIntercambio();
 		unTerreno.vender(this);
 		this.terrenosComprados.remove(unTerreno);
+	}
+
+	public void venderCompania(Compania unaCompania) {
+		this.restriccionesDeIntercambio.add(new RestriccionDeIntercambioDeCompaniaPorNoSerPropietario(this.companiasCompradas, unaCompania));
+		this.verificarRestriccionesDeIntercambio();
+		unaCompania.vender(this);
+		this.companiasCompradas.remove(unaCompania);
+		
 	}
 
 }

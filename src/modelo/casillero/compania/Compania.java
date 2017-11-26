@@ -49,4 +49,11 @@ public class Compania extends Casillero {
 		unJugador.extraerDinero(precioMulta);	
 		this.propietario.entregarDinero(precioMulta);
 	}
+
+	public void vender(Jugador jugador) {
+		int monto = this.precioCompania * (85/100);
+		jugador.entregarDinero(monto);
+		this.propietario = new PropietarioNull();
+		
+	}
 }
