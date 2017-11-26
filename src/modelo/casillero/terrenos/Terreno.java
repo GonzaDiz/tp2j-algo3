@@ -6,7 +6,6 @@ import modelo.Propietario;
 import modelo.PropietarioNull;
 import modelo.PropietarioReal;
 import modelo.casillero.Casillero;
-import modelo.edificaciones.Casa;
 import modelo.edificaciones.RestriccionDeConstruccion;
 import modelo.jugador.Jugador;
 
@@ -15,12 +14,14 @@ public abstract class Terreno extends Casillero {
 	protected int precioTerreno;
 	protected Propietario propietario;
 	protected int limiteCasas;
-	protected ArrayList<Casa> casas;
+//	protected ArrayList<Casa> casas;
+	protected int cantidadCasas;
 	protected int costoCasa;
 	protected ArrayList<RestriccionDeConstruccion> restricciones;
 	
 	public Terreno() {
-		this.casas = new ArrayList<Casa>();
+//		this.casas = new ArrayList<Casa>();
+		this.cantidadCasas = 0;
 		this.restricciones = new ArrayList<RestriccionDeConstruccion>();
 		this.propietario = new PropietarioNull();
 
@@ -60,7 +61,8 @@ public abstract class Terreno extends Casillero {
 	}
 	
 	public int cantidadDeCasas() {
-		return casas.size();
+//		return casas.size();
+		return this.cantidadCasas;
 	}
 	
 	protected void verificarRestricciones() {
@@ -72,7 +74,8 @@ public abstract class Terreno extends Casillero {
 	}
 
 	protected void demolerCasas() {
-		this.casas.clear(); // Vaciamos el ArrayList de casas cuando se construyeron
+//		this.casas.clear(); // Vaciamos el ArrayList de casas cuando se construyeron
+		this.cantidadCasas = 0;
 	}
 	
 }

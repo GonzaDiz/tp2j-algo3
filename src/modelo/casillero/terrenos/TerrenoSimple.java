@@ -1,6 +1,5 @@
 package modelo.casillero.terrenos;
 
-import modelo.edificaciones.Casa;
 import modelo.edificaciones.RestriccionDeConstruccionPorLimiteDeCasas;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedad;
 import modelo.jugador.Jugador;
@@ -25,7 +24,8 @@ public  class TerrenoSimple extends Terreno{
 		this.restricciones.add(new RestriccionDeConstruccionPorLimiteDeCasas(this, this.limiteCasas));
 		this.verificarRestricciones();
 		jugador.extraerDinero(this.costoCasa);
-		casas.add(new Casa());
+//		casas.add(new Casa());
+		this.cantidadCasas++;
 	}
 	
 	@Override

@@ -1,20 +1,18 @@
 package modelo.casillero.terrenos;
 
-import java.util.ArrayList;
-
-import modelo.edificaciones.Casa;
-import modelo.edificaciones.Hotel;
 import modelo.edificaciones.RestriccionDeConstruccionPorFaltaDeCasasEnElTerreno;
 import modelo.edificaciones.RestriccionDeConstruccionPorFaltaDeCasasEnElTerrenoPareja;
 import modelo.edificaciones.RestriccionDeConstruccionPorLimiteDeCasas;
+import modelo.edificaciones.RestriccionDeConstruccionPorLimiteDeHoteles;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedad;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedadDeTerrenoPareja;
 import modelo.jugador.Jugador;
 
 public class TerrenoDoble extends Terreno {
 
-	private ArrayList<Hotel> hoteles; // En principio es un hotel, pero en un futuro se podrian poner mas
-//	private int limiteHoteles;
+//	private ArrayList<Hotel> hoteles; // En principio es un hotel, pero en un futuro se podrian poner mas
+	private int limiteHoteles;
+	private int cantidadHoteles;
 	private int costoHotel;
 	private TerrenoDoble terrenoPareja;
 	private AlquilerTerrenoDoble alquiler;
@@ -22,8 +20,9 @@ public class TerrenoDoble extends Terreno {
 	
 	public TerrenoDoble(int precioTerreno, int costoCasa, int costoHotel, String nombreCasillero, AlquilerTerrenoDoble alquiler) {
 		super();
-		this.hoteles = new ArrayList<Hotel>();
-//		this.limiteHoteles = 1;
+//		this.hoteles = new ArrayList<Hotel>();
+		this.limiteHoteles = 1;
+		this.cantidadHoteles = 0;
 		this.limiteCasas = 2;
 		
 		this.precioTerreno = precioTerreno;
@@ -54,7 +53,8 @@ public class TerrenoDoble extends Terreno {
 		this.verificarRestricciones();
 		
 		jugador.extraerDinero(this.costoCasa);
-		casas.add(new Casa());
+//		casas.add(new Casa());
+		this.cantidadCasas++;
 	}
 
 	public void construirHotelPor(Jugador jugador) {
@@ -62,11 +62,13 @@ public class TerrenoDoble extends Terreno {
 		this.restricciones.add(new RestriccionDeConstruccionPorPropiedadDeTerrenoPareja(this.terrenoPareja, jugador));
 		this.restricciones.add(new RestriccionDeConstruccionPorFaltaDeCasasEnElTerreno(this, this.limiteCasas));
 		this.restricciones.add(new RestriccionDeConstruccionPorFaltaDeCasasEnElTerrenoPareja(this, this.limiteCasas));
+		this.restricciones.add(new RestriccionDeConstruccionPorLimiteDeHoteles(this,this.limiteHoteles));
 		this.verificarRestricciones();
 		
 		this.demolerCasas();
 		jugador.extraerDinero(this.costoHotel);
-		hoteles.add(new Hotel());
+//		hoteles.add(new Hotel());
+		this.cantidadHoteles++;
 		
 	}
 
@@ -75,7 +77,8 @@ public class TerrenoDoble extends Terreno {
 	}
 	
 	public int cantidadDeHoteles() {
-		return this.hoteles.size();
+//		return this.hoteles.size();
+		return this.cantidadHoteles;
 	}
 
 	@Override
@@ -85,7 +88,8 @@ public class TerrenoDoble extends Terreno {
 	}
 
 	private void demolerHoteles() {
-		this.hoteles.clear();	
+//		this.hoteles.clear();	
+		this.cantidadHoteles = 0;
 	}
 
 }
