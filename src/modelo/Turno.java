@@ -28,6 +28,10 @@ public class Turno {
 		proximoJugador.esTuTurno();
 		return proximoJugador;
 	}
+	
+	public Jugador jugadorConTurno() {
+		return jugadores.getFirst();
+	}
 
 	public void terminarTurno(Jugador jugador) {
 		jugadores.addLast(jugador);

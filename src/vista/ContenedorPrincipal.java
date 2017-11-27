@@ -31,9 +31,6 @@ public class ContenedorPrincipal extends BorderPane {
 	LinkedList<Color> colores;
 	VistaJugadores vistaJugadores;
 	ConcurrentHashMap<Jugador, VistaInformacionJugador> vistaInformacionJugadores;
-//	VistaInformacionJugador infoJugador1;
-//	VistaInformacionJugador infoJugador2;
-//	VistaInformacionJugador infoJugador3;
 
 	
 	public ContenedorPrincipal(Stage stage, Algopoly algopoly) {
@@ -47,11 +44,14 @@ public class ContenedorPrincipal extends BorderPane {
 	}
 	
 	private void setBotonera(Algopoly algopoly) {
-		Button botonTirarDados = new Button();
-		botonTirarDados.setText("Tirar dados");
-		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly,vistaInformacionJugadores);
-		botonTirarDados.setOnAction(botonTirarDadosHandler);
-		VBox contenedorVertical = new VBox(botonTirarDados);
+		
+		Botonera botonera = new Botonera(algopoly,vistaJugadores,vistaInformacionJugadores);
+		VBox contenedorVertical = botonera.getContenedor();
+		//Button botonTirarDados = new Button();
+		//botonTirarDados.setText("Tirar dados");
+		//BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly,vistaInformacionJugadores);
+		//botonTirarDados.setOnAction(botonTirarDadosHandler);
+		//VBox contenedorVertical = new VBox(botonTirarDados);
 		contenedorVertical.setSpacing(10);
 		contenedorVertical.setPadding(new Insets(15));
 		this.setLeft(contenedorVertical);
@@ -61,11 +61,6 @@ public class ContenedorPrincipal extends BorderPane {
 	
 	private void setCentro(ArrayList<Jugador> jugadores) {
 		canvasCentral = new Canvas(871,871);
-		
-//		for (Jugador jugador : jugadores) {
-//			vistaJugadores.put(jugador,new VistaJugador(jugador,canvasCentral,this.colores.pop()));
-//			vistaJugadores.get(jugador).dibujar();
-//		}	
 		
 		vistaJugadores = new VistaJugadores(jugadores,canvasCentral,this.colores);
 		vistaJugadores.dibujar();
@@ -81,22 +76,14 @@ public class ContenedorPrincipal extends BorderPane {
 
 	private void setInformacionJugadores(ArrayList<Jugador> jugadores) {
 		this.vistaInformacionJugadores = new ConcurrentHashMap<>();
-//		VBox boxInformacionJugador1 = new VBox();
-//		VBox boxInformacionJugador2 = new VBox();
-//		VBox boxInformacionJugador3 = new VBox();
+
 		VBox contenedorVerticalInfo = new VBox();
 		for(Jugador j : jugadores) {
 			VBox vbox = new VBox();
 			this.vistaInformacionJugadores.put(j, new VistaInformacionJugador(j, vbox));
 			contenedorVerticalInfo.getChildren().add(vbox);
 		}
-//		
-//		this.infoJugador1 = new VistaInformacionJugador(jugadores.get(0), boxInformacionJugador1);
-//		this.infoJugador2 = new VistaInformacionJugador(jugadores.get(1), boxInformacionJugador2);
-//		this.infoJugador3 = new VistaInformacionJugador(jugadores.get(2), boxInformacionJugador3);
-//		
-//		
-//		VBox contenedorVerticalInfo = new VBox(boxInformacionJugador1,boxInformacionJugador2,boxInformacionJugador3);
+
 		this.setRight(contenedorVerticalInfo);
 	}
 }
