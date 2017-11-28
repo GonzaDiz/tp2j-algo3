@@ -30,4 +30,14 @@ public class TurnoExtra implements EstadoJugador {
 		turno.asignarTurnoExtra(jugador);
 	}
 
+	@Override
+	public boolean puedoPagarFianza() {
+		return false;
+	}
+
+	@Override
+	public boolean noPuedoTirarDados() {
+		return false;
+	}
+
 }

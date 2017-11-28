@@ -8,5 +8,7 @@ public interface EstadoJugador {
 	abstract public void actualizarEstado(Jugador jugador);
 	abstract public void pagarFianza(Jugador jugador, Carcel unaCarcel);
 	public abstract void terminarTurno(Turno turno, Jugador jugador);
+	public abstract boolean puedoPagarFianza();
+	public abstract boolean noPuedoTirarDados();
 
 }

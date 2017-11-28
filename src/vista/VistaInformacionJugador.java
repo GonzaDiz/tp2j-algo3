@@ -3,6 +3,8 @@ package vista;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import modelo.jugador.Jugador;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class VistaInformacionJugador  {
 	
@@ -21,6 +23,9 @@ public class VistaInformacionJugador  {
 		this.vbox.getChildren().clear();
 		
 		Text nombre = new Text();
+		Font font = new Font(20);	  		
+		nombre.setFill(Color.RED);
+		nombre.setFont(font);
 		nombre.setText(this.jugador.tuNombreEs());
 		
 		Text capital = new Text();

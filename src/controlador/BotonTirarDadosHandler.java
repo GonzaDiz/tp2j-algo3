@@ -1,23 +1,25 @@
 package controlador;
 
-import java.util.concurrent.ConcurrentHashMap;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import modelo.Algopoly;
 import modelo.jugador.Jugador;
-import vista.VistaInformacionJugador;
+import vista.Botonera;
 import vista.VistaJugadores;
 
 public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
 	
 	private VistaJugadores vista;
-	private ConcurrentHashMap<Jugador, VistaInformacionJugador> vistaInformacionJugadores;
 	private Jugador jugador;
 	private Algopoly algopoly;
+	private Botonera botonera;
 //	private Turno turno;
 	
-	public BotonTirarDadosHandler(VistaJugadores vista,Algopoly algopoly, Jugador jugador,ConcurrentHashMap<Jugador, VistaInformacionJugador> vistaInformacionJugadores) { 
+	public BotonTirarDadosHandler(
+			VistaJugadores vista,
+			Algopoly algopoly, 
+			Jugador jugador,
+			Botonera botonera) { 
 //		this.vista = vista;
 //		this.algopoly = algopoly;
 		//this.jugador = algopoly.getProximoJugadorConTurno();
@@ -27,18 +29,23 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
 		this.jugador = jugador;
 		this.algopoly = algopoly;
 		this.vista = vista;
-		this.vistaInformacionJugadores = vistaInformacionJugadores;
+		this.botonera = botonera;
 	}
 	
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		this.algopoly.getJugadorConTurno().arrojaDados(algopoly.getTurno());
-		
+		//this.algopoly.getJugadorConTurno().arrojaDados(algopoly.getTurno());
+		this.jugador.arrojaDados(algopoly.getTurno());
+		this.botonera.deshabilitarBotonTirarDados();
+		this.botonera.habilitarBotonTerminarTurno();
+	
 		//this.jugador.arrojaDados(algopoly.getTurno());
 		this.vista.update();
-		for (Jugador jugador : this.algopoly.getJugadores()) {
-			vistaInformacionJugadores.get(jugador).update();
-		}
+		this.botonera.actualizarInformacionJugadores();
+//		this.vistaInformacionJugadores.update();
+//		for (Jugador jugador : this.algopoly.getJugadores()) {
+//			vistaInformacionJugadores.get(jugador).update();
+//		}
 		//this.jugador.terminarTurno(this.turno); //TODO crear boton terminarturno
 		
 		//this.jugador = this.algopoly.getProximoJugadorConTurno();

@@ -2,13 +2,10 @@ package vista;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.concurrent.ConcurrentHashMap;
 
-import controlador.BotonTirarDadosHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -30,7 +27,8 @@ public class ContenedorPrincipal extends BorderPane {
 	Canvas canvasCentral;
 	LinkedList<Color> colores;
 	VistaJugadores vistaJugadores;
-	ConcurrentHashMap<Jugador, VistaInformacionJugador> vistaInformacionJugadores;
+	VistaInformacionJugadores vistaInformacionJugadores;
+	//ConcurrentHashMap<Jugador, VistaInformacionJugador> vistaInformacionJugadores;
 
 	
 	public ContenedorPrincipal(Stage stage, Algopoly algopoly) {
@@ -75,16 +73,19 @@ public class ContenedorPrincipal extends BorderPane {
 	}
 
 	private void setInformacionJugadores(ArrayList<Jugador> jugadores) {
-		this.vistaInformacionJugadores = new ConcurrentHashMap<>();
-
-		VBox contenedorVerticalInfo = new VBox();
-		for(Jugador j : jugadores) {
-			VBox vbox = new VBox();
-			this.vistaInformacionJugadores.put(j, new VistaInformacionJugador(j, vbox));
-			contenedorVerticalInfo.getChildren().add(vbox);
-		}
-
-		this.setRight(contenedorVerticalInfo);
+		this.vistaInformacionJugadores = new VistaInformacionJugadores(jugadores);
+		VBox contendeorVertical = this.vistaInformacionJugadores.getContenedorVerticalConInformacion();
+		this.setRight(contendeorVertical);
+//		this.vistaInformacionJugadores = new ConcurrentHashMap<>();
+//
+//		VBox contenedorVerticalInfo = new VBox();
+//		for(Jugador j : jugadores) {
+//			VBox vbox = new VBox();
+//			this.vistaInformacionJugadores.put(j, new VistaInformacionJugador(j, vbox));
+//			contenedorVerticalInfo.getChildren().add(vbox);
+//		}
+//
+//		this.setRight(contenedorVerticalInfo);
 	}
 }
 

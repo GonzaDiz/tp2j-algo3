@@ -1,7 +1,6 @@
 package vista;
 
-import java.util.concurrent.ConcurrentHashMap;
-
+import controlador.BotonPagarFianzaHandler;
 import controlador.BotonTerminarTurnoHandler;
 import controlador.BotonTirarDadosHandler;
 import javafx.scene.control.Button;
@@ -12,46 +11,91 @@ import modelo.jugador.Jugador;
 public class Botonera {
 	
 	private Algopoly algopoly;
-	private Jugador jugador;
+	private Jugador jugadorConTurno;
 
 	private VistaJugadores vistaJugadores;
-	private ConcurrentHashMap<Jugador, VistaInformacionJugador> vistaInformacionJugadores;
+	private VistaInformacionJugadores vistaInformacionJugadores;
 	
 	Button botonTirarDados;
 	Button botonTerminarTurno;
+	Button botonPagarFianza;
 	
-	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,ConcurrentHashMap<Jugador, VistaInformacionJugador> vistaInformacionJugadores) {
+	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,VistaInformacionJugadores vistaInformacionJugadores2) {
 		this.algopoly = algopoly;
-		this.jugador = algopoly.getJugadorConTurno();
+		this.jugadorConTurno = algopoly.proximoJugador();
 		this.vistaJugadores = vistaJugadores;
-		this.vistaInformacionJugadores = vistaInformacionJugadores;
+		this.vistaInformacionJugadores = vistaInformacionJugadores2;
 		
 		this.crearBotonTirarDados();
-		this.crearbotonTerminarTurno();
+		this.crearBotonTerminarTurno();
+		this.crearBotonPagarFianza();
 	}
 
 	private void crearBotonTirarDados() {
 		this.botonTirarDados = new Button();
 		this.botonTirarDados.setText("Tirar Dados");
-		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly,this.jugador,vistaInformacionJugadores);
+		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly,this.jugadorConTurno, this);
 		this.botonTirarDados.setOnAction(botonTirarDadosHandler);
 	}
 	
-	private void crearbotonTerminarTurno() {
+	private void crearBotonTerminarTurno() {
 		this.botonTerminarTurno = new Button();
 		this.botonTerminarTurno.setText("Terminar Turno");
-		BotonTerminarTurnoHandler botonTerminarTurnoHandler = new BotonTerminarTurnoHandler(vistaJugadores,algopoly,vistaInformacionJugadores,this);
-		botonTerminarTurno.setOnAction(botonTerminarTurnoHandler);
+		this.botonTerminarTurno.setDisable(true);
+		BotonTerminarTurnoHandler botonTerminarTurnoHandler = new BotonTerminarTurnoHandler(algopoly,this);
+		this.botonTerminarTurno.setOnAction(botonTerminarTurnoHandler);
+	}
+	
+	private void crearBotonPagarFianza() {
+		this.botonPagarFianza = new Button();
+		this.botonPagarFianza.setText("Pagar fianza");
+		this.botonPagarFianza.setDisable(true);
+		BotonPagarFianzaHandler botonPagarFianzaHandler = new BotonPagarFianzaHandler(algopoly, this);
+		this.botonPagarFianza.setOnAction(botonPagarFianzaHandler);
 	}
 	
 	public VBox getContenedor() {
-		VBox contenedorVertical = new VBox(this.botonTirarDados,this.botonTerminarTurno);
+		VBox contenedorVertical = new VBox(this.botonTirarDados,this.botonTerminarTurno, this.botonPagarFianza);
 		return contenedorVertical;
 	}
 	
 	public void update() {
-		this.jugador = algopoly.getProximoJugadorConTurno();
-		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(this.vistaJugadores,this.algopoly,this.jugador,this.vistaInformacionJugadores);
+		this.jugadorConTurno = algopoly.proximoJugador(); // Aca le envia esTuTurno()
+		
+		if(this.jugadorConTurno.podesPagarFianza()) {
+			this.botonPagarFianza.setDisable(false);
+		}
+		
+		if(this.jugadorConTurno.noPuedeTirarDados()) {
+			this.botonTirarDados.setDisable(true);
+			this.botonTerminarTurno.setDisable(false);
+		}
+		
+		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly,this.jugadorConTurno, this);
 		this.botonTirarDados.setOnAction(botonTirarDadosHandler);
+	}
+
+	public void deshabilitarBotonTirarDados() {
+		this.botonTirarDados.setDisable(true);	
+	}
+
+	public void habilitarBotonTerminarTurno() {
+		this.botonTerminarTurno.setDisable(false);
+	}
+
+	public void deshabilitarBotonTerminarTurno() {
+		this.botonTerminarTurno.setDisable(true);
+	}
+
+	public void habilitarBotonTirarDados() {
+		this.botonTirarDados.setDisable(false);
+	}
+
+	public void deshabilitarBotonPagarFianza() {
+		this.botonPagarFianza.setDisable(true);		
+	}
+
+	public void actualizarInformacionJugadores() {
+		this.vistaInformacionJugadores.update();	
 	}
 }

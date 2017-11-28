@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
+import modelo.casillero.especial.Carcel;
 import modelo.casillero.especial.Salida;
 import modelo.jugador.Jugador;
 
@@ -45,6 +46,14 @@ public class Algopoly {
 
 	public Turno getTurno() {
 		return this.turno;
+	}
+
+	public Jugador proximoJugador() {
+		return this.turno.proximoJugador();
+	}
+
+	public Carcel getCarcel() {
+		return (Carcel) this.tablero.getCasillero(new Carcel());
 	}
 
 }

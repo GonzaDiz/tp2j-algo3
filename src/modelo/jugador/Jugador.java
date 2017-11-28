@@ -203,4 +203,12 @@ public class Jugador {
 		return this.casilleroActual.getPosicion();
 	}
 
+	public boolean podesPagarFianza() {
+		return this.estado.puedoPagarFianza();
+	}
+
+	public boolean noPuedeTirarDados() {
+		return this.estado.noPuedoTirarDados();
+	}
+
 }
