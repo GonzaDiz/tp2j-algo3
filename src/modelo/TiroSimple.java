@@ -1,6 +1,7 @@
 package modelo;
 
 import modelo.jugador.Jugador;
+import modelo.jugador.Libre;
 
 public class TiroSimple implements TiroDeDados {
 	
@@ -17,7 +18,7 @@ public class TiroSimple implements TiroDeDados {
 
 	@Override
 	public void actualizarEstado(Jugador jugador, TiroDeDados tiroDados) {
-		
+		jugador.cambiarEstado(new Libre());
 	}
 
 	@Override

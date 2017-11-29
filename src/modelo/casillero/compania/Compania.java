@@ -22,7 +22,18 @@ public class Compania extends Casillero {
 	
 	@Override
 	public void afectarJugador(Jugador unJugador) {
-		this.cobrarMultaA(unJugador);
+		if(this.tienePropietario()) {
+			this.cobrarMultaA(unJugador);
+		}
+	}
+	
+	private boolean tienePropietario() {
+		return this.propietario.sosPropietario();
+	}
+
+	@Override
+	public void comprar(Jugador unJugador) {
+		this.venderCompaniaA(unJugador);		
 	}
 
 	public Propietario propietario() {
@@ -53,7 +64,13 @@ public class Compania extends Casillero {
 	public void vender(Jugador jugador) {
 		int monto = this.precioCompania * (85/100);
 		jugador.entregarDinero(monto);
-		this.propietario = new PropietarioNull();
-		
+		this.propietario = new PropietarioNull();	
 	}
+	
+	@Override
+	public boolean sosComprable() {
+		return !(this.tienePropietario());
+	}
+
+	
 }

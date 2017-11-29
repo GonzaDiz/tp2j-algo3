@@ -28,4 +28,14 @@ public class Encarcelado implements EstadoJugador {
 		turno.terminarTurno(jugador);
 	}
 
+	@Override
+	public boolean puedoPagarFianza() {
+		return false;
+	}
+
+	@Override
+	public boolean noPuedoTirarDados() {
+		return true;
+	}
+
 }

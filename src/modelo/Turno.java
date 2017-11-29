@@ -24,12 +24,17 @@ public class Turno {
 	}
 
 	public Jugador proximoJugador() {
-		Jugador proximoJugador = jugadores.removeFirst();
+		Jugador proximoJugador = jugadores.getFirst();
 		proximoJugador.esTuTurno();
 		return proximoJugador;
 	}
+	
+	public Jugador jugadorConTurno() {
+		return jugadores.getFirst();
+	}
 
 	public void terminarTurno(Jugador jugador) {
+		jugadores.removeFirst();
 		jugadores.addLast(jugador);
 	}
 
@@ -41,6 +46,6 @@ public class Turno {
 	}
 
 	public void asignarTurnoExtra(Jugador jugador) {
-		jugadores.addFirst(jugador);
+		//jugadores.addFirst(jugador);
 	}
 }

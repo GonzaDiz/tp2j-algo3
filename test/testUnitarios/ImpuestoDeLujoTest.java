@@ -14,7 +14,7 @@ public class ImpuestoDeLujoTest {
 		ImpuestoDeLujo c1 = new ImpuestoDeLujo();
 		int capital = j1.capitalTotal();
 		j1.caerEnCasillero(c1);
-		Assert.assertEquals(capital - capital*(10/100), j1.capitalTotal());
+		Assert.assertEquals(capital - (capital * 10 / 100), j1.capitalTotal());
 	}
 
 }

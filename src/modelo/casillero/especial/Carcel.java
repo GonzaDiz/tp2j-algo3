@@ -1,6 +1,7 @@
 package modelo.casillero.especial;
 
 import modelo.casillero.Casillero;
+import modelo.excepciones.NoEsUnCasilleroComprableError;
 import modelo.jugador.Jugador;
 
 public class Carcel extends Casillero {
@@ -25,5 +26,14 @@ public class Carcel extends Casillero {
 		jugador.liberar();
 	}
 
+	@Override
+	public void comprar(Jugador unJugador) {
+		throw new NoEsUnCasilleroComprableError("El casillero en el que se encuentra no puede ser comprado");
+	}
+	
+	@Override
+	public boolean sosComprable() {
+		return false;
+	}
 	
 }

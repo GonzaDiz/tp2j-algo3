@@ -27,4 +27,14 @@ public class EncarceladoTurno3 implements EstadoJugador {
 	public void terminarTurno(Turno turno, Jugador jugador) {
 		turno.terminarTurno(jugador);
 	}
+
+	@Override
+	public boolean puedoPagarFianza() {
+		return true;
+	}
+
+	@Override
+	public boolean noPuedoTirarDados() {
+		return true;
+	}
 }

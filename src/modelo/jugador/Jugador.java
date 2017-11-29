@@ -2,6 +2,7 @@ package modelo.jugador;
 
 import java.util.ArrayList;
 
+import modelo.Posicion;
 import modelo.SinTiro;
 import modelo.TiroDeDados;
 import modelo.Turno;
@@ -196,5 +197,27 @@ public class Jugador {
 	public int arrojaDados(Turno turno) {
 		return turno.arrojarDados(this);
 	}
+
+	public Posicion getPosicion() {
+
+		return this.casilleroActual.getPosicion();
+	}
+
+	public boolean podesPagarFianza() {
+		return this.estado.puedoPagarFianza();
+	}
+
+	public boolean noPuedeTirarDados() {
+		return this.estado.noPuedoTirarDados();
+	}
+
+	public void comprarCasilleroActual() {
+		this.casilleroActual.comprar(this);		
+	}
+
+	public boolean estasEnUnCasilleroComprable() {
+		return this.casilleroActual.sosComprable();
+	}
+
 
 }

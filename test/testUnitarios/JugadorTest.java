@@ -2,6 +2,8 @@ package testUnitarios;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -127,9 +129,11 @@ public class JugadorTest {
 	@Test (expected = NoSePuedeDesplazarJugadorEncarceladoException.class)
 	public void testUnJugadorEncarceladoIntentaDesplazarse5CasillerosYSeLanzaNoSePuedeDesplazarJugadorEnCarcelException() {
 		Jugador jugador = new Jugador("Ariel");
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		armador.armarTablero(tablero, jugadores);
 		jugador.encarcelar();
 		jugador.desplazar(5);
 	}
@@ -139,7 +143,9 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Ariel");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		Carcel carcel = new Carcel();
 		jugador.caerEnCasillero(carcel);
 		jugador.esTuTurno();
@@ -154,7 +160,9 @@ public class JugadorTest {
 		Jugador jugador = new Jugador("Amado Budou");
 		Tablero tablero = Tablero.getInstance();
 		ArmadorDeTablero armador = new ArmadorDeTablero();
-		armador.armarTablero(tablero);
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		jugadores.add(jugador);
+		armador.armarTablero(tablero, jugadores);
 		Carcel carcel = new Carcel();
 		Policia policia = new Policia(carcel);
 		jugador.caerEnCasillero(policia);
