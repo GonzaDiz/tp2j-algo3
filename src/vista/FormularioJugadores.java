@@ -1,4 +1,6 @@
 package vista;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,6 +14,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+
+import modelo.Algopoly;
+import modelo.jugador.Jugador;
 
 public class FormularioJugadores extends Application {
 
@@ -123,6 +128,28 @@ public class FormularioJugadores extends Application {
                 
 
                 showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registro Exitoso", "Bienvenidos " + nameField.getText()+ "   " + nameField2.getText() + "    " + nameField3.getText() );
+              
+                ArrayList<Jugador> jugadores = new ArrayList<>();
+                if(!nameField.getText().isEmpty()) {
+                    
+                	Jugador jugador1 = new Jugador(nameField.getText());
+                	jugadores.add(jugador1);
+                }
+if(!nameField2.getText().isEmpty()) {
+                    
+                	Jugador jugador2 = new Jugador(nameField2.getText());
+                	jugadores.add(jugador2);
+                }
+if(!nameField3.getText().isEmpty()) {
+    
+	Jugador jugador3 = new Jugador(nameField3.getText());
+	jugadores.add(jugador3);
+}
+             
+				
+                mostarContenedor2(jugadores);
+               
+				
             }
         });
     }
@@ -135,6 +162,35 @@ public class FormularioJugadores extends Application {
         alert.initOwner(owner);
         alert.show();
     }
+   
+    private void mostarContenedor2(	ArrayList<Jugador> jugadores) {
+    	Stage stage= new Stage();
+        stage.setTitle("Algopoly");
+        Algopoly algopoly = new Algopoly(jugadores);
+		
+        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage,algopoly);
+        Scene escenaJuego = new Scene(contenedorPrincipal);
+		stage.setScene(escenaJuego);
+		stage.setFullScreen(true);
+		stage.show();
+    }
+    
+    private Algopoly crearModelo() {
+		ArrayList<Jugador> jugadores = new ArrayList<>();
+		Jugador jugador1 = new Jugador("Ariel");
+		Jugador jugador2 = new Jugador("Gonzalo");
+		Jugador jugador3 = new Jugador("Uriel");
+		jugadores.add(jugador1);
+		jugadores.add(jugador2);
+		jugadores.add(jugador3);
+		
+		Algopoly algopoly = new Algopoly(jugadores);
+		
+		return algopoly;
+	}
+   
+
+    
 
     public static void main(String[] args) {
         launch(args);
