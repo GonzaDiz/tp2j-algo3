@@ -1,20 +1,22 @@
 package vista;
 
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import modelo.jugador.Jugador;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import modelo.jugador.Jugador;
 
 public class VistaInformacionJugador  {
 	
 	private Jugador jugador;
 	VBox vbox;
+	private Color color;
 	
 	
-	public VistaInformacionJugador(Jugador jugador, VBox boxInfo) {		
+	public VistaInformacionJugador(Jugador jugador, VBox boxInfo, Color color) {		
 		this.jugador = jugador;
 		this.vbox = boxInfo;
+		this.color = color;
 		this.update();
 	}
 
@@ -24,7 +26,7 @@ public class VistaInformacionJugador  {
 		
 		Text nombre = new Text();
 		Font font = new Font(20);	  		
-		nombre.setFill(Color.RED);
+		nombre.setFill(this.color);
 		nombre.setFont(font);
 		nombre.setText(this.jugador.tuNombreEs());
 		

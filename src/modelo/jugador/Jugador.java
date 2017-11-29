@@ -211,4 +211,13 @@ public class Jugador {
 		return this.estado.noPuedoTirarDados();
 	}
 
+	public void comprarCasilleroActual() {
+		this.casilleroActual.comprar(this);		
+	}
+
+	public boolean estasEnUnCasilleroComprable() {
+		return this.casilleroActual.sosComprable();
+	}
+
+
 }

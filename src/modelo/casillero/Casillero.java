@@ -9,6 +9,8 @@ public abstract class Casillero {
 	protected Posicion posicion;
 	
 	public abstract void afectarJugador(Jugador unJugador);
+	public abstract void comprar(Jugador unJugador);
+	public abstract boolean sosComprable();
 	
 	// Se podria crear un constructor que recibe un nombre como parametro para diferenciar de casilleros iguales
 	public boolean sos(Casillero unCasillero) {
@@ -26,5 +28,8 @@ public abstract class Casillero {
 	public Posicion getPosicion() {
 		return this.posicion;
 	}
+
+
+	
 	
 }

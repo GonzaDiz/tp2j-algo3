@@ -42,6 +42,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
 		//this.jugador.arrojaDados(algopoly.getTurno());
 		this.vista.update();
 		this.botonera.actualizarInformacionJugadores();
+		this.botonera.actualizarBotonComprar();
 //		this.vistaInformacionJugadores.update();
 //		for (Jugador jugador : this.algopoly.getJugadores()) {
 //			vistaInformacionJugadores.get(jugador).update();

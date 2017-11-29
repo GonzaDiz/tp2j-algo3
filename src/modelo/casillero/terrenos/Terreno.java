@@ -40,6 +40,11 @@ public abstract class Terreno extends Casillero {
 		}
 	}
 	
+	@Override
+	public void comprar(Jugador unJugador) {
+		this.venderTerrenoA(unJugador);
+	}
+	
 	public boolean tienePropietario() {
 		return this.propietario.sosPropietario();
 	}
@@ -84,5 +89,10 @@ public abstract class Terreno extends Casillero {
 		jugador.entregarDinero(monto);
 		this.demolerConstrucciones();
 		this.propietario = new PropietarioNull();
+	}
+	
+	@Override
+	public boolean sosComprable() {
+		return !this.tienePropietario();
 	}
 }

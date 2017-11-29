@@ -3,6 +3,7 @@ package modelo.jugador;
 import modelo.Tablero;
 import modelo.Turno;
 import modelo.casillero.especial.Carcel;
+import modelo.excepciones.NoEstasEncarceladoException;
 
 public class TurnoExtra implements EstadoJugador {
 	
@@ -23,6 +24,7 @@ public class TurnoExtra implements EstadoJugador {
 
 	@Override
 	public void pagarFianza(Jugador jugador, Carcel unaCarcel) {
+		throw new NoEstasEncarceladoException();
 	}
 
 	@Override

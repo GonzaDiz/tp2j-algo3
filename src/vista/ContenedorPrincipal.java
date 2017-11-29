@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -15,6 +16,8 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import modelo.Algopoly;
 import modelo.jugador.Jugador;
@@ -38,9 +41,23 @@ public class ContenedorPrincipal extends BorderPane {
 		this.colores.push(Color.GREEN);
 		this.setInformacionJugadores(algopoly.getJugadores());
 		this.setCentro(algopoly.getJugadores());
-		this.setBotonera(algopoly);		
+		this.setBotonera(algopoly);
+		this.setConsola();
 	}
 	
+	private void setConsola() {
+		 Label etiqueta = new Label();
+	     etiqueta.setText("Consola");
+	     etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+	     etiqueta.setTextFill(Color.WHITE);
+	     VBox contenedorConsola = new VBox(etiqueta);
+	     contenedorConsola.setSpacing(10);
+	     contenedorConsola.setPadding(new Insets(15));
+	     contenedorConsola.setStyle("-fx-background-color: black;");
+	     this.setBottom(contenedorConsola);
+		
+	}
+
 	private void setBotonera(Algopoly algopoly) {
 		
 		Botonera botonera = new Botonera(algopoly,vistaJugadores,vistaInformacionJugadores);
@@ -73,7 +90,7 @@ public class ContenedorPrincipal extends BorderPane {
 	}
 
 	private void setInformacionJugadores(ArrayList<Jugador> jugadores) {
-		this.vistaInformacionJugadores = new VistaInformacionJugadores(jugadores);
+		this.vistaInformacionJugadores = new VistaInformacionJugadores(jugadores, this.colores);
 		VBox contendeorVertical = this.vistaInformacionJugadores.getContenedorVerticalConInformacion();
 		this.setRight(contendeorVertical);
 //		this.vistaInformacionJugadores = new ConcurrentHashMap<>();
