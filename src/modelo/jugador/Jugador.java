@@ -219,5 +219,18 @@ public class Jugador {
 		return this.casilleroActual.sosComprable();
 	}
 
+	public void rendirse() {
+		for(Compania c: this.companiasCompradas) {
+			c.entregarPropiedad();
+		}
+		
+		for(Terreno t: this.terrenosComprados) {
+			t.entregarPropiedad();
+		}
+		
+		this.companiasCompradas.clear();
+		this.terrenosComprados.clear();
+	}
+
 
 }

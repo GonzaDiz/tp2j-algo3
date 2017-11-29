@@ -2,6 +2,7 @@ package vista;
 
 import controlador.BotonComprarHandler;
 import controlador.BotonPagarFianzaHandler;
+import controlador.BotonRendirseHandler;
 import controlador.BotonTerminarTurnoHandler;
 import controlador.BotonTirarDadosHandler;
 import javafx.scene.control.Button;
@@ -21,6 +22,7 @@ public class Botonera {
 	Button botonTerminarTurno;
 	Button botonPagarFianza;
 	Button botonComprar;
+	Button botonRendirse;
 	
 	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,VistaInformacionJugadores vistaInformacionJugadores) {
 		this.algopoly = algopoly;
@@ -32,6 +34,14 @@ public class Botonera {
 		this.crearBotonTerminarTurno();
 		this.crearBotonPagarFianza();
 		this.crearBotonComprar();
+		this.crearBotonRendirse();
+	}
+
+	private void crearBotonRendirse() {
+		this.botonRendirse = new Button();
+		this.botonRendirse.setText("Rendirse");
+		BotonRendirseHandler botonrRendirseHandler = new BotonRendirseHandler(this.algopoly, this);
+		this.botonRendirse.setOnAction(botonrRendirseHandler); 
 	}
 
 	private void crearBotonComprar() {
@@ -45,7 +55,7 @@ public class Botonera {
 	private void crearBotonTirarDados() {
 		this.botonTirarDados = new Button();
 		this.botonTirarDados.setText("Tirar Dados");
-		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(this.vistaJugadores,this.algopoly,this.jugadorConTurno, this);
+		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(this.algopoly, this);
 		this.botonTirarDados.setOnAction(botonTirarDadosHandler);
 	}
 	
@@ -70,7 +80,8 @@ public class Botonera {
 									this.botonTirarDados,
 									this.botonTerminarTurno, 
 									this.botonPagarFianza,
-									this.botonComprar);
+									this.botonComprar,
+									this.botonRendirse);
 		return contenedorVertical;
 	}
 	
@@ -87,9 +98,6 @@ public class Botonera {
 		}
 		
 		this.actualizarBotonComprar();
-		
-		BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly,this.jugadorConTurno, this);
-		this.botonTirarDados.setOnAction(botonTirarDadosHandler);
 	}
 
 	public void deshabilitarBotonTirarDados() {
@@ -125,5 +133,16 @@ public class Botonera {
 		if(this.jugadorConTurno.estasEnUnCasilleroComprable()) {
 			this.botonComprar.setDisable(false);
 		}
+	}
+
+	public void eliminarJugador(Jugador jugadorRendido) {
+		this.vistaJugadores.eliminar(jugadorRendido);
+		this.algopoly.eliminarJugador(jugadorRendido);
+		this.vistaInformacionJugadores.eliminar(jugadorRendido);
+
+	}
+
+	public void actualizarVistaJugadores() {
+		this.vistaJugadores.update();
 	}
 }

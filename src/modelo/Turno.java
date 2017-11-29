@@ -48,4 +48,8 @@ public class Turno {
 	public void asignarTurnoExtra(Jugador jugador) {
 		//jugadores.addFirst(jugador);
 	}
+
+	public void eliminarJugador(Jugador jugadorRendido) {
+		this.jugadores.remove(jugadorRendido);
+	}
 }

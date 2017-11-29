@@ -56,4 +56,9 @@ public class Algopoly {
 		return (Carcel) this.tablero.getCasillero(new Carcel());
 	}
 
+	public void eliminarJugador(Jugador jugadorRendido) {
+		this.jugadores.remove(jugadorRendido);
+		this.turno.eliminarJugador(jugadorRendido);
+	}
+
 }

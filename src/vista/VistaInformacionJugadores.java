@@ -41,4 +41,9 @@ public class VistaInformacionJugadores {
 			mapa.get(jugador).update();
 		}
 	}
+
+	public void eliminar(Jugador jugadorRendido) {
+		jugadores.remove(jugadorRendido);
+		this.mapa.remove(jugadorRendido);
+	}
 }

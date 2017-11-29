@@ -9,48 +9,24 @@ import vista.VistaJugadores;
 
 public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
 	
-	private VistaJugadores vista;
-	private Jugador jugador;
+
 	private Algopoly algopoly;
 	private Botonera botonera;
-//	private Turno turno;
-	
-	public BotonTirarDadosHandler(
-			VistaJugadores vista,
-			Algopoly algopoly, 
-			Jugador jugador,
-			Botonera botonera) { 
-//		this.vista = vista;
-//		this.algopoly = algopoly;
-		//this.jugador = algopoly.getProximoJugadorConTurno();
-//		this.jugador = algopoly.getJugadorConTurno();
-//		this.turno = algopoly.getTurno();
-//		this.vistaInformacionJugadores = vistaInformacionJugadores;
-		this.jugador = jugador;
+
+	public BotonTirarDadosHandler(Algopoly algopoly, Botonera botonera) { 
 		this.algopoly = algopoly;
-		this.vista = vista;
 		this.botonera = botonera;
 	}
 	
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		//this.algopoly.getJugadorConTurno().arrojaDados(algopoly.getTurno());
-		this.jugador.arrojaDados(algopoly.getTurno());
+		this.algopoly.getJugadorConTurno().arrojaDados(algopoly.getTurno());
 		this.botonera.deshabilitarBotonTirarDados();
 		this.botonera.habilitarBotonTerminarTurno();
-	
-		//this.jugador.arrojaDados(algopoly.getTurno());
-		this.vista.update();
+		this.botonera.actualizarVistaJugadores();
 		this.botonera.actualizarInformacionJugadores();
 		this.botonera.actualizarBotonComprar();
-//		this.vistaInformacionJugadores.update();
-//		for (Jugador jugador : this.algopoly.getJugadores()) {
-//			vistaInformacionJugadores.get(jugador).update();
-//		}
-		//this.jugador.terminarTurno(this.turno); //TODO crear boton terminarturno
-		
-		//this.jugador = this.algopoly.getProximoJugadorConTurno();
-		//this.turno = this.algopoly.getTurno();
+
 	}
 
 }
