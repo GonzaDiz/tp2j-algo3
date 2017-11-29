@@ -26,7 +26,7 @@ public class VistaInformacionJugador  {
        
 		Text nombre = new Text();
         Font font = new Font(20);	  		
-		nombre.setFill(Color.RED);
+		nombre.setFill(jugador.getColor());
 		nombre.setFont(font);
 		nombre.setText(this.jugador.tuNombreEs());
 		

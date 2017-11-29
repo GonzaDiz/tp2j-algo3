@@ -2,6 +2,7 @@ package modelo.jugador;
 
 import java.util.ArrayList;
 
+import javafx.scene.paint.Color;
 import modelo.Posicion;
 import modelo.SinTiro;
 import modelo.TiroDeDados;
@@ -23,6 +24,7 @@ public class Jugador {
 	private ArrayList<Compania> companiasCompradas;
 	private Casillero casilleroActual;
 	private ArrayList<RestriccionDeIntercambio> restriccionesDeIntercambio;
+	private Color color;
 	
 	
 	public Jugador(String unNombre) {
@@ -48,7 +50,14 @@ public class Jugador {
 		this.casilleroActual = unCasillero;
 		unCasillero.afectarJugador(this);	
 	}
+	
+	public void setColor(Color unColor) {
+		this.color = unColor;		
+	}
 
+	public Color getColor(){
+		return (this.color);		
+	}
 	public void entregarDinero(int unMonto) {
 		this.capital += unMonto;
 	}

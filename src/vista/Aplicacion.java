@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelo.Algopoly;
 import modelo.jugador.Jugador;
@@ -33,6 +34,9 @@ public class Aplicacion extends Application {
 		Jugador jugador1 = new Jugador("Ariel");
 		Jugador jugador2 = new Jugador("Gonzalo");
 		Jugador jugador3 = new Jugador("Uriel");
+		jugador1.setColor(Color.RED);
+		jugador2.setColor(Color.BLUE);
+		jugador3.setColor(Color.GREEN);
 		jugadores.add(jugador1);
 		jugadores.add(jugador2);
 		jugadores.add(jugador3);
