@@ -93,6 +93,11 @@ public abstract class Terreno extends Casillero {
 	
 	@Override
 	public boolean sosComprable() {
-		return !this.tienePropietario();
+		return !(this.tienePropietario());
+	}
+
+	public void entregarPropiedad() {
+		this.demolerConstrucciones();
+		this.propietario = new PropietarioNull();
 	}
 }

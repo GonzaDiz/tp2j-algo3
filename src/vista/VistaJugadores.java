@@ -51,4 +51,10 @@ public class VistaJugadores {
 		this.dibujar();
 	}
 
+	public void eliminar(Jugador jugadorRendido) {
+		int index = this.jugadores.indexOf(jugadorRendido);
+		this.jugadores.remove(jugadorRendido);
+		this.colores.remove(index);
+	}
+
 }

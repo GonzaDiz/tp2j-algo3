@@ -72,5 +72,9 @@ public class Compania extends Casillero {
 		return !(this.tienePropietario());
 	}
 
+	public void entregarPropiedad() {
+		this.propietario = new PropietarioNull();
+	}
+
 	
 }
