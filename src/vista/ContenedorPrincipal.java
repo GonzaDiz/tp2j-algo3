@@ -31,7 +31,7 @@ public class ContenedorPrincipal extends BorderPane {
 	LinkedList<Color> colores;
 	VistaJugadores vistaJugadores;
 	VistaInformacionJugadores vistaInformacionJugadores;
-	//ConcurrentHashMap<Jugador, VistaInformacionJugador> vistaInformacionJugadores;
+	BarraDeMenu menuBar;
 
 	
 	public ContenedorPrincipal(Stage stage, Algopoly algopoly) {
@@ -43,7 +43,13 @@ public class ContenedorPrincipal extends BorderPane {
 		this.setCentro(algopoly.getJugadores());
 		this.setBotonera(algopoly);
 		this.setConsola();
+		this.setMenu(algopoly);
 	}
+	
+	private void setMenu(Algopoly algopoly) {
+        this.menuBar = new BarraDeMenu(algopoly, this.vistaInformacionJugadores);
+        this.setTop(menuBar);
+    }
 	
 	private void setConsola() {
 		 Label etiqueta = new Label();

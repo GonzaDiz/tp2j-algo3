@@ -18,6 +18,12 @@ public  class TerrenoSimple extends Terreno{
 	}
 	
 	
+	public TerrenoSimple(String nombreTerrenoSimple) {
+		super();
+		this.nombreCasillero = nombreTerrenoSimple;
+	}
+
+
 	@Override
 	public void construirCasaPor(Jugador jugador) {
 		this.restricciones.add(new RestriccionDeConstruccionPorPropiedad(this, jugador));

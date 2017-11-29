@@ -32,6 +32,11 @@ public class TerrenoDoble extends Terreno {
 		this.alquiler = alquiler;
 	}
 	
+	public TerrenoDoble(String nombreTerrenoDoble) {
+		super();
+		this.nombreCasillero = nombreTerrenoDoble;
+	}
+
 	@Override
 	public void cobrarAlquilerA(Jugador unJugador) {
 		int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadDeCasas(), this.cantidadDeHoteles());

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import modelo.casillero.especial.Carcel;
 import modelo.casillero.especial.Salida;
+import modelo.casillero.terrenos.TerrenoDoble;
+import modelo.casillero.terrenos.TerrenoSimple;
 import modelo.jugador.Jugador;
 
 public class Algopoly {
@@ -59,6 +61,14 @@ public class Algopoly {
 	public void eliminarJugador(Jugador jugadorRendido) {
 		this.jugadores.remove(jugadorRendido);
 		this.turno.eliminarJugador(jugadorRendido);
+	}
+
+	public TerrenoSimple getTerrenoSimple(String nombreTerrenoSimple) {
+		return (TerrenoSimple) this.tablero.getCasillero(new TerrenoSimple(nombreTerrenoSimple));
+	}
+	
+	public TerrenoDoble getTerrenoDoble(String nombreTerrenoDoble) {
+		return (TerrenoDoble) this.tablero.getCasillero(new TerrenoDoble(nombreTerrenoDoble));
 	}
 
 }

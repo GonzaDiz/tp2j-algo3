@@ -23,7 +23,7 @@ public class Tablero {
 	public Casillero getCasilleroPorDesplazamiento(Casillero casilleroActual, int valorDesplazamiento) {
 		int posicionActual = casilleros.indexOf(casilleroActual);
 		
-		if(posicionActual + valorDesplazamiento > casilleros.size()){
+		if(posicionActual + valorDesplazamiento >= casilleros.size()){
 			return casilleros.get(valorDesplazamiento - (casilleros.size() - posicionActual));
 		}
 		return casilleros.get(posicionActual + valorDesplazamiento);
