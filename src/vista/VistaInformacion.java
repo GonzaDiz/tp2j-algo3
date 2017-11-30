@@ -23,7 +23,8 @@ public class VistaInformacion  {
 	public VistaInformacion(Jugador jugador, VBox boxInfo, Color color) {		
 		this.jugador = jugador;
 		this.vbox = boxInfo;
-		this.color = color;
+		//this.color = color;
+		this.color= jugador.tuColorEs();
 		this.update();
 	}
 
@@ -34,7 +35,9 @@ public class VistaInformacion  {
 		
 		Text nombre = new Text();
 		Font font = new Font(30);	  		
-		nombre.setFill(this.color);
+		
+		//nombre.setFill(this.color);
+		nombre.setFill(jugador.tuColorEs());
 		nombre.setFont(font);
 		nombre.setText(this.jugador.tuNombreEs());
 		

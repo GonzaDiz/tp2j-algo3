@@ -2,6 +2,7 @@ package modelo.jugador;
 
 import java.util.ArrayList;
 
+import javafx.scene.paint.Color;
 import modelo.Posicion;
 import modelo.SinTiro;
 import modelo.TiroDeDados;
@@ -23,6 +24,7 @@ public class Jugador {
 	private ArrayList<Compania> companiasCompradas;
 	private Casillero casilleroActual;
 	private ArrayList<RestriccionDeIntercambio> restriccionesDeIntercambio;
+	private Color color;
 	
 	
 	public Jugador(String unNombre) {
@@ -35,7 +37,17 @@ public class Jugador {
 		this.ultimaTirada = new SinTiro();
 		
 	}
-	
+	public Jugador(String unNombre, Color unColor) {
+		this.nombre = unNombre;
+		this.capital = 100000;
+		this.estado = new Libre();
+		this.terrenosComprados = new ArrayList<Terreno>();
+		this.companiasCompradas = new ArrayList<Compania>();
+		this.restriccionesDeIntercambio = new ArrayList<RestriccionDeIntercambio>();
+		this.ultimaTirada = new SinTiro();
+		this.color=unColor;
+		
+	}
 
 	public String tuNombreEs() {
 		return nombre;
@@ -44,7 +56,9 @@ public class Jugador {
 	public int capitalTotal() {
 		return capital;
 	}
-
+	public Color tuColorEs() {
+		return color;
+	}
 	public void caerEnCasillero(Casillero unCasillero) {
 		this.casilleroActual = unCasillero;
 		unCasillero.afectarJugador(this);	

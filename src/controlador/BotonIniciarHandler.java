@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import modelo.jugador.Jugador;
@@ -45,17 +46,17 @@ public class BotonIniciarHandler implements EventHandler<ActionEvent> {
 		ArrayList<Jugador> jugadores = new ArrayList<>();
 		if (!nameField.getText().isEmpty()) {
 
-			Jugador jugador1 = new Jugador(nameField.getText());
+			Jugador jugador1 = new Jugador(nameField.getText(), Color.RED);
 			jugadores.add(jugador1);
 		}
 		if (!nameField2.getText().isEmpty()) {
 
-			Jugador jugador2 = new Jugador(nameField2.getText());
+			Jugador jugador2 = new Jugador(nameField2.getText(), Color.BLUE);
 			jugadores.add(jugador2);
 		}
 		if (!nameField3.getText().isEmpty()) {
 
-			Jugador jugador3 = new Jugador(nameField3.getText());
+			Jugador jugador3 = new Jugador(nameField3.getText(),Color.GREEN);
 			jugadores.add(jugador3);
 		}
 

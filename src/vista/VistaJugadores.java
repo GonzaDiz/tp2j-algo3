@@ -35,10 +35,10 @@ public class VistaJugadores {
 		for (Jugador jugador : this.jugadores) {
 			x = jugador.getPosicion().getX();
 			y = jugador.getPosicion().getY();
-			color = colores.pop();
-			canvas.getGraphicsContext2D().setFill(color);
+			//color = colores.pop();
+			canvas.getGraphicsContext2D().setFill(jugador.tuColorEs());
 			canvas.getGraphicsContext2D().fillOval(x, y, 50, 50);
-			colores.addLast(color);
+			//colores.addLast(color);
 		}
 		
 	}
