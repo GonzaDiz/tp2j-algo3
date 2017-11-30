@@ -21,8 +21,11 @@ import modelo.Algopoly;
 import modelo.jugador.Jugador;
 
 public class FormularioJugadores extends Application {
+	
 
     @Override
+    
+    
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Registro de Jugadores");
 
@@ -150,7 +153,7 @@ if(!nameField3.getText().isEmpty()) {
              
 				
                 mostarContenedor2(jugadores);
-               
+             
 				
             }
         });
@@ -177,19 +180,7 @@ if(!nameField3.getText().isEmpty()) {
 		stage.show();
     }
     
-    private Algopoly crearModelo() {
-		ArrayList<Jugador> jugadores = new ArrayList<>();
-		Jugador jugador1 = new Jugador("Ariel");
-		Jugador jugador2 = new Jugador("Gonzalo");
-		Jugador jugador3 = new Jugador("Uriel");
-		jugadores.add(jugador1);
-		jugadores.add(jugador2);
-		jugadores.add(jugador3);
-		
-		Algopoly algopoly = new Algopoly(jugadores);
-		
-		return algopoly;
-	}
+   
    
 
     

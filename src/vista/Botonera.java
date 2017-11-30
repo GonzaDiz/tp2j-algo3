@@ -3,6 +3,7 @@ package vista;
 import controlador.BotonComprarHandler;
 import controlador.BotonPagarFianzaHandler;
 import controlador.BotonRendirseHandler;
+import controlador.BotonTerminarJuegoHandler;
 import controlador.BotonTerminarTurnoHandler;
 import controlador.BotonTirarDadosHandler;
 import javafx.scene.control.Button;
@@ -23,6 +24,11 @@ public class Botonera {
 	Button botonPagarFianza;
 	Button botonComprar;
 	Button botonRendirse;
+<<<<<<< HEAD
+=======
+	Button botonConstruirCasa;
+	Button terminarJuego;
+>>>>>>> bf0624be6a68f36aef298b1f7a37a14d0a48384f
 	
 	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,VistaInformacionJugadores vistaInformacionJugadores) {
 		this.algopoly = algopoly;
@@ -35,6 +41,24 @@ public class Botonera {
 		this.crearBotonPagarFianza();
 		this.crearBotonComprar();
 		this.crearBotonRendirse();
+<<<<<<< HEAD
+=======
+		this.crearBotonConstruirCasa();
+		this.crearBotonTermminarJuego();
+	}
+	private void crearBotonTermminarJuego() {
+		this.terminarJuego = new Button();
+		this.terminarJuego.setText("Terminar Jueego");
+		BotonTerminarJuegoHandler botonTerminarJuegoHandler = new BotonTerminarJuegoHandler(this.algopoly, this);
+		this.terminarJuego.setOnAction(botonTerminarJuegoHandler);
+	}
+
+	private void crearBotonConstruirCasa() {
+		this.botonConstruirCasa = new Button();
+		this.botonConstruirCasa.setText("Construir casa");
+		BotonConstruirCasaHandler botonConstruirCasaHandler = new BotonConstruirCasaHandler(this.algopoly, this);
+		this.botonConstruirCasa.setOnAction(botonConstruirCasaHandler);
+>>>>>>> bf0624be6a68f36aef298b1f7a37a14d0a48384f
 	}
 
 	private void crearBotonRendirse() {
@@ -81,7 +105,8 @@ public class Botonera {
 									this.botonTerminarTurno, 
 									this.botonPagarFianza,
 									this.botonComprar,
-									this.botonRendirse);
+									this.botonRendirse,
+									this.terminarJuego);
 		return contenedorVertical;
 	}
 	
