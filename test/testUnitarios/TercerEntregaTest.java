@@ -102,7 +102,7 @@ public class TercerEntregaTest {
 		jugador.comprarCompania(aysa);
 		int capital = jugador.capitalTotal();
 		jugador.venderCompania(aysa);
-		Assert.assertEquals(capital + (85/100 * costoAysa), jugador.capitalTotal());
+		Assert.assertEquals(capital + (costoAysa * 85)/100, jugador.capitalTotal());
 	}
 	
 	@Test

@@ -66,7 +66,7 @@ public class Compania extends Casillero {
 	}
 
 	public void vender(Jugador jugador) {
-		int monto = this.precioCompania * (85/100);
+		int monto = this.precioCompania * 85/100;
 		jugador.entregarDinero(monto);
 		this.propietario = new PropietarioNull();	
 	}
