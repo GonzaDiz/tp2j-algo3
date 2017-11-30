@@ -8,8 +8,9 @@ import controlador.BotonTerminarJuegoHandler;
 import controlador.BotonTerminarTurnoHandler;
 import controlador.BotonTirarDadosHandler;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Algopoly;
@@ -33,14 +34,17 @@ public class Botonera {
 	Button botonPagarDeuda;
 	Button terminarJuego;
 	private Stage stage;
+	private Label consola;
 
 	
-	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,VistaInformacionJugadores vistaInformacionJugadores, Stage stage) {
+	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,VistaInformacionJugadores vistaInformacionJugadores, Stage stage, Label consola) {
 		this.algopoly = algopoly;
 		this.jugadorConTurno = algopoly.proximoJugador();
 		this.vistaJugadores = vistaJugadores;
 		this.vistaInformacionJugadores = vistaInformacionJugadores;
 		this.stage = stage;
+		this.consola = consola;
+		this.consola.setText(jugadorConTurno.tuNombreEs() + " es tu turno. ");
 		this.crearBotonTirarDados();
 		this.crearBotonTerminarTurno();
 		this.crearBotonPagarFianza();
@@ -118,6 +122,7 @@ public class Botonera {
 	
 	public void update() {
 		this.jugadorConTurno = algopoly.proximoJugador(); // Aca le envia esTuTurno()
+		this.consola.setText(jugadorConTurno.tuNombreEs() + " es tu turno. ");
 //		
 //		if(this.jugadorConTurno.podesPagarFianza()) {
 //			this.botonPagarFianza.setDisable(false);

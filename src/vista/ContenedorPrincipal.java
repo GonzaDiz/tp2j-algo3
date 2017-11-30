@@ -35,6 +35,7 @@ public class ContenedorPrincipal extends BorderPane {
 	private BarraDeMenu menuBar;
 	private Botonera botonera;
 	private Stage stage;
+	private Label etiqueta;
 
 	
 	public ContenedorPrincipal(Stage stage, Algopoly algopoly) {
@@ -43,10 +44,10 @@ public class ContenedorPrincipal extends BorderPane {
 		this.colores.push(Color.RED);
 		this.colores.push(Color.BLUE);
 		this.colores.push(Color.GREEN);
+		this.setConsola();
 		this.setInformacionJugadores(algopoly.getJugadores());
 		this.setCentro(algopoly.getJugadores());
 		this.setBotonera(algopoly);
-		this.setConsola();
 		this.setMenu(algopoly);
 		stage.setHeight(800);
 		stage.setWidth(800);
@@ -60,7 +61,7 @@ public class ContenedorPrincipal extends BorderPane {
     }
 	
 	private void setConsola() {
-		 Label etiqueta = new Label();
+		 this.etiqueta = new Label();
 	     etiqueta.setText("Consola");
 	     etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
 	     etiqueta.setTextFill(Color.WHITE);
@@ -74,7 +75,7 @@ public class ContenedorPrincipal extends BorderPane {
 
 	private void setBotonera(Algopoly algopoly) {
 		
-		this.botonera = new Botonera(algopoly,this.vistaJugadores,this.vistaInformacionJugadores,this.stage);
+		this.botonera = new Botonera(algopoly,this.vistaJugadores,this.vistaInformacionJugadores,this.stage, this.etiqueta);
 		VBox contenedorVertical = this.botonera.getContenedor();
 		contenedorVertical.setSpacing(10);
 		contenedorVertical.setPadding(new Insets(15));
