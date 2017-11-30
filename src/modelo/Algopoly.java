@@ -76,4 +76,10 @@ public class Algopoly {
 		return (Compania) this.tablero.getCasillero(new Compania(nombreCompania));
 	}
 
+	public boolean hayGanador() {
+		if(this.jugadores.size()==1)
+			return true;
+		return false;
+	}
+
 }
