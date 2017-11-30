@@ -25,6 +25,7 @@ public class BotonRendirseHandler implements EventHandler<ActionEvent>{
 		jugadorRendido.rendirse();
 		this.botonera.eliminarJugador(jugadorRendido);
 		this.botonera.actualizarVistaJugadores();
+		this.botonera.deshabilitarBotonPagarDeuda();
 		this.botonera.update();
 	}
 

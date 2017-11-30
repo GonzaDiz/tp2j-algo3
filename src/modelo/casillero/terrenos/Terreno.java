@@ -87,7 +87,7 @@ public abstract class Terreno extends Casillero {
 	}
 
 	public  void vender(Jugador jugador) { 
-		int monto = this.valorTotal() * (85/100);
+		int monto = this.valorTotal() * 85/100;
 		jugador.entregarDinero(monto);
 		this.demolerConstrucciones();
 		this.propietario = new PropietarioNull();

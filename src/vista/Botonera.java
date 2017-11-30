@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.BotonComprarHandler;
+import controlador.BotonPagarDeudaHandler;
 import controlador.BotonPagarFianzaHandler;
 import controlador.BotonRendirseHandler;
 import controlador.BotonTerminarJuegoHandler;
@@ -46,8 +47,18 @@ public class Botonera {
 		this.crearBotonComprar();
 		this.crearBotonRendirse();
 		this.crearBotonTermminarJuego();
-	//	this.crearBotonPagarDeuda();
+		this.crearBotonPagarDeuda();
+		
 	}
+	
+	private void crearBotonPagarDeuda() {
+		this.botonPagarDeuda = new Button();
+		this.botonPagarDeuda.setText("Pagar deuda");
+		this.botonPagarDeuda.setDisable(true);
+		BotonPagarDeudaHandler botonPagarDeudaHandler = new BotonPagarDeudaHandler(this.algopoly, this);
+		this.botonPagarDeuda.setOnAction(botonPagarDeudaHandler);
+	}
+	
 	private void crearBotonTermminarJuego() {
 		this.terminarJuego = new Button();
 		this.terminarJuego.setText("Terminar Jueego");
@@ -100,6 +111,7 @@ public class Botonera {
 									this.botonPagarFianza,
 									this.botonComprar,
 									this.botonRendirse,
+									this.botonPagarDeuda,
 									this.terminarJuego);
 		return contenedorVertical;
 	}
@@ -176,5 +188,13 @@ public class Botonera {
 		alert.setContentText(mensaje);
 		alert.initOwner(this.stage);
 		alert.showAndWait();
+	}
+
+	public void deshabilitarBotonPagarDeuda() {
+		this.botonPagarDeuda.setDisable(true);
+	}
+
+	public void habilitarBotonPagarDeuda() {
+		this.botonPagarDeuda.setDisable(false);
 	}
 }

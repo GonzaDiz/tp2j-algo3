@@ -87,7 +87,7 @@ public class TercerEntregaTest {
 		
 		int capital = jugador.capitalTotal();
 		jugador.venderTerreno(saltaSur);
-		Assert.assertEquals(capital + ((85/100) * (costoSaltaSur + costoCasa)), jugador.capitalTotal());
+		Assert.assertEquals(capital + ((costoSaltaSur + costoCasa))*85/100, jugador.capitalTotal());
 	}
 	
 	@Test

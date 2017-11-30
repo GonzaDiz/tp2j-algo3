@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import modelo.Algopoly;
 import modelo.casillero.terrenos.TerrenoDoble;
+import modelo.excepciones.CapitalInsuficienteError;
 import modelo.excepciones.LimiteDeEdificacionesExcedidoError;
 import modelo.excepciones.NoSePuedeConstruirUnHotelEnUnTerrenoSinConstruirPrimeroTodasLasCasasPosiblesEnElTerrenoParejaError;
 import modelo.excepciones.NoSePuedeConstruirUnHotelEnUnTerrenoSinConstruirPrimeroTodasLasCasasPosiblesError;
@@ -54,8 +55,10 @@ public class ConstruirHotelHandler  implements EventHandler<ActionEvent>{
 		
 		catch(NoSePuedeConstruirUnHotelEnUnTerrenoSinConstruirPrimeroTodasLasCasasPosiblesEnElTerrenoParejaError e) {
 			this.barraDeMenu.mostrarAlerta("No puede construir hotel en este terreno", "Para construir un hotel debe primero construir todas las casas posibles en el terreno pareja.");
-
-			
+		}
+		
+		catch(CapitalInsuficienteError e) {
+			this.barraDeMenu.mostrarAlerta("No puede construir hotel en este terreno", "No dispone del capital necesario para construir un hotel aqui.");
 		}
 		
 	}

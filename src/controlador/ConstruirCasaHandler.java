@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import modelo.Algopoly;
 import modelo.casillero.terrenos.Terreno;
+import modelo.excepciones.CapitalInsuficienteError;
 import modelo.excepciones.LimiteDeEdificacionesExcedidoError;
 import modelo.excepciones.NoPuedeConstruirCasasEnUnTerrenoConHotelesError;
 import modelo.excepciones.SeNecesitanAmbosTerrenosParaEdificarEnUnTerrenoDobleError;
@@ -46,6 +47,10 @@ public class ConstruirCasaHandler implements EventHandler<ActionEvent>{
 		
 		catch(NoPuedeConstruirCasasEnUnTerrenoConHotelesError e) {
 			this.barraDeMenu.mostrarAlerta("No puede contruir casa en este terreno", "No puede construir una casa en un terreno que tiene edificados hoteles.");
+		}
+		
+		catch(CapitalInsuficienteError e) {
+			this.barraDeMenu.mostrarAlerta("No puede construir casa en este terreno", "No dispone del capital necesario para construir una casa aqui.");
 		}
 		
 	}

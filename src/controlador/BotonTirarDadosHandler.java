@@ -3,9 +3,8 @@ package controlador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import modelo.Algopoly;
-import modelo.jugador.Jugador;
+import modelo.excepciones.CapitalInsuficienteError;
 import vista.Botonera;
-import vista.VistaJugadores;
 
 public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
 	
@@ -20,12 +19,23 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
 	
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		this.algopoly.getJugadorConTurno().arrojaDados(algopoly.getTurno());
-		this.botonera.deshabilitarBotonTirarDados();
-		this.botonera.habilitarBotonTerminarTurno();
-		this.botonera.actualizarVistaJugadores();
-		this.botonera.actualizarInformacionJugadores();
-		this.botonera.actualizarBotonComprar();
+		try {
+			this.algopoly.getJugadorConTurno().arrojaDados(algopoly.getTurno());
+			this.botonera.deshabilitarBotonTirarDados();
+			this.botonera.habilitarBotonTerminarTurno();
+			this.botonera.actualizarVistaJugadores();
+			this.botonera.actualizarInformacionJugadores();
+			this.botonera.actualizarBotonComprar();
+		}
+		catch(CapitalInsuficienteError e) {
+			this.botonera.deshabilitarBotonTirarDados();
+			this.botonera.deshabilitarBotonTerminarTurno();
+			this.botonera.habilitarBotonPagarDeuda();
+			this.botonera.actualizarVistaJugadores();
+			this.botonera.actualizarInformacionJugadores();
+			this.botonera.actualizarBotonComprar();
+		}
+		
 
 	}
 
