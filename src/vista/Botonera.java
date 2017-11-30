@@ -29,6 +29,7 @@ public class Botonera {
 	Button botonComprar;
 	Button botonRendirse;
 	Button botonConstruirCasa;
+	Button botonPagarDeuda;
 	Button terminarJuego;
 	private Stage stage;
 
@@ -45,6 +46,7 @@ public class Botonera {
 		this.crearBotonComprar();
 		this.crearBotonRendirse();
 		this.crearBotonTermminarJuego();
+	//	this.crearBotonPagarDeuda();
 	}
 	private void crearBotonTermminarJuego() {
 		this.terminarJuego = new Button();
@@ -156,6 +158,10 @@ public class Botonera {
 		this.vistaJugadores.eliminar(jugadorRendido);
 		this.algopoly.eliminarJugador(jugadorRendido);
 		this.vistaInformacionJugadores.eliminar(jugadorRendido);
+		if(this.algopoly.hayGanador()) {
+			this.mostrarAlerta("GANADOR", this.algopoly.getJugadorConTurno().tuNombreEs());
+			System.exit(0);
+		}
 
 	}
 
