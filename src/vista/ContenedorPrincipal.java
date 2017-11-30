@@ -44,6 +44,10 @@ public class ContenedorPrincipal extends BorderPane {
 		this.setBotonera(algopoly);
 		this.setConsola();
 		this.setMenu(algopoly);
+		stage.setHeight(800);
+		stage.setWidth(800);
+		
+		
 	}
 	
 	private void setMenu(Algopoly algopoly) {
@@ -89,9 +93,12 @@ public class ContenedorPrincipal extends BorderPane {
 		contenedorCentral = new VBox(canvasCentral);
 		contenedorCentral.setAlignment(Pos.CENTER);
 		Image imagen_tablero = new Image("file:src/vista/imagenes/Tablero_Full_screen.jpg");
+		
 		BackgroundImage imagenDeFondo = new BackgroundImage(imagen_tablero, BackgroundRepeat.NO_REPEAT , BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+
 		contenedorCentral.setBackground(new Background(imagenDeFondo));
 		this.setCenter(contenedorCentral);
+	
 		
 	}
 

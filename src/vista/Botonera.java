@@ -4,6 +4,7 @@ import controlador.BotonComprarHandler;
 import controlador.BotonConstruirCasaHandler;
 import controlador.BotonPagarFianzaHandler;
 import controlador.BotonRendirseHandler;
+import controlador.BotonTerminarJuegoHandler;
 import controlador.BotonTerminarTurnoHandler;
 import controlador.BotonTirarDadosHandler;
 import javafx.scene.control.Button;
@@ -25,6 +26,7 @@ public class Botonera {
 	Button botonComprar;
 	Button botonRendirse;
 	Button botonConstruirCasa;
+	Button terminarJuego;
 	
 	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,VistaInformacionJugadores vistaInformacionJugadores) {
 		this.algopoly = algopoly;
@@ -38,6 +40,13 @@ public class Botonera {
 		this.crearBotonComprar();
 		this.crearBotonRendirse();
 		this.crearBotonConstruirCasa();
+		this.crearBotonTermminarJuego();
+	}
+	private void crearBotonTermminarJuego() {
+		this.terminarJuego = new Button();
+		this.terminarJuego.setText("Terminar Jueego");
+		BotonTerminarJuegoHandler botonTerminarJuegoHandler = new BotonTerminarJuegoHandler(this.algopoly, this);
+		this.terminarJuego.setOnAction(botonTerminarJuegoHandler);
 	}
 
 	private void crearBotonConstruirCasa() {
@@ -91,7 +100,8 @@ public class Botonera {
 									this.botonTerminarTurno, 
 									this.botonPagarFianza,
 									this.botonComprar,
-									this.botonRendirse);
+									this.botonRendirse,
+									this.terminarJuego);
 		return contenedorVertical;
 	}
 	
