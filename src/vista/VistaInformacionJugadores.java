@@ -12,7 +12,7 @@ public class VistaInformacionJugadores {
 
 	
 
-	private ConcurrentHashMap<Jugador, VistaInformacionJugador> mapa;
+	private ConcurrentHashMap<Jugador, VistaInformacion> mapa;
 	private VBox contenedorVerticalInfo;
 	private ArrayList<Jugador> jugadores;
 	
@@ -24,7 +24,7 @@ public class VistaInformacionJugadores {
 		for(Jugador j : jugadores) {
 			VBox vbox = new VBox();
 			Color color = colores.pop();
-			this.mapa.put(j, new VistaInformacionJugador(j, vbox, color));
+			this.mapa.put(j, new VistaInformacion(j, vbox, color));
 			contenedorVerticalInfo.getChildren().add(vbox);
 			colores.addLast(color);
 		}

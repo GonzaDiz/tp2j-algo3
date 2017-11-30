@@ -26,16 +26,18 @@ import modelo.jugador.Jugador;
 
 public class ContenedorPrincipal extends BorderPane {
 	
-	VBox contenedorCentral;
-	Canvas canvasCentral;
-	LinkedList<Color> colores;
-	VistaJugadores vistaJugadores;
-	VistaInformacionJugadores vistaInformacionJugadores;
-	BarraDeMenu menuBar;
-	Botonera botonera;
+	private VBox contenedorCentral;
+	private Canvas canvasCentral;
+	private LinkedList<Color> colores;
+	private VistaJugadores vistaJugadores;
+	private VistaInformacionJugadores vistaInformacionJugadores;
+	private BarraDeMenu menuBar;
+	private Botonera botonera;
+	private Stage stage;
 
 	
 	public ContenedorPrincipal(Stage stage, Algopoly algopoly) {
+		this.stage = stage;
 		this.colores = new LinkedList<>();
 		this.colores.push(Color.RED);
 		this.colores.push(Color.BLUE);
@@ -52,7 +54,7 @@ public class ContenedorPrincipal extends BorderPane {
 	}
 	
 	private void setMenu(Algopoly algopoly) {
-        this.menuBar = new BarraDeMenu(algopoly, this.vistaInformacionJugadores, this.botonera);
+        this.menuBar = new BarraDeMenu(algopoly, this.vistaInformacionJugadores, this.botonera,this.stage);
         this.setTop(menuBar);
     }
 	
@@ -71,13 +73,8 @@ public class ContenedorPrincipal extends BorderPane {
 
 	private void setBotonera(Algopoly algopoly) {
 		
-		this.botonera = new Botonera(algopoly,vistaJugadores,vistaInformacionJugadores);
+		this.botonera = new Botonera(algopoly,this.vistaJugadores,this.vistaInformacionJugadores,this.stage);
 		VBox contenedorVertical = this.botonera.getContenedor();
-		//Button botonTirarDados = new Button();
-		//botonTirarDados.setText("Tirar dados");
-		//BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly,vistaInformacionJugadores);
-		//botonTirarDados.setOnAction(botonTirarDadosHandler);
-		//VBox contenedorVertical = new VBox(botonTirarDados);
 		contenedorVertical.setSpacing(10);
 		contenedorVertical.setPadding(new Insets(15));
 		this.setLeft(contenedorVertical);
@@ -107,16 +104,6 @@ public class ContenedorPrincipal extends BorderPane {
 		this.vistaInformacionJugadores = new VistaInformacionJugadores(jugadores, this.colores);
 		VBox contendeorVertical = this.vistaInformacionJugadores.getContenedorVerticalConInformacion();
 		this.setRight(contendeorVertical);
-//		this.vistaInformacionJugadores = new ConcurrentHashMap<>();
-//
-//		VBox contenedorVerticalInfo = new VBox();
-//		for(Jugador j : jugadores) {
-//			VBox vbox = new VBox();
-//			this.vistaInformacionJugadores.put(j, new VistaInformacionJugador(j, vbox));
-//			contenedorVerticalInfo.getChildren().add(vbox);
-//		}
-//
-//		this.setRight(contenedorVerticalInfo);
 	}
 }
 

@@ -2,8 +2,6 @@ package controlador;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import modelo.Algopoly;
 import modelo.excepciones.CapitalInsuficienteError;
 import modelo.excepciones.NoEstasEncarceladoException;
@@ -30,29 +28,15 @@ public class BotonPagarFianzaHandler implements EventHandler<ActionEvent>{
 		}
 		
 		catch(NoEstasEncarceladoException e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("No puede pagar la fianza");
-			alert.setHeaderText(null);
-			alert.setContentText("No se encuentra encarcelado, no puede pagar la fianza.");
-			alert.showAndWait();
+			this.botonera.mostrarAlerta("No puede pagar la fianza", "No se encuentra encarcelado, no puede pagar la fianza.");
 		}
 		
 		catch(NoPuedePagarFianzaException e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("No puede pagar la fianza");
-			alert.setHeaderText(null);
-			alert.setContentText("Recien a partir del segundo turno en la carcel puede pagar la fianza.");
-			alert.showAndWait();
+			this.botonera.mostrarAlerta("No puede pagar la fianza", "Recien a partir del segundo turno en la carcel puede pagar la fianza.");
 		}
-		
 		catch(CapitalInsuficienteError e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Saldo insuficiente");
-			alert.setHeaderText(null);
-			alert.setContentText("No dispone del dinero suficiente para comprar este casillero.");
-			alert.showAndWait();
+			this.botonera.mostrarAlerta("Saldo insuficiente","No dispone del dinero suficiente para comprar este casillero.");
 		}
-//		this.botonera.deshabilitarBotonPagarFianza();
 		
 		this.botonera.actualizarInformacionJugadores();
 		

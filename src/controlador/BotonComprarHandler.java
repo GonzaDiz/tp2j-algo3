@@ -2,8 +2,6 @@ package controlador;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import modelo.Algopoly;
 import modelo.excepciones.CapitalInsuficienteError;
 import modelo.excepciones.NoEsUnCasilleroComprableError;
@@ -27,19 +25,11 @@ public class BotonComprarHandler implements EventHandler<ActionEvent>{
 		}
 		
 		catch(CapitalInsuficienteError e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Saldo insuficiente");
-			alert.setHeaderText(null);
-			alert.setContentText("No dispone del dinero suficiente para comprar este casillero.");
-			alert.showAndWait();
+			this.botonera.mostrarAlerta("Saldo insuficiente", "No dispone del dinero suficiente para comprar este casillero.");
 		}
 		
 		catch(NoEsUnCasilleroComprableError e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Casillero no comprable");
-			alert.setHeaderText(null);
-			alert.setContentText("El casillero en el que se encuentra no puede ser comprado.");
-			alert.showAndWait();
+			this.botonera.mostrarAlerta("Casillero no comprable", "El casillero en el que se encuentra no puede ser comprado.");
 		}
 		this.botonera.actualizarInformacionJugadores();
 		this.botonera.deshabilitarBotonComprar();

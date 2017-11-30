@@ -57,4 +57,10 @@ public  class TerrenoSimple extends Terreno{
 		return this.precioTerreno + (this.cantidadCasas * this.costoCasa);
 	}
 
+
+	@Override
+	public int cantidadDeHoteles() {
+		return 0;
+	}
+
 }

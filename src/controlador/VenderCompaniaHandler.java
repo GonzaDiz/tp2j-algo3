@@ -2,11 +2,10 @@ package controlador;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import modelo.Algopoly;
 import modelo.casillero.compania.Compania;
 import modelo.excepciones.NoPuedeCederUnaCompaniaNoPropiaError;
+import vista.BarraDeMenu;
 import vista.Botonera;
 
 public class VenderCompaniaHandler implements EventHandler<ActionEvent> {
@@ -14,11 +13,13 @@ public class VenderCompaniaHandler implements EventHandler<ActionEvent> {
 	private Algopoly algopoly;
 	private Compania compania;
 	private Botonera botonera;
+	private BarraDeMenu barraDeMenu;
 
-	public VenderCompaniaHandler(Algopoly algopoly, Compania compania, Botonera botonera) {
+	public VenderCompaniaHandler(Algopoly algopoly, Compania compania, Botonera botonera, BarraDeMenu barraDeMenu) {
 		this.algopoly = algopoly;
 		this.compania = compania;
 		this.botonera = botonera;
+		this.barraDeMenu = barraDeMenu;
 	}
 
 	@Override
@@ -30,11 +31,7 @@ public class VenderCompaniaHandler implements EventHandler<ActionEvent> {
 		}
 		
 		catch(NoPuedeCederUnaCompaniaNoPropiaError e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("No puede vender esta propiedad");
-			alert.setHeaderText(null);
-			alert.setContentText("Para poder vender una compania debe ser el propietario.");
-			alert.showAndWait();
+			this.barraDeMenu.mostrarAlerta("No puede vender esta propiedad", "Para poder vender una compania debe ser el propietario");
 		}
 	}
 }

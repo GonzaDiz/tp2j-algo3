@@ -71,6 +71,8 @@ public abstract class Terreno extends Casillero {
 		return this.cantidadCasas;
 	}
 	
+	public abstract int cantidadDeHoteles();
+	
 	protected void verificarRestricciones() {
 		for(RestriccionDeConstruccion r : this.restricciones) {
 			r.verificar();

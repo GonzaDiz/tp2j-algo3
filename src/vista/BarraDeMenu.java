@@ -4,14 +4,20 @@ import controlador.ConstruirCasaHandler;
 import controlador.ConstruirHotelHandler;
 import controlador.VenderCompaniaHandler;
 import controlador.VenderTerrenoHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import modelo.Algopoly;
 
 public class BarraDeMenu extends MenuBar{
 	
-	public BarraDeMenu(Algopoly algopoly, VistaInformacionJugadores vistaInformacionJugadores, Botonera botonera) {
+	private Stage stage;
+
+	public BarraDeMenu(Algopoly algopoly, VistaInformacionJugadores vistaInformacionJugadores, Botonera botonera, Stage stage) {
+		this.stage = stage;
 		Menu menuConstruirCasa = new Menu("Construir casa en...");
 		Menu menuConstruirHotel = new Menu("Construir hotel en...");
 		Menu menuVenderPropiedad = new Menu("Vender propiedad...");
@@ -47,36 +53,36 @@ public class BarraDeMenu extends MenuBar{
 		MenuItem propiedadAysa = new MenuItem("Aysa");
 		MenuItem propiedadTren = new MenuItem("Tren");
 		
-		ConstruirCasaHandler opcionCasaEnBuenosAiresSurHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Sur"), vistaInformacionJugadores);
-		ConstruirCasaHandler opcionCasaEnBuenosAiresNorteHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Norte"), vistaInformacionJugadores);
-		ConstruirCasaHandler opcionCasaEnCordobaSurHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Sur"), vistaInformacionJugadores);
-		ConstruirCasaHandler opcionCasaEnCordobaNorteHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Norte"), vistaInformacionJugadores);
-		ConstruirCasaHandler opcionCasaEnSantaFeHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoSimple("Santa Fe"), vistaInformacionJugadores);
-		ConstruirCasaHandler opcionCasaEnSaltaNorteHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Salta Norte"), vistaInformacionJugadores);
-		ConstruirCasaHandler opcionCasaEnSaltaSurHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Salta Sur"), vistaInformacionJugadores);
-		ConstruirCasaHandler opcionCasaEnNeuquenHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoSimple("Neuquen"), vistaInformacionJugadores);
-		ConstruirCasaHandler opcionCasaEnTucumanHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoSimple("Tucuman"), vistaInformacionJugadores);
+		ConstruirCasaHandler opcionCasaEnBuenosAiresSurHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Sur"), vistaInformacionJugadores,this);
+		ConstruirCasaHandler opcionCasaEnBuenosAiresNorteHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Norte"), vistaInformacionJugadores,this);
+		ConstruirCasaHandler opcionCasaEnCordobaSurHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Sur"), vistaInformacionJugadores,this);
+		ConstruirCasaHandler opcionCasaEnCordobaNorteHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Norte"), vistaInformacionJugadores,this);
+		ConstruirCasaHandler opcionCasaEnSantaFeHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoSimple("Santa Fe"), vistaInformacionJugadores, this);
+		ConstruirCasaHandler opcionCasaEnSaltaNorteHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Salta Norte"), vistaInformacionJugadores,this);
+		ConstruirCasaHandler opcionCasaEnSaltaSurHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoDoble("Salta Sur"), vistaInformacionJugadores,this);
+		ConstruirCasaHandler opcionCasaEnNeuquenHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoSimple("Neuquen"), vistaInformacionJugadores,this);
+		ConstruirCasaHandler opcionCasaEnTucumanHandler = new ConstruirCasaHandler(algopoly, algopoly.getTerrenoSimple("Tucuman"), vistaInformacionJugadores,this);
 		
-		ConstruirHotelHandler opcionHotelEnBuenosAiresSurHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Sur"), vistaInformacionJugadores);
-		ConstruirHotelHandler opcionHotelEnBuenosAiresNorteHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Norte"), vistaInformacionJugadores);
-		ConstruirHotelHandler opcionHotelEnCordobaSurHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Sur"), vistaInformacionJugadores);
-		ConstruirHotelHandler opcionHotelEnCordobaNorteHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Norte"), vistaInformacionJugadores);
-		ConstruirHotelHandler opcionHotelEnSaltaNorteHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Salta Norte"), vistaInformacionJugadores);
-		ConstruirHotelHandler opcionHotelEnSaltaSurHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Salta Sur"), vistaInformacionJugadores);
+		ConstruirHotelHandler opcionHotelEnBuenosAiresSurHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Sur"), vistaInformacionJugadores,this);
+		ConstruirHotelHandler opcionHotelEnBuenosAiresNorteHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Norte"), vistaInformacionJugadores,this);
+		ConstruirHotelHandler opcionHotelEnCordobaSurHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Sur"), vistaInformacionJugadores,this);
+		ConstruirHotelHandler opcionHotelEnCordobaNorteHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Norte"), vistaInformacionJugadores,this);
+		ConstruirHotelHandler opcionHotelEnSaltaNorteHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Salta Norte"), vistaInformacionJugadores,this);
+		ConstruirHotelHandler opcionHotelEnSaltaSurHandler = new ConstruirHotelHandler(algopoly, algopoly.getTerrenoDoble("Salta Sur"), vistaInformacionJugadores,this);
 
-		VenderTerrenoHandler opcionPropiedadBuenosAiresSur = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Sur"), botonera);
-		VenderTerrenoHandler opcionPropiedadBuenosAiresNorteHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Norte"), botonera);
-		VenderTerrenoHandler opcionPropiedadCordobaSurHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Sur"), botonera);
-		VenderTerrenoHandler opcionPropiedadCordobaNorteHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Norte"), botonera);
-		VenderTerrenoHandler opcionPropiedadSantaFeHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoSimple("Santa Fe"), botonera);
-		VenderTerrenoHandler opcionPropiedadSaltaNorteHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Salta Norte"), botonera);
-		VenderTerrenoHandler opcionPropiedadSaltaSurHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Salta Sur"), botonera);
-		VenderTerrenoHandler opcionPropiedadNeuquenHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoSimple("Neuquen"), botonera);
-		VenderTerrenoHandler opcionPropiedadTucumanHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoSimple("Tucuman"), botonera);
-		VenderCompaniaHandler opcionPropiedadEdesurHandler = new VenderCompaniaHandler(algopoly, algopoly.getCompania("Edesur"), botonera);
-		VenderCompaniaHandler opcionPropiedadSubteHandler = new VenderCompaniaHandler(algopoly, algopoly.getCompania("Subte"), botonera);
-		VenderCompaniaHandler opcionPropiedadAysaHandler = new VenderCompaniaHandler(algopoly, algopoly.getCompania("Aysa"), botonera);
-		VenderCompaniaHandler opcionPropiedadTrenHandler = new VenderCompaniaHandler(algopoly, algopoly.getCompania("Tren"), botonera);
+		VenderTerrenoHandler opcionPropiedadBuenosAiresSur = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Sur"), botonera,this);
+		VenderTerrenoHandler opcionPropiedadBuenosAiresNorteHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Buenos Aires Norte"), botonera, this);
+		VenderTerrenoHandler opcionPropiedadCordobaSurHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Sur"), botonera, this);
+		VenderTerrenoHandler opcionPropiedadCordobaNorteHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Cordoba Norte"), botonera, this);
+		VenderTerrenoHandler opcionPropiedadSantaFeHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoSimple("Santa Fe"), botonera, this);
+		VenderTerrenoHandler opcionPropiedadSaltaNorteHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Salta Norte"), botonera, this);
+		VenderTerrenoHandler opcionPropiedadSaltaSurHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoDoble("Salta Sur"), botonera, this);
+		VenderTerrenoHandler opcionPropiedadNeuquenHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoSimple("Neuquen"), botonera, this);
+		VenderTerrenoHandler opcionPropiedadTucumanHandler = new VenderTerrenoHandler(algopoly, algopoly.getTerrenoSimple("Tucuman"), botonera, this);
+		VenderCompaniaHandler opcionPropiedadEdesurHandler = new VenderCompaniaHandler(algopoly, algopoly.getCompania("Edesur"), botonera,this);
+		VenderCompaniaHandler opcionPropiedadSubteHandler = new VenderCompaniaHandler(algopoly, algopoly.getCompania("Subte"), botonera,this);
+		VenderCompaniaHandler opcionPropiedadAysaHandler = new VenderCompaniaHandler(algopoly, algopoly.getCompania("Aysa"), botonera,this);
+		VenderCompaniaHandler opcionPropiedadTrenHandler = new VenderCompaniaHandler(algopoly, algopoly.getCompania("Tren"), botonera,this);
 		
 		casaEnBuenosAiresSur.setOnAction(opcionCasaEnBuenosAiresSurHandler);
 		casaEnBuenosAiresNorte.setOnAction(opcionCasaEnBuenosAiresNorteHandler);
@@ -146,6 +152,17 @@ public class BarraDeMenu extends MenuBar{
 		this.getMenus().addAll(menuConstruirCasa, menuConstruirHotel, menuVenderPropiedad);
 		
 		
+		
+		
+	}
+	
+	public void mostrarAlerta(String titulo, String mensaje) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(titulo);
+		alert.setHeaderText(null);
+		alert.setContentText(mensaje);
+		alert.initOwner(this.stage);
+		alert.showAndWait();
 	}
 
 }

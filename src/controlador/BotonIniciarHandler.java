@@ -69,7 +69,7 @@ public class BotonIniciarHandler implements EventHandler<ActionEvent> {
 		alert.setTitle(title);
 		alert.setHeaderText(null);
 		alert.setContentText(message);
-		alert.initOwner(owner);
+		alert.initOwner(this.stage);
 		alert.show();
 	}
 

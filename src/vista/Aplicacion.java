@@ -90,40 +90,6 @@ public class Aplicacion extends Application {
 		BotonIniciarHandler botonIniciarHandler = new BotonIniciarHandler(nameField,gridPane,nameField2,nameField3,this,primaryStage);
 		botonDeEnvio.setOnAction(botonIniciarHandler);
 
-//		botonDeEnvio.setOnAction(new EventHandler<ActionEvent>() {
-//			@Override
-//			public void handle(ActionEvent event) {
-//				if (nameField.getText().isEmpty()) {
-//					showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Error!",
-//							"Por favor ingresar nombre de jugador 1");
-//					return;
-//				}
-//
-//				showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registro Exitoso",
-//						"Bienvenidos " + nameField.getText() + "   " + nameField2.getText() + "    "
-//								+ nameField3.getText());
-//
-//				ArrayList<Jugador> jugadores = new ArrayList<>();
-//				if (!nameField.getText().isEmpty()) {
-//
-//					Jugador jugador1 = new Jugador(nameField.getText());
-//					jugadores.add(jugador1);
-//				}
-//				if (!nameField2.getText().isEmpty()) {
-//
-//					Jugador jugador2 = new Jugador(nameField2.getText());
-//					jugadores.add(jugador2);
-//				}
-//				if (!nameField3.getText().isEmpty()) {
-//
-//					Jugador jugador3 = new Jugador(nameField3.getText());
-//					jugadores.add(jugador3);
-//				}
-//
-//				mostarContenedor2(jugadores);
-//
-//			}
-//		});
 	}
 
 	

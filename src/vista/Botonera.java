@@ -6,8 +6,11 @@ import controlador.BotonRendirseHandler;
 import controlador.BotonTerminarJuegoHandler;
 import controlador.BotonTerminarTurnoHandler;
 import controlador.BotonTirarDadosHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import modelo.Algopoly;
 import modelo.jugador.Jugador;
 
@@ -19,6 +22,7 @@ public class Botonera {
 	private VistaJugadores vistaJugadores;
 	private VistaInformacionJugadores vistaInformacionJugadores;
 	
+	
 	Button botonTirarDados;
 	Button botonTerminarTurno;
 	Button botonPagarFianza;
@@ -26,14 +30,15 @@ public class Botonera {
 	Button botonRendirse;
 	Button botonConstruirCasa;
 	Button terminarJuego;
+	private Stage stage;
 
 	
-	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,VistaInformacionJugadores vistaInformacionJugadores) {
+	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,VistaInformacionJugadores vistaInformacionJugadores, Stage stage) {
 		this.algopoly = algopoly;
 		this.jugadorConTurno = algopoly.proximoJugador();
 		this.vistaJugadores = vistaJugadores;
 		this.vistaInformacionJugadores = vistaInformacionJugadores;
-		
+		this.stage = stage;
 		this.crearBotonTirarDados();
 		this.crearBotonTerminarTurno();
 		this.crearBotonPagarFianza();
@@ -156,5 +161,14 @@ public class Botonera {
 
 	public void actualizarVistaJugadores() {
 		this.vistaJugadores.update();
+	}
+	
+	public void mostrarAlerta(String titulo, String mensaje) {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle(titulo);
+		alert.setHeaderText(null);
+		alert.setContentText(mensaje);
+		alert.initOwner(this.stage);
+		alert.showAndWait();
 	}
 }

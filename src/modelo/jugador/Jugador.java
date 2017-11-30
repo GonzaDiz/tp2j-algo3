@@ -35,6 +35,7 @@ public class Jugador {
 		this.ultimaTirada = new SinTiro();
 		
 	}
+	
 
 	public String tuNombreEs() {
 		return nombre;
@@ -230,6 +231,14 @@ public class Jugador {
 		
 		this.companiasCompradas.clear();
 		this.terrenosComprados.clear();
+	}
+	
+	public ArrayList<Terreno> getTerrenos() {
+		return this.terrenosComprados;
+	}
+	
+	public ArrayList<Compania> getCompanias() {
+		return this.companiasCompradas;
 	}
 
 

@@ -10,7 +10,7 @@ import modelo.jugador.Jugador;
 public class VistaJugadores {
 	
 	private ArrayList<Jugador> jugadores;
-	Canvas canvas;
+	private Canvas canvas;
 	private LinkedList<Color> colores;
 	
 	

@@ -2,8 +2,6 @@ package controlador;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import modelo.Algopoly;
 import modelo.casillero.terrenos.TerrenoDoble;
 import modelo.excepciones.LimiteDeEdificacionesExcedidoError;
@@ -11,6 +9,7 @@ import modelo.excepciones.NoSePuedeConstruirUnHotelEnUnTerrenoSinConstruirPrimer
 import modelo.excepciones.NoSePuedeConstruirUnHotelEnUnTerrenoSinConstruirPrimeroTodasLasCasasPosiblesError;
 import modelo.excepciones.SeNecesitanAmbosTerrenosParaEdificarEnUnTerrenoDobleError;
 import modelo.excepciones.SoloElPropietarioPuedeEdificarEnElTerrenoError;
+import vista.BarraDeMenu;
 import vista.VistaInformacionJugadores;
 
 public class ConstruirHotelHandler  implements EventHandler<ActionEvent>{
@@ -18,11 +17,13 @@ public class ConstruirHotelHandler  implements EventHandler<ActionEvent>{
 	private Algopoly algopoly;
 	private TerrenoDoble terreno;
 	private VistaInformacionJugadores vistaInformacionJugadores;
+	private BarraDeMenu barraDeMenu;
 
-	public ConstruirHotelHandler(Algopoly algopoly, TerrenoDoble terreno, VistaInformacionJugadores vistaInformacionJugadores) {
+	public ConstruirHotelHandler(Algopoly algopoly, TerrenoDoble terreno, VistaInformacionJugadores vistaInformacionJugadores, BarraDeMenu barraDeMenu) {
 		this.algopoly = algopoly;
 		this.terreno = terreno;
 		this.vistaInformacionJugadores = vistaInformacionJugadores;
+		this.barraDeMenu = barraDeMenu;
 	}
 
 	@Override
@@ -33,43 +34,27 @@ public class ConstruirHotelHandler  implements EventHandler<ActionEvent>{
 		}
 		
 		catch(LimiteDeEdificacionesExcedidoError e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("No puede construir hotel en este terreno");
-			alert.setHeaderText(null);
-			alert.setContentText("Este terreno tiene la capacidad maxima de hoteles permitidos.");
-			alert.showAndWait();
+			this.barraDeMenu.mostrarAlerta("No puede construir hotel en este terreno", "Este terreno tiene la capacidad maxima de hoteles permitidos.");
 		}
 		
 		catch(SoloElPropietarioPuedeEdificarEnElTerrenoError e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("No puede construir hotel en este terreno");
-			alert.setHeaderText(null);
-			alert.setContentText("Debe ser el propietario del terreno para construir un hotel en el mismo.");
-			alert.showAndWait();
+			this.barraDeMenu.mostrarAlerta("No puede construir hotel en este terreno", "Debe ser el propietario del terreno para construir un hotel en el mismo.");
+
 		}
 		
 		catch(SeNecesitanAmbosTerrenosParaEdificarEnUnTerrenoDobleError e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("No puede construir hotel en este terreno");
-			alert.setHeaderText(null);
-			alert.setContentText("Para construir un hotel en un terreno doble debe ser propietario tambien del terreno pareja.");
-			alert.showAndWait();
+			this.barraDeMenu.mostrarAlerta("No puede construir hotel en este terreno", "Para construir un hotel en un terreno doble debe ser propietario tambien del terreno pareja.");
+
 		}
 		
 		catch(NoSePuedeConstruirUnHotelEnUnTerrenoSinConstruirPrimeroTodasLasCasasPosiblesError e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("No puede construir hotel en este terreno");
-			alert.setHeaderText(null);
-			alert.setContentText("Para construir un hotel debe primero construir todas las casas posibles en el mismo.");
-			alert.showAndWait();
+			this.barraDeMenu.mostrarAlerta("No puede construir hotel en este terreno", "Para construir un hotel debe primero construir todas las casas posibles en el mismo.");
+
 		}
 		
 		catch(NoSePuedeConstruirUnHotelEnUnTerrenoSinConstruirPrimeroTodasLasCasasPosiblesEnElTerrenoParejaError e) {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("No puede construir hotel en este terreno");
-			alert.setHeaderText(null);
-			alert.setContentText("Para construir un hotel debe primero construir todas las casas posibles en el terreno pareja.");
-			alert.showAndWait();
+			this.barraDeMenu.mostrarAlerta("No puede construir hotel en este terreno", "Para construir un hotel debe primero construir todas las casas posibles en el terreno pareja.");
+
 			
 		}
 		

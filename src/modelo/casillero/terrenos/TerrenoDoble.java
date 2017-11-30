@@ -83,6 +83,7 @@ public class TerrenoDoble extends Terreno {
 		this.terrenoPareja = terreno;
 	}
 	
+	@Override
 	public int cantidadDeHoteles() {
 //		return this.hoteles.size();
 		return this.cantidadHoteles;
