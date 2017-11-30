@@ -22,7 +22,7 @@ public class RestriccionDeIntercambioDeCompaniaPorNoSerPropietario implements Re
 				return;
 			}
 		}
-		throw new NoPuedeCederUnaCompaniaNoPropiaError("Para ceder un terreno debe ser el propietario");
+		throw new NoPuedeCederUnaCompaniaNoPropiaError("Para ceder una compania debe ser el propietario");
 	}
 	
 

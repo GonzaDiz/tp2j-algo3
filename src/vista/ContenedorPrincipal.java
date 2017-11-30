@@ -32,6 +32,7 @@ public class ContenedorPrincipal extends BorderPane {
 	VistaJugadores vistaJugadores;
 	VistaInformacionJugadores vistaInformacionJugadores;
 	BarraDeMenu menuBar;
+	Botonera botonera;
 
 	
 	public ContenedorPrincipal(Stage stage, Algopoly algopoly) {
@@ -47,7 +48,7 @@ public class ContenedorPrincipal extends BorderPane {
 	}
 	
 	private void setMenu(Algopoly algopoly) {
-        this.menuBar = new BarraDeMenu(algopoly, this.vistaInformacionJugadores);
+        this.menuBar = new BarraDeMenu(algopoly, this.vistaInformacionJugadores, this.botonera);
         this.setTop(menuBar);
     }
 	
@@ -66,8 +67,8 @@ public class ContenedorPrincipal extends BorderPane {
 
 	private void setBotonera(Algopoly algopoly) {
 		
-		Botonera botonera = new Botonera(algopoly,vistaJugadores,vistaInformacionJugadores);
-		VBox contenedorVertical = botonera.getContenedor();
+		this.botonera = new Botonera(algopoly,vistaJugadores,vistaInformacionJugadores);
+		VBox contenedorVertical = this.botonera.getContenedor();
 		//Button botonTirarDados = new Button();
 		//botonTirarDados.setText("Tirar dados");
 		//BotonTirarDadosHandler botonTirarDadosHandler = new BotonTirarDadosHandler(vistaJugadores,algopoly,vistaInformacionJugadores);

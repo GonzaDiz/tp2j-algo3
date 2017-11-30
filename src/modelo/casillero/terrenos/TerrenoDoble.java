@@ -6,6 +6,7 @@ import modelo.edificaciones.RestriccionDeConstruccionPorLimiteDeCasas;
 import modelo.edificaciones.RestriccionDeConstruccionPorLimiteDeHoteles;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedad;
 import modelo.edificaciones.RestriccionDeConstruccionPorPropiedadDeTerrenoPareja;
+import modelo.edificaciones.RestriccionDeConstruccionPorTenerHotelesEdificados;
 import modelo.jugador.Jugador;
 
 public class TerrenoDoble extends Terreno {
@@ -55,6 +56,7 @@ public class TerrenoDoble extends Terreno {
 		this.restricciones.add(new RestriccionDeConstruccionPorPropiedad(this, jugador));
 		this.restricciones.add(new RestriccionDeConstruccionPorLimiteDeCasas(this, this.limiteCasas));
 		this.restricciones.add(new RestriccionDeConstruccionPorPropiedadDeTerrenoPareja(this.terrenoPareja, jugador));
+		this.restricciones.add(new RestriccionDeConstruccionPorTenerHotelesEdificados(this.cantidadDeHoteles()));
 		this.verificarRestricciones();
 		
 		jugador.extraerDinero(this.costoCasa);

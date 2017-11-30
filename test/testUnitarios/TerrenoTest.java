@@ -7,6 +7,7 @@ import modelo.casillero.terrenos.Terreno;
 import modelo.casillero.terrenos.TerrenoDoble;
 import modelo.casillero.terrenos.TerrenosFactory;
 import modelo.excepciones.LimiteDeEdificacionesExcedidoError;
+import modelo.excepciones.NoPuedeConstruirCasasEnUnTerrenoConHotelesError;
 import modelo.excepciones.NoSePuedeConstruirUnHotelEnUnTerrenoSinConstruirPrimeroTodasLasCasasPosiblesEnElTerrenoParejaError;
 import modelo.excepciones.NoSePuedeConstruirUnHotelEnUnTerrenoSinConstruirPrimeroTodasLasCasasPosiblesError;
 import modelo.excepciones.SeNecesitanAmbosTerrenosParaEdificarEnUnTerrenoDobleError;
@@ -928,6 +929,24 @@ public class TerrenoTest {
 		int capital = j2.capitalTotal();
 		j2.caerEnCasillero(c1);
 		Assert.assertEquals(capital - 4500, j2.capitalTotal());
+	}
+	
+	@Test(expected = NoPuedeConstruirCasasEnUnTerrenoConHotelesError.class)
+	public void testUnJugadorConstruyeUnHotelEnBuenosAiresSurYLuegoIntentaConstruirUnaCasaEntoncesSeLanzaUnaExcepcion() {
+		TerrenosFactory terrenosFactory = new TerrenosFactory();
+		Jugador j1 = new Jugador("Rochi");
+		TerrenoDoble c1 = terrenosFactory.crearBuenosAiresSur();
+		TerrenoDoble c2 = terrenosFactory.crearBuenosAiresNorte();
+		c1.setTerrenoPareja(c2);
+		c2.setTerrenoPareja(c1);
+		j1.comprarTerreno(c1);
+		j1.comprarTerreno(c2);
+		j1.construirCasaEn(c1);
+		j1.construirCasaEn(c1);
+		j1.construirCasaEn(c2);
+		j1.construirCasaEn(c2);
+		j1.construirHotelEn(c1);
+		j1.construirCasaEn(c1);
 	}
 
 }

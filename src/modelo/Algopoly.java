@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
+import modelo.casillero.compania.Compania;
 import modelo.casillero.especial.Carcel;
 import modelo.casillero.especial.Salida;
 import modelo.casillero.terrenos.TerrenoDoble;
@@ -69,6 +70,10 @@ public class Algopoly {
 	
 	public TerrenoDoble getTerrenoDoble(String nombreTerrenoDoble) {
 		return (TerrenoDoble) this.tablero.getCasillero(new TerrenoDoble(nombreTerrenoDoble));
+	}
+
+	public Compania getCompania(String nombreCompania) {
+		return (Compania) this.tablero.getCasillero(new Compania(nombreCompania));
 	}
 
 }

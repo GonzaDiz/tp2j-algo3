@@ -70,6 +70,8 @@ public class ConstruirHotelHandler  implements EventHandler<ActionEvent>{
 			alert.setHeaderText(null);
 			alert.setContentText("Para construir un hotel debe primero construir todas las casas posibles en el terreno pareja.");
 			alert.showAndWait();
+			
 		}
+		
 	}
 }

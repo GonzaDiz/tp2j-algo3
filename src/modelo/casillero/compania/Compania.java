@@ -20,6 +20,10 @@ public class Compania extends Casillero {
 		this.bonificador = bonificador;
 	}
 	
+	public Compania(String nombreCompania) {
+		this.nombreCasillero = nombreCompania;
+	}
+
 	@Override
 	public void afectarJugador(Jugador unJugador) {
 		if(this.tienePropietario()) {

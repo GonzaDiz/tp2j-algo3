@@ -7,6 +7,7 @@ import javafx.scene.control.Alert.AlertType;
 import modelo.Algopoly;
 import modelo.casillero.terrenos.Terreno;
 import modelo.excepciones.LimiteDeEdificacionesExcedidoError;
+import modelo.excepciones.NoPuedeConstruirCasasEnUnTerrenoConHotelesError;
 import modelo.excepciones.SeNecesitanAmbosTerrenosParaEdificarEnUnTerrenoDobleError;
 import modelo.excepciones.SoloElPropietarioPuedeEdificarEnElTerrenoError;
 import vista.VistaInformacionJugadores;
@@ -51,6 +52,14 @@ public class ConstruirCasaHandler implements EventHandler<ActionEvent>{
 			alert.setTitle("No puede construir casa en este terreno");
 			alert.setHeaderText(null);
 			alert.setContentText("Para construir una casa en un terreno doble debe ser propietario tambien del terreno pareja.");
+			alert.showAndWait();
+		}
+		
+		catch(NoPuedeConstruirCasasEnUnTerrenoConHotelesError e) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("No puede construir una casa en este terreno");
+			alert.setHeaderText(null);
+			alert.setContentText("No puede construir una casa en un terreno que tiene edificados hoteles.");
 			alert.showAndWait();
 		}
 		

@@ -1,7 +1,6 @@
 package vista;
 
 import controlador.BotonComprarHandler;
-import controlador.BotonConstruirCasaHandler;
 import controlador.BotonPagarFianzaHandler;
 import controlador.BotonRendirseHandler;
 import controlador.BotonTerminarTurnoHandler;
@@ -24,7 +23,6 @@ public class Botonera {
 	Button botonPagarFianza;
 	Button botonComprar;
 	Button botonRendirse;
-	Button botonConstruirCasa;
 	
 	public Botonera(Algopoly algopoly,VistaJugadores vistaJugadores,VistaInformacionJugadores vistaInformacionJugadores) {
 		this.algopoly = algopoly;
@@ -37,14 +35,6 @@ public class Botonera {
 		this.crearBotonPagarFianza();
 		this.crearBotonComprar();
 		this.crearBotonRendirse();
-		this.crearBotonConstruirCasa();
-	}
-
-	private void crearBotonConstruirCasa() {
-		this.botonConstruirCasa = new Button();
-		this.botonConstruirCasa.setText("Construir casa");
-		BotonConstruirCasaHandler botonConstruirCasaHandler = new BotonConstruirCasaHandler(this.algopoly, this);
-		this.botonConstruirCasa.setOnAction(botonConstruirCasaHandler);
 	}
 
 	private void crearBotonRendirse() {
