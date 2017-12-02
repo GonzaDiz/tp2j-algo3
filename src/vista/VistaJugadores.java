@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import modelo.jugador.Jugador;
 
 public class VistaJugadores {
-	
+	//un comentario
 	private ArrayList<Jugador> jugadores;
 	private Canvas canvas;
 	private LinkedList<Color> colores;
