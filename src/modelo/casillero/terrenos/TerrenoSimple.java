@@ -6,7 +6,7 @@ import modelo.jugador.Jugador;
 
 public  class TerrenoSimple extends Terreno{
 
-	private AlquilerTerrenoSimple alquiler;
+	public AlquilerTerrenoSimple alquiler;
 	
 	public TerrenoSimple(int precioTerreno, String nombreCasillero, int costoCasa, AlquilerTerrenoSimple alquiler ) {
 		super();
@@ -36,9 +36,14 @@ public  class TerrenoSimple extends Terreno{
 	
 	@Override
 	public void cobrarAlquilerA(Jugador unJugador) {
-		int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadDeCasas());
-		unJugador.extraerDinero(precioAlquiler);
-		this.propietario.entregarDinero(precioAlquiler);
+		//int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadDeCasas());
+		//unJugador.extraerDinero(precioAlquiler);
+			
+			// Se le cobra el alquiler a un jugador
+			int precioAlquiler = alquiler.cobrarAlquilerA1(unJugador, this.cantidadDeCasas() );			
+			//Se le entrega el dinero del alquiler cobrado al propietario del terreno
+			this.propietario.entregarDinero(precioAlquiler);
+		
 	}
 	
 	@Override
