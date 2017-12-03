@@ -16,7 +16,7 @@ public class TerrenoDoble extends Terreno {
 	private int cantidadHoteles;
 	private int costoHotel;
 	private TerrenoDoble terrenoPareja;
-	private AlquilerTerrenoDoble alquiler;
+	public AlquilerTerrenoDoble alquiler;
 	
 	
 	public TerrenoDoble(int precioTerreno, int costoCasa, int costoHotel, String nombreCasillero, AlquilerTerrenoDoble alquiler) {
@@ -38,10 +38,15 @@ public class TerrenoDoble extends Terreno {
 		this.nombreCasillero = nombreTerrenoDoble;
 	}
 
-	@Override
-	public void cobrarAlquilerA(Jugador unJugador) {
-		int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadDeCasas(), this.cantidadDeHoteles());
-		unJugador.extraerDinero(precioAlquiler);
+	public void cobrarAlquilerA(Jugador unJugador){
+		
+		// Se le cobra el alquiler a un jugador
+		int c1 = this.cantidadDeCasas();
+		int c2 = this.cantidadDeHoteles();
+		int precioAlquiler = alquiler.cobrarAlquilerA1(unJugador, c1, c2 );
+		//int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadCasas, this.cantidadHoteles);
+		//unJugador.extraerDinero(precioAlquiler);
+		//Se le entrega el dinero del alquiler cobrado al propietario del terreno
 		this.propietario.entregarDinero(precioAlquiler);
 	}
 	
@@ -104,5 +109,7 @@ public class TerrenoDoble extends Terreno {
 	protected int valorTotal() {
 		return this.precioTerreno + (this.cantidadCasas * this.costoCasa) + (this.cantidadHoteles * this.costoHotel);
 	}
+
+
 
 }
