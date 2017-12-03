@@ -85,7 +85,7 @@ public class ContenedorPrincipal extends BorderPane {
 	
 	
 	private void setCentro(ArrayList<Jugador> jugadores) {
-		canvasCentral = new Canvas(871,871);
+		canvasCentral = new Canvas(600,600);
 		
 		vistaJugadores = new VistaJugadores(jugadores,canvasCentral,this.colores);
 		vistaJugadores.dibujar();
