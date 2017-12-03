@@ -24,7 +24,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
 			this.botonera.deshabilitarBotonTirarDados();
 			this.botonera.habilitarBotonTerminarTurno();
 			this.botonera.actualizarVistaJugadores();
-			this.botonera.actualizarInformacionJugadores();
+			this.botonera.actualizarInformacionJugadores(  algopoly);
 			this.botonera.actualizarBotonComprar();
 		}
 		catch(CapitalInsuficienteError e) {
@@ -32,7 +32,7 @@ public class BotonTirarDadosHandler implements EventHandler<ActionEvent> {
 			this.botonera.deshabilitarBotonTerminarTurno();
 			this.botonera.habilitarBotonPagarDeuda();
 			this.botonera.actualizarVistaJugadores();
-			this.botonera.actualizarInformacionJugadores();
+			this.botonera.actualizarInformacionJugadores(  algopoly);
 			this.botonera.actualizarBotonComprar();
 		}
 		

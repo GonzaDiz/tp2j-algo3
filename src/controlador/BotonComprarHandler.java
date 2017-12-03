@@ -31,7 +31,7 @@ public class BotonComprarHandler implements EventHandler<ActionEvent>{
 		catch(NoEsUnCasilleroComprableError e) {
 			this.botonera.mostrarAlerta("Casillero no comprable", "El casillero en el que se encuentra no puede ser comprado.");
 		}
-		this.botonera.actualizarInformacionJugadores();
+		this.botonera.actualizarInformacionJugadores(  algopoly);
 		this.botonera.deshabilitarBotonComprar();
 	}
 

@@ -27,7 +27,7 @@ public class Aplicacion extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Registro de Jugadores");
 		GridPane gridPane = crearFormulario();
-		addUIControls(gridPane,primaryStage);
+		agregarCampos(gridPane,primaryStage);
 		Scene scene = new Scene(gridPane, 800, 500);
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -47,7 +47,7 @@ public class Aplicacion extends Application {
 		return gridPane;
 	}
 
-	private void addUIControls(GridPane gridPane, Stage primaryStage) {
+	private void agregarCampos(GridPane gridPane, Stage primaryStage) {
 
 		Label headerLabel = new Label("Formulario de registro de jugadores");
 		headerLabel.setFont(Font.font("Arial", FontWeight.BOLD, 24));

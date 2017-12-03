@@ -3,18 +3,22 @@ package vista;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -36,6 +40,7 @@ public class ContenedorPrincipal extends BorderPane {
 	private Botonera botonera;
 	private Stage stage;
 	private Label etiqueta;
+	private Label nombreJugadorConTurno;
 
 	
 	public ContenedorPrincipal(Stage stage, Algopoly algopoly) {
@@ -45,12 +50,21 @@ public class ContenedorPrincipal extends BorderPane {
 		this.colores.push(Color.BLUE);
 		this.colores.push(Color.GREEN);
 		this.setConsola();
-		this.setInformacionJugadores(algopoly.getJugadores());
+		this.setInformacionJugadores(algopoly.getJugadores(),algopoly);
+		//setInformacionJugadores2(algopoly);
+		
 		this.setCentro(algopoly.getJugadores());
 		this.setBotonera(algopoly);
 		this.setMenu(algopoly);
 		stage.setHeight(800);
 		stage.setWidth(800);
+		
+		this.nombreJugadorConTurno= new Label();
+	     nombreJugadorConTurno.setText(algopoly.getJugadorConTurno().tuNombreEs());
+			nombreJugadorConTurno.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+			nombreJugadorConTurno.setTextFill(algopoly.getJugadorConTurno().tuColorEs());
+		
+		
 		
 		
 	}
@@ -70,6 +84,8 @@ public class ContenedorPrincipal extends BorderPane {
 	     contenedorConsola.setPadding(new Insets(15));
 	     contenedorConsola.setStyle("-fx-background-color: black;");
 	     this.setBottom(contenedorConsola);
+	     
+	     
 		
 	}
 
@@ -107,11 +123,19 @@ public class ContenedorPrincipal extends BorderPane {
 		
 	}
 
-	private void setInformacionJugadores(ArrayList<Jugador> jugadores) {
-		this.vistaInformacionJugadores = new VistaInformacionJugadores(jugadores, this.colores);
+	private void setInformacionJugadores(ArrayList<Jugador> jugadores, Algopoly algopoly) {
+		this.vistaInformacionJugadores = new VistaInformacionJugadores(jugadores, this.colores,algopoly);
 		VBox contendeorVertical = this.vistaInformacionJugadores.getContenedorVerticalConInformacion();
 		this.setRight(contendeorVertical);
 	}
+
+	private void setJugadorQueSeMueves(ArrayList<Jugador> jugadores ,Algopoly algopoly) {
+		this.vistaInformacionJugadores = new VistaInformacionJugadores(jugadores, this.colores,  algopoly);
+		VBox contendeorVertical = this.vistaInformacionJugadores.getContenedorVerticalConInformacion();
+		this.setRight(contendeorVertical);
+	}
+	
+	
 }
 
 

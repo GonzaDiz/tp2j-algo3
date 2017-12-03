@@ -24,7 +24,7 @@ public class BotonPagarDeudaHandler implements EventHandler<ActionEvent>{
 			jugadorConTurno.caerEnCasillero(jugadorConTurno.casilleroActual());
 			this.botonera.deshabilitarBotonPagarDeuda();
 			this.botonera.deshabilitarBotonTerminarTurno();
-			this.botonera.actualizarInformacionJugadores();
+			this.botonera.actualizarInformacionJugadores(  algopoly);
 			this.botonera.actualizarVistaJugadores();
 		}
 		catch(CapitalInsuficienteError e) {

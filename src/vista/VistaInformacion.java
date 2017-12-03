@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import modelo.Algopoly;
 import modelo.casillero.compania.Compania;
 import modelo.casillero.terrenos.Terreno;
 import modelo.jugador.Jugador;
@@ -20,16 +21,17 @@ public class VistaInformacion  {
 	private Color color;
 	
 	
-	public VistaInformacion(Jugador jugador, VBox boxInfo, Color color) {		
+	public VistaInformacion(Jugador jugador, VBox boxInfo, Color color,Algopoly algopoly) {		
 		this.jugador = jugador;
 		this.vbox = boxInfo;
 		//this.color = color;
 		this.color= jugador.tuColorEs();
-		this.update();
+		this.update(algopoly);
 	}
 
 
-	public void update() {
+	public void update(Algopoly algopoly) {
+		
 		this.vbox.getChildren().clear();
 		Font fontDatos = new Font(15);	
 		
@@ -40,6 +42,20 @@ public class VistaInformacion  {
 		nombre.setFill(jugador.tuColorEs());
 		nombre.setFont(font);
 		nombre.setText(this.jugador.tuNombreEs());
+		
+		Text estado = new Text();
+	 		
+		
+		//nombre.setFill(this.color);
+		estado.setFill(jugador.tuColorEs());
+		estado.setFont(font);
+		if (jugador==algopoly.getJugadorConTurno())
+			
+		estado.setText("Jugando");
+		else 
+			estado.setText("En espera del turno");
+		
+		
 		
 		Text capital = new Text();
 		capital.setFont(fontDatos);
@@ -60,6 +76,7 @@ public class VistaInformacion  {
 		posicionActual.setText("Casillero actual = " + this.jugador.casilleroActual().nombre());
 		
 		this.vbox.getChildren().add(nombre);
+		this.vbox.getChildren().add(estado);
 		this.vbox.getChildren().add(capital);
 		this.vbox.getChildren().add(posicionActual);
 		this.vbox.getChildren().add(ultimaTirada);
