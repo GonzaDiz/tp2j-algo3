@@ -30,7 +30,7 @@ public class ConstruirCasaHandler implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent event) {
 		try {
 			this.algopoly.getJugadorConTurno().construirCasaEn(this.terreno);
-			this.vistaInformacionJugadores.update();
+			this.vistaInformacionJugadores.update( algopoly);
 		}
 		
 		catch(LimiteDeEdificacionesExcedidoError e) {

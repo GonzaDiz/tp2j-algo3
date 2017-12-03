@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import modelo.Algopoly;
 import modelo.jugador.Jugador;
 
 public class VistaInformacionJugadores {
@@ -16,7 +17,7 @@ public class VistaInformacionJugadores {
 	private VBox contenedorVerticalInfo;
 	private ArrayList<Jugador> jugadores;
 	
-	public VistaInformacionJugadores(ArrayList<Jugador> jugadores, LinkedList<Color> colores) {
+	public VistaInformacionJugadores(ArrayList<Jugador> jugadores, LinkedList<Color> colores, Algopoly algopoly) {
 
 		this.mapa = new ConcurrentHashMap<>();
 		this.jugadores = jugadores;
@@ -24,7 +25,7 @@ public class VistaInformacionJugadores {
 		for(Jugador j : jugadores) {
 			VBox vbox = new VBox();
 			Color color = colores.pop();
-			this.mapa.put(j, new VistaInformacion(j, vbox, color));
+			this.mapa.put(j, new VistaInformacion(j, vbox, color,algopoly));
 			contenedorVerticalInfo.getChildren().add(vbox);
 			colores.addLast(color);
 		}
@@ -32,13 +33,18 @@ public class VistaInformacionJugadores {
 		this.contenedorVerticalInfo = contenedorVerticalInfo;
 	}
 
+
+	
+	
+	
+	
 	public VBox getContenedorVerticalConInformacion() {
 		return this.contenedorVerticalInfo;
 	}
 
-	public void update() {
+	public void update( Algopoly algopoly) {
 		for (Jugador jugador : this.jugadores) {
-			mapa.get(jugador).update();
+			mapa.get(jugador).update(  algopoly);
 		}
 	}
 
