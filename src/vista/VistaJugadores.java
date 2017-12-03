@@ -52,7 +52,7 @@ public class VistaJugadores {
 	}
 	
 	public void clean() {
-		canvas.getGraphicsContext2D().clearRect(0, 0, 871, 871);
+		canvas.getGraphicsContext2D().clearRect(0, 0, 600, 600);
 	}
 	
 	public void update() {
