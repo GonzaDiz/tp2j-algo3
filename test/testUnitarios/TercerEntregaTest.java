@@ -132,7 +132,7 @@ public class TercerEntregaTest {
 		Jugador jugadorConTurno = turno.proximoJugador();
 		
 		int valorDeDados = jugadorConTurno.arrojaDados(turno);
-/*		
+	/*	
 		if (valorDeDados == 7) { // Si saca 7 cae en avance dinamico y se vuelve a desplazar
 			Assert.assertEquals(tablero.getCasillero(100000%7 + valorDeDados),jugadorConTurno.casilleroActual() );
 		}
