@@ -41,9 +41,7 @@ public class TerrenoDoble extends Terreno {
 	public void cobrarAlquilerA(Jugador unJugador){
 		
 		// Se le cobra el alquiler a un jugador
-		int c1 = this.cantidadDeCasas();
-		int c2 = this.cantidadDeHoteles();
-		int precioAlquiler = alquiler.cobrarAlquilerA1(unJugador, c1, c2 );
+		int precioAlquiler = alquiler.cobrarAlquilerA1(unJugador, this.cantidadDeCasas(), this.cantidadDeHoteles() );
 		//int precioAlquiler = alquiler.costoAlquilerCon(this.cantidadCasas, this.cantidadHoteles);
 		//unJugador.extraerDinero(precioAlquiler);
 		//Se le entrega el dinero del alquiler cobrado al propietario del terreno
