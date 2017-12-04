@@ -23,7 +23,7 @@ public class VenderTerrenoHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent event) {
 		try {
 			this.algopoly.getJugadorConTurno().venderTerreno(this.terreno);
-			this.botonera.actualizarInformacionJugadores();
+			this.botonera.actualizarInformacionJugadores(  algopoly);
 			this.botonera.actualizarBotonComprar();
 		}
 		

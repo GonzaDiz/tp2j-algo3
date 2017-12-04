@@ -38,7 +38,7 @@ public class BotonPagarFianzaHandler implements EventHandler<ActionEvent>{
 			this.botonera.mostrarAlerta("Saldo insuficiente","No dispone del dinero suficiente para comprar este casillero.");
 		}
 		
-		this.botonera.actualizarInformacionJugadores();
+		this.botonera.actualizarInformacionJugadores( algopoly);
 		
 	}
 	

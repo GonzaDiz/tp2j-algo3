@@ -41,10 +41,10 @@ public class VistaJugadores {
 				canvas.getGraphicsContext2D().fillOval(x, y, 50, 50);
 			
 			if (jugador.tuColorEs() == Color.BLUE)
-				canvas.getGraphicsContext2D().fillOval(x + 10, y + 10, 50, 50);
+				canvas.getGraphicsContext2D().fillOval(x + 10, y , 50, 50);
 			
 			if (jugador.tuColorEs() == Color.GREEN)
-				canvas.getGraphicsContext2D().fillOval(x - 10, y - 10, 50, 50);
+				canvas.getGraphicsContext2D().fillOval(x + 20, y , 50, 50);
 	
 			//colores.addLast(color);
 		}
@@ -52,7 +52,7 @@ public class VistaJugadores {
 	}
 	
 	public void clean() {
-		canvas.getGraphicsContext2D().clearRect(0, 0, 871, 871);
+		canvas.getGraphicsContext2D().clearRect(0, 0, 600, 600);
 	}
 	
 	public void update() {
