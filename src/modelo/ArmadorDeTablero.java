@@ -46,26 +46,26 @@ public class ArmadorDeTablero {
 		Terreno tucuman = terrenosFactory.crearTucuman();
 		
 		// Set posiciones
-		salida.setPosicion(new Posicion(800,800));
-		quini6.setPosicion(new Posicion(650,800));
-		baS.setPosicion(new Posicion(500,800));
-		edesur.setPosicion(new Posicion(350,800));
-		baN.setPosicion(new Posicion(200,800));
-		carcel.setPosicion(new Posicion(50,800));
-		cordobaSur.setPosicion(new Posicion(50,650));
-		avanceDinamico.setPosicion(new Posicion(50,500));
-		subte.setPosicion(new Posicion(50,350));
-		cordobaNorte.setPosicion(new Posicion(50,200));
-		impuestoDeLujo.setPosicion(new Posicion(50,50));
-		santaFe.setPosicion(new Posicion(200,50));
-		aysa.setPosicion(new Posicion(350,50));
-		saltaNorte.setPosicion(new Posicion(500,50));
-		saltaSur.setPosicion(new Posicion(650,50));
-		policia.setPosicion(new Posicion(800,50));
-		tren.setPosicion(new Posicion(800,200));
-		neuquen.setPosicion(new Posicion(800,350));
-		retrocesoDinamico.setPosicion(new Posicion(800,500));
-		tucuman.setPosicion(new Posicion(800,650));
+		salida.setPosicion(new Posicion(520,520));
+		quini6.setPosicion(new Posicion(420,520));
+		baS.setPosicion(new Posicion(320,520));
+		edesur.setPosicion(new Posicion(220,520));
+		baN.setPosicion(new Posicion(120,520));
+		carcel.setPosicion(new Posicion(20,520));
+		cordobaSur.setPosicion(new Posicion(20,420));
+		avanceDinamico.setPosicion(new Posicion(20,320));
+		subte.setPosicion(new Posicion(20,220));
+		cordobaNorte.setPosicion(new Posicion(20,120));
+		impuestoDeLujo.setPosicion(new Posicion(20,20));
+		santaFe.setPosicion(new Posicion(120,20));
+		aysa.setPosicion(new Posicion(220,20));
+		saltaNorte.setPosicion(new Posicion(320,20));
+		saltaSur.setPosicion(new Posicion(420,20));
+		policia.setPosicion(new Posicion(520,20));
+		tren.setPosicion(new Posicion(520,120));
+		neuquen.setPosicion(new Posicion(520,220));
+		retrocesoDinamico.setPosicion(new Posicion(520,320));
+		tucuman.setPosicion(new Posicion(520,420));
 		
 		
 		

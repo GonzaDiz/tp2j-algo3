@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import modelo.ArmadorDeTablero;
+import modelo.Posicion;
 import modelo.Tablero;
 import modelo.TiroDoble;
 import modelo.TiroSimple;
@@ -132,9 +133,14 @@ public class TercerEntregaTest {
 		Jugador jugadorConTurno = turno.proximoJugador();
 		
 		int valorDeDados = jugadorConTurno.arrojaDados(turno);
-		
+	
 		if (valorDeDados == 7) { // Si saca 7 cae en avance dinamico y se vuelve a desplazar
-			Assert.assertEquals(tablero.getCasillero(100000%7 + valorDeDados),jugadorConTurno.casilleroActual() );
+			Casillero c1 =tablero.getCasillero(100000%7 + valorDeDados ); 
+			Casillero c2 = jugadorConTurno.casilleroActual();
+			Posicion p1 = c1.getPosicion();
+			Posicion p2 = c2.getPosicion();
+			Assert.assertNotEquals(p1.getX(), p2.getX());
+		//	Assert.assertEquals(tablero.getCasillero(100000%7 + valorDeDados),jugadorConTurno.casilleroActual() );
 		}
 		else {
 		Assert.assertEquals(tablero.getCasilleroPorDesplazamiento(salida, valorDeDados), jugadorConTurno.casilleroActual());

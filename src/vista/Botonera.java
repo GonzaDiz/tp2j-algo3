@@ -156,8 +156,8 @@ public class Botonera {
 		this.botonPagarFianza.setDisable(true);		
 	}
 
-	public void actualizarInformacionJugadores() {
-		this.vistaInformacionJugadores.update();	
+	public void actualizarInformacionJugadores( Algopoly algopoly) {
+		this.vistaInformacionJugadores.update(  algopoly);	
 	}
 
 	public void deshabilitarBotonComprar() {
