@@ -102,8 +102,6 @@ public class ContenedorPrincipal extends BorderPane {
 		contenedorCentral.setAlignment(Pos.CENTER);
 		Image imagen_tablero = new Image("file:src/vista/imagenes/Tablero_Full_screen.jpg");
 		
-	
-		
 		BackgroundImage imagenDeFondo = new BackgroundImage(imagen_tablero, BackgroundRepeat.NO_REPEAT , BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
 		
 
