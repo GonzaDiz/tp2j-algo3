@@ -32,6 +32,11 @@ public class Tablero {
 	public Casillero getCasillero(int posicion) {
 		return casilleros.get(posicion);
 	}
+	public int getNumCasilleros() {
+		return casilleros.size();
+	}
+	
+	
 	
 	public void agregarCasillero(Casillero unCasillero) {
 		casilleros.add(unCasillero);

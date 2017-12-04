@@ -7,6 +7,7 @@ public abstract class Casillero {
 	
 	protected String nombreCasillero;
 	protected Posicion posicion;
+
 	
 	public abstract void afectarJugador(Jugador unJugador);
 	public abstract void comprar(Jugador unJugador);
@@ -28,7 +29,6 @@ public abstract class Casillero {
 	public Posicion getPosicion() {
 		return this.posicion;
 	}
-
 
 	
 	

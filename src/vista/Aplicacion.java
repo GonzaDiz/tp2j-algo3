@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import modelo.Algopoly;
+import modelo.Tablero;
 import modelo.jugador.Jugador;
 
 public class Aplicacion extends Application {
@@ -96,8 +97,14 @@ public class Aplicacion extends Application {
 
 	public void mostarContenedor2(ArrayList<Jugador> jugadores) {
 		Stage stage = new Stage();
+		VistaCasilleros vista= new VistaCasilleros();
 		stage.setTitle("Algopoly");
 		Algopoly algopoly = new Algopoly(jugadores);
+		
+		vista.setPosicionesTablero(algopoly.getTablero());
+		
+		
+		
 
 		ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, algopoly);
 		Scene escenaJuego = new Scene(contenedorPrincipal);

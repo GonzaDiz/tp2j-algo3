@@ -18,6 +18,8 @@ public class Compania extends Casillero {
 		this.nombreCasillero = nombre;
 		this.precioCompania = precio;
 		this.bonificador = bonificador;
+		
+		
 	}
 	
 	public Compania(String nombreCompania) {
